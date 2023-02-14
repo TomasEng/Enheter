@@ -104,4 +104,7 @@ dist
 .tern-port
 
 # Intellij
-.idea
+.idea/
+
+# Compiled files
+lib/
