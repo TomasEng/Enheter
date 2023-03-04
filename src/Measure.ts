@@ -1,4 +1,4 @@
-import {Dimension} from "./Dimension";
+import {Dimension, dimensionsEqual, multiplyDimensions} from "./Dimension";
 import {Prefix, prefixes} from "./Prefix";
 import {Unit} from "./Unit";
 
@@ -67,6 +67,11 @@ export class Measure {
     return this.prefix;
   }
 
+  public setBaseValue(value: number): Measure {
+    this.value = this.unit.fromBase(value);
+    return this;
+  }
+
   public prefixedValue(prefix: Prefix): number {
     const oldExponent = this.prefix ? prefixes[this.prefix].exponent : 0;
     const newExponent = prefix ? prefixes[prefix].exponent : 0;
@@ -95,6 +100,26 @@ export class Measure {
   public convertTo(unit: Unit): Measure {
     this.value = unit.fromBase(this.baseValue());
     this.unit = unit;
+    return this;
+  }
+
+  public add(measure: Measure): Measure {
+    if (!dimensionsEqual(this.dimension, measure.dimension)) {
+      throw new Error("Cannot add measures of different dimensions.");
+    }
+    return this.setBaseValue(this.baseValue() + measure.baseValue());
+  }
+
+  public subtract(measure: Measure): Measure {
+    if (!dimensionsEqual(this.dimension, measure.dimension)) {
+      throw new Error("Cannot subtract a measure of a different dimension.");
+    }
+    return this.setBaseValue(this.baseValue() - measure.baseValue());
+  }
+
+  public multiply(measure: Measure): Measure {
+    this.dimension = multiplyDimensions(this.dimension, measure.dimension);
+    // Todo: Find new unit
     return this;
   }
 }

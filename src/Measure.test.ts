@@ -75,4 +75,22 @@ describe('Measure', () => {
       expect(testMeasureAsMetres.getUnit()).toBe(lengthUnits.foot);
     });
   });
+
+  describe('setBaseValue', () => {
+    it('Changes the value according to the given base value', () => {
+      const testMeasure = measure.copy().setUnit(lengthUnits.nauticalMile).setBaseValue(2778);
+      expect(testMeasure.getUnit()).toBe(lengthUnits.nauticalMile);
+      expect(testMeasure.getValue()).toBe(1.5);
+    });
+  });
+
+  describe('add', () => {
+    it('Adds the given measure to the current measure', () => {
+      const testMeasure = measure.copy().setValue(12).setUnit(lengthUnits.foot);
+      const testMeasure2 = measure.copy().setValue(1).setUnit(lengthUnits.statuteMile);
+      testMeasure.add(testMeasure2);
+      expect(testMeasure.getUnit()).toBe(lengthUnits.foot);
+      expect(testMeasure.getValue()).toBe(5292);
+    });
+  });
 });
