@@ -31,3 +31,14 @@ export const prefixes: {[prefix: string]: PrefixExponent} = {
 };
 
 export type Prefix = keyof typeof prefixes | null;
+
+export const getPrefixFactor = (prefix?: Prefix): number => {
+  if (prefix === null || prefix === undefined) {
+    return 1;
+  }
+  return Math.pow(10, prefixes[prefix].exponent);
+}
+
+export const removePrefixFromName = (name: string, prefix: Prefix): string => {
+  return name.replace(RegExp(`^${prefix}`), '');
+}

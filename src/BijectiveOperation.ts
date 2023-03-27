@@ -50,6 +50,18 @@ export class BijectiveOperationChain {
       .map((fun) => ({ operation: operations[fun.operation], parameter: fun.parameter }));
   }
 
+  public static fromFactor(factor: number): BijectiveOperationChain {
+    return new BijectiveOperationChain([{ operation: 'multiply', parameter: factor }]);
+  }
+
+  public static fromOffset(offset: number): BijectiveOperationChain {
+    return new BijectiveOperationChain([{ operation: 'add', parameter: offset }]);
+  }
+
+  public isMultiplicationOnly(): boolean {
+    return this.nameChain.every(o => o.operation === 'multiply');
+  }
+
   public apply(parameter: number): number {
     return this
       .objectChain
@@ -76,5 +88,18 @@ export class BijectiveOperationChain {
 
   public concat(other: BijectiveOperationChain): BijectiveOperationChain {
     return new BijectiveOperationChain([...this.nameChain, ...other.nameChain]);
+  }
+
+  public raise(power: number): BijectiveOperationChain | undefined {
+    if (this.isMultiplicationOnly()) {
+      const newChain = this.nameChain.map(o => ({ ...o, parameter: o.parameter ** power }));
+      return new BijectiveOperationChain(newChain);
+    } else {
+      return undefined;
+    }
+  }
+
+  public prependMultiplication(factor: number): BijectiveOperationChain {
+    return new BijectiveOperationChain([{ operation: 'multiply', parameter: factor }, ...this.nameChain]);
   }
 }

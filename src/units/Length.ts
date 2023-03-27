@@ -8,10 +8,10 @@ export const lengthDimension: Dimension = { length: 1 };
 
 export const lengthUnits = {
   metre: new Unit("metre", lengthDimension),
-  foot: new Unit("foot", lengthDimension, new BijectiveOperationChain([{operation: 'multiply', parameter: 0.3048}])),
-  inch: new Unit("inch", lengthDimension, new BijectiveOperationChain([{operation: 'multiply', parameter: 0.0254}])),
-  nauticalMile: new Unit("nautical mile", lengthDimension, new BijectiveOperationChain([{operation: 'multiply', parameter: 1852}])),
-  statuteMile: new Unit("statute mile", lengthDimension, new BijectiveOperationChain([{operation: 'multiply', parameter: 1609.344}])),
+  foot: new Unit("foot", lengthDimension, BijectiveOperationChain.fromFactor(0.3048)),
+  inch: new Unit("inch", lengthDimension, BijectiveOperationChain.fromFactor(0.0254)),
+  nauticalMile: new Unit("nautical mile", lengthDimension, BijectiveOperationChain.fromFactor(1852)),
+  statuteMile: new Unit("statute mile", lengthDimension, BijectiveOperationChain.fromFactor(1609.344)),
 }
 
 export type LengthUnit = keyof typeof lengthUnits;

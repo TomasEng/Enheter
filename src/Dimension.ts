@@ -52,3 +52,17 @@ export const divideDimensions = (dividend: Dimension, divisor: Dimension): Dimen
   }
   return removeZerosFromDimension(result);
 }
+
+export const mergeDimensions = (dimensions: Dimension[]): Dimension => {
+    return dimensions.reduce((result, dimension) => {
+        return multiplyDimensions(result, dimension);
+    }, {});
+}
+
+export const multiplyAllExponentsWith = (dimension: Dimension, factor: number): Dimension => {
+  const result: Dimension = {};
+  for (const key of Object.keys(dimension)) {
+    result[key as BaseDimension] = dimension[key as BaseDimension]! * factor;
+  }
+  return removeZerosFromDimension(result);
+}
