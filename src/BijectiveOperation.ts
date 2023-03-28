@@ -30,7 +30,7 @@ export const simplifyOperationChain = (chain: BijectiveOperationWithParam[]): Bi
       simplifiedChain.push(operation);
     }
   });
-  return simplifiedChain;
+  return chain.length > simplifiedChain.length ? simplifyOperationChain(simplifiedChain) : simplifiedChain;
 }
 
 interface BijectiveOperationObjectWithParam {

@@ -109,6 +109,7 @@ describe('ReversibleOperation', () => {
 
     it('Removes unnecessary operations', () => {
       const operationChain = [
+        {operation: 'multiply', parameter: 1},
         {operation: 'add', parameter: 2},
         {operation: 'multiply', parameter: 3},
         {operation: 'add', parameter: 0},

@@ -35,6 +35,21 @@ describe('Unit', () => {
         {operation: 'multiply', parameter: 1000},
         {operation: 'add', parameter: 273.15},
       ]);
+      const centicelsius = kilocelsius.withPrefix('centi');
+      expect(centicelsius.name).toBe('centicelsius');
+      expect(centicelsius.dimension).toEqual({temperature: 1});
+      expect(centicelsius.isBase).toBe(false);
+      expect(centicelsius.baseConverter.nameChain).toEqual([
+        {operation: 'multiply', parameter: 0.01},
+        {operation: 'add', parameter: 273.15},
+      ]);
+      const newCelsius = centicelsius.withPrefix(null);
+      expect(newCelsius.name).toBe('celsius');
+      expect(newCelsius.dimension).toEqual({temperature: 1});
+      expect(newCelsius.isBase).toBe(false);
+      expect(newCelsius.baseConverter.nameChain).toEqual([
+          {operation: 'add', parameter: 273.15},
+      ]);
     });
   });
 });

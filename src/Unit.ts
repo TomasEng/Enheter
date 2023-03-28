@@ -24,10 +24,7 @@ export class Unit {
     this.prefix = prefix ?? null;
     if (toBase && toBase.nameChain.length) {
       this.isBase = false;
-      this.baseConverter = toBase.prependMultiplication(getPrefixFactor(prefix));
-    } else if (prefix) {
-      this.isBase = false;
-      this.baseConverter = new BijectiveOperationChain([{operation: 'multiply', parameter: getPrefixFactor(prefix)}]);
+      this.baseConverter = toBase;
     } else {
       this.isBase = true;
       this.baseConverter = new BijectiveOperationChain([]);
@@ -60,7 +57,7 @@ export class Unit {
 
   public withPrefix(prefix: Prefix): Unit {
     return new Unit(
-      prefix + removePrefixFromName(this.name, this.prefix),
+      (prefix || '') + removePrefixFromName(this.name, this.prefix),
       this.dimension,
       this.baseConverter.prependMultiplication(getPrefixFactor(prefix)/getPrefixFactor(this.prefix)),
       prefix,
