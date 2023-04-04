@@ -16,10 +16,19 @@ export class Unit {
   public baseConverter: BijectiveOperationChain;
   public prefix: Prefix;
   public subUnits?: SubUnit[];
+  public baseUnit: Unit;
 
-  constructor(name: string, dimension: Dimension, toBase?: BijectiveOperationChain, prefix?: Prefix, subUnits?: SubUnit[]) {
+  constructor(
+    name: string,
+    dimension: Dimension,
+    baseUnit?: Unit,
+    toBase?: BijectiveOperationChain,
+    prefix?: Prefix,
+    subUnits?: SubUnit[]
+  ) {
     this.name = name;
     this.dimension = dimension;
+    this.baseUnit = baseUnit ?? this;
     this.subUnits = subUnits;
     this.prefix = prefix ?? null;
     if (toBase && toBase.nameChain.length) {
@@ -52,13 +61,17 @@ export class Unit {
       (acc, su) => acc.concat(su.unit.baseConverter.raise(su.exponent)!),
       new BijectiveOperationChain([])
     );
-    return new Unit(newName, newDimension, newBaseConverter, null, subUnits);
+    const newBaseUnit = subUnits.some(su => su.unit.baseUnit !== su.unit)
+      ? Unit.fromSubUnits(subUnits.map(su => ({unit: su.unit.baseUnit ?? su.unit, exponent: su.exponent})))
+      : undefined;
+    return new Unit(newName, newDimension, newBaseUnit, newBaseConverter, null, subUnits);
   }
 
   public withPrefix(prefix: Prefix): Unit {
     return new Unit(
       (prefix || '') + removePrefixFromName(this.name, this.prefix),
       this.dimension,
+      this.baseUnit,
       this.baseConverter.prependMultiplication(getPrefixFactor(prefix)/getPrefixFactor(this.prefix)),
       prefix,
       this.subUnits
@@ -67,17 +80,13 @@ export class Unit {
 
   public toBase(value: number): number {
     return this.baseConverter.apply(value);
-  };
+  }
 
   public fromBase(value: number): number {
     return this.baseConverter.applyInverse(value);
   }
 
   public multiplyWith(unit: Unit): Unit {
-    const newDimension = multiplyDimensions(this.dimension, unit.dimension);
-    const newUnit: Unit = Object.values(units)?.find((u) => dimensionsEqual(u.dimension, newDimension)) ?? new Unit("unknown", newDimension);
-    const newBaseConverter = this.baseConverter.concat(unit.baseConverter.inverted());
-    this.constructor(newUnit.name, newDimension, newBaseConverter);
-    return this;
+    return Unit.fromSubUnits([{unit: this, exponent: 1}, {unit, exponent: 1}]);
   }
 }

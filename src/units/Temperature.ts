@@ -3,8 +3,9 @@ import {Unit} from "../Unit";
 import {BijectiveOperationChain} from "../BijectiveOperation";
 
 export const temperatureDimension: Dimension = { temperature: 1 };
+export const temperatureBase = new Unit("kelvin", temperatureDimension);
 
 export const temperatureUnits = {
-  kelvin: new Unit("kelvin", temperatureDimension),
-  celsius: new Unit("celsius", temperatureDimension, BijectiveOperationChain.fromOffset(273.15)),
+  kelvin: temperatureBase,
+  celsius: new Unit("celsius", temperatureDimension, temperatureBase, BijectiveOperationChain.fromOffset(273.15)),
 }

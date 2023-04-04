@@ -3,12 +3,7 @@ import {lengthUnits} from "./units/Length";
 
 describe('Measure', () => {
 
-  const measure = new Measure(
-    1,
-    {length: 1},
-    lengthUnits.metre,
-    lengthUnits.metre,
-  );
+  const measure = new Measure(lengthUnits.metre, 1);
 
   describe('copy', () => {
     it('Returns a copy of the measure', () => {
@@ -21,76 +16,47 @@ describe('Measure', () => {
   describe('baseValue', () => {
 
     it('Returns the value in base units when the given value is in base units', () => {
-      const testMeasure = measure.copy().setValue(12);
+      const testMeasure = new Measure(lengthUnits.metre, 12);
       expect(testMeasure.baseValue()).toBe(12);
     });
 
     it('Returns the value in base units when the given value is in prefixed base units', () => {
-      const testMeasure = measure.copy().setValue(12).setPrefix("kilo");
+      const kilometre = lengthUnits.metre.withPrefix("kilo");
+      const testMeasure = new Measure(kilometre, 12);
       expect(testMeasure.baseValue()).toBe(12000);
     });
 
     it('Returns the value in base units when the given value is in non-base units', () => {
-      const testMeasure = measure.copy().setValue(12).setUnit(lengthUnits.foot);
+      const testMeasure = new Measure(lengthUnits.foot, 12);
       expect(testMeasure.baseValue()).toBeCloseTo(3.6576, 8);
-    });
-  });
-
-  describe('unPrefixedValue', () => {
-
-    it('Returns the value as is when there is no prefix', () => {
-      const testMeasure = measure.copy().setValue(12);
-      expect(testMeasure.unPrefixedValue()).toBe(12);
-    });
-
-    it('Returns the corresponding unprefixed unit value', () => {
-      const kiloMeasure = measure.copy().setValue(12).setPrefix('kilo');
-      expect(kiloMeasure.unPrefixedValue()).toBe(12000);
-      const milliMeasure = measure.copy().setValue(12).setPrefix('milli');
-      expect(milliMeasure.unPrefixedValue()).toBe(0.012);
-    });
-  });
-
-  describe('prefixedValue', () => {
-    it('Returns the value converted to the given prefix', () => {
-      expect(measure.copy().setValue(12).setPrefix('kilo').prefixedValue('milli')).toBe(12000000);
-      expect(measure.copy().setValue(12).setPrefix('milli').prefixedValue('kilo')).toBe(0.000012);
-    });
-  });
-
-  describe('switchPrefix', () => {
-    it('Converts the measure to another prefix', () => {
-      const testMeasure = measure.copy().setValue(12).setPrefix('kilo');
-      const testMeasureAsMillimetres = testMeasure.switchPrefix('milli');
-      expect(testMeasureAsMillimetres.getValue()).toBe(12000000);
-      expect(testMeasureAsMillimetres.getPrefix()).toBe('milli');
     });
   });
 
   describe('convertTo', () => {
     it('Converts the measure to another unit', () => {
-      const testMeasure = measure.copy().setValue(12).setUnit(lengthUnits.statuteMile);
+      const testMeasure = new Measure(lengthUnits.statuteMile, 12);
       const testMeasureAsMetres = testMeasure.convertTo(lengthUnits.foot);
-      expect(testMeasureAsMetres.getValue()).toBe(63360);
-      expect(testMeasureAsMetres.getUnit()).toBe(lengthUnits.foot);
+      expect(testMeasureAsMetres.value).toBe(63360);
+      expect(testMeasureAsMetres.unit).toBe(lengthUnits.foot);
     });
   });
 
   describe('setBaseValue', () => {
     it('Changes the value according to the given base value', () => {
-      const testMeasure = measure.copy().setUnit(lengthUnits.nauticalMile).setBaseValue(2778);
-      expect(testMeasure.getUnit()).toBe(lengthUnits.nauticalMile);
-      expect(testMeasure.getValue()).toBe(1.5);
+      const testMeasure = new Measure(lengthUnits.nauticalMile, 1);
+      testMeasure.setBaseValue(2778);
+      expect(testMeasure.unit).toBe(lengthUnits.nauticalMile);
+      expect(testMeasure.value).toBe(1.5);
     });
   });
 
   describe('add', () => {
     it('Adds the given measure to the current measure', () => {
-      const testMeasure = measure.copy().setValue(12).setUnit(lengthUnits.foot);
-      const testMeasure2 = measure.copy().setValue(1).setUnit(lengthUnits.statuteMile);
+      const testMeasure = new Measure(lengthUnits.foot, 12);
+      const testMeasure2 = new Measure(lengthUnits.statuteMile, 1);
       testMeasure.add(testMeasure2);
-      expect(testMeasure.getUnit()).toBe(lengthUnits.foot);
-      expect(testMeasure.getValue()).toBe(5292);
+      expect(testMeasure.unit).toBe(lengthUnits.foot);
+      expect(testMeasure.value).toBe(5292);
     });
   });
 });

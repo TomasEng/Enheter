@@ -4,97 +4,25 @@ import {Unit} from "./Unit";
 
 export class Measure {
 
-  private value: number;
-  private dimension: Dimension;
-  private unit: Unit;
-  private baseUnit: Unit;
-  private prefix: Prefix;
+  public value: number;
+  public unit: Unit;
 
-  constructor(value: number, dimension: Dimension, unit: Unit, baseUnit: Unit, prefix: Prefix = null) {
+  constructor(unit: Unit, value: number) {
     this.value = value;
-    this.dimension = dimension;
     this.unit = unit;
-    this.baseUnit = baseUnit;
-    this.prefix = prefix;
   }
 
   public copy(): Measure {
-    return new Measure(this.value, this.dimension, this.unit, this.baseUnit, this.prefix);
+    return new Measure(this.unit, this.value);
   }
 
-  public setValue(value: number): Measure {
-    this.value = value;
-    return this;
-  }
-
-  public getValue(): number {
-    return this.value;
-  }
-
-  public setUnit(unit: Unit): Measure {
-    this.unit = unit;
-    return this;
-  }
-
-  public getUnit(): Unit {
-    return this.unit;
-  }
-
-  public setBaseUnit(baseUnit: Unit): Measure {
-    this.baseUnit = baseUnit;
-    return this;
-  }
-
-  public getBaseUnit(): Unit {
-    return this.baseUnit;
-  }
-
-  public setDimension(dimension: Dimension): Measure {
-    this.dimension = dimension;
-    return this;
-  }
-
-  public getDimension(): Dimension {
-    return this.dimension;
-  }
-
-  public setPrefix(prefix: Prefix): Measure {
-    this.prefix = prefix;
-    return this;
-  }
-
-  public getPrefix(): Prefix {
-    return this.prefix;
+  public baseValue(): number {
+    return this.unit.toBase(this.value);
   }
 
   public setBaseValue(value: number): Measure {
     this.value = this.unit.fromBase(value);
     return this;
-  }
-
-  public prefixedValue(prefix: Prefix): number {
-    const oldExponent = this.prefix ? prefixes[this.prefix].exponent : 0;
-    const newExponent = prefix ? prefixes[prefix].exponent : 0;
-    const exponent = oldExponent - newExponent;
-    return this.value * Math.pow(10, exponent);
-  }
-
-  public unPrefixedValue(): number {
-    return this.prefixedValue(null);
-  }
-
-  public baseValue(): number {
-    return this.unit.toBase(this.unPrefixedValue());
-  }
-
-  public switchPrefix(prefix: Prefix): Measure {
-    this.value = this.prefixedValue(prefix);
-    this.prefix = prefix;
-    return this;
-  }
-
-  public removePrefix(): Measure {
-    return this.switchPrefix(null);
   }
 
   public convertTo(unit: Unit): Measure {
@@ -104,22 +32,22 @@ export class Measure {
   }
 
   public add(measure: Measure): Measure {
-    if (!dimensionsEqual(this.dimension, measure.dimension)) {
+    if (!dimensionsEqual(this.unit.dimension, measure.unit.dimension)) {
       throw new Error("Cannot add measures of different dimensions.");
     }
     return this.setBaseValue(this.baseValue() + measure.baseValue());
   }
 
   public subtract(measure: Measure): Measure {
-    if (!dimensionsEqual(this.dimension, measure.dimension)) {
+    if (!dimensionsEqual(this.unit.dimension, measure.unit.dimension)) {
       throw new Error("Cannot subtract a measure of a different dimension.");
     }
     return this.setBaseValue(this.baseValue() - measure.baseValue());
   }
 
   public multiply(measure: Measure): Measure {
-    this.dimension = multiplyDimensions(this.dimension, measure.dimension);
-    // Todo: Find new unit
+    this.value *= measure.value;
+    this.unit = this.unit.multiplyWith(measure.unit);
     return this;
   }
 }
