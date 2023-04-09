@@ -1,5 +1,5 @@
 import {Measure} from "./Measure";
-import {lengthUnits} from "./units/Length";
+import {lengthUnits} from "./units";
 
 describe('Measure', () => {
 

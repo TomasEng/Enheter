@@ -1,5 +1,4 @@
-import {Dimension, dimensionsEqual, multiplyDimensions} from "./Dimension";
-import {Prefix, prefixes} from "./Prefix";
+import {dimensionsEqual} from "./Dimension";
 import {Unit} from "./Unit";
 
 export class Measure {
@@ -47,7 +46,7 @@ export class Measure {
 
   public multiply(measure: Measure): Measure {
     this.value *= measure.value;
-    this.unit = this.unit.multiplyWith(measure.unit);
+    this.unit = this.unit.multipliedWith(measure.unit);
     return this;
   }
 }

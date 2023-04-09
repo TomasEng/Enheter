@@ -1,6 +1,5 @@
-import {Dimension, dimensionsEqual, mergeDimensions, multiplyAllExponentsWith, multiplyDimensions} from "./Dimension";
+import {Dimension, mergeDimensions, multiplyAllExponentsWith} from "./Dimension";
 import {BijectiveOperationChain} from "./BijectiveOperation";
-import {units} from "./units";
 import {getPrefixFactor, Prefix, removePrefixFromName} from "./Prefix";
 
 interface SubUnit {
@@ -10,13 +9,13 @@ interface SubUnit {
 
 export class Unit {
 
-  public name: string;
-  public dimension: Dimension;
-  public isBase: boolean;
-  public baseConverter: BijectiveOperationChain;
-  public prefix: Prefix;
-  public subUnits?: SubUnit[];
-  public baseUnit: Unit;
+  readonly name: string;
+  readonly dimension: Dimension;
+  readonly isBase: boolean;
+  readonly baseConverter: BijectiveOperationChain;
+  readonly prefix: Prefix;
+  readonly subUnits?: SubUnit[];
+  readonly baseUnit: Unit;
 
   constructor(
     name: string,
@@ -40,11 +39,11 @@ export class Unit {
     }
   }
 
-  public static fromSubUnits(subUnits: SubUnit[]): Unit {
+  public static fromSubUnits(subUnits: SubUnit[], name?: string): Unit {
     if (subUnits.length === 0) throw new Error("Cannot create a unit from an empty list of sub-units.");
     if (subUnits.some(su => !su.unit.baseConverter.isMultiplicationOnly())) throw new Error("Cannot create a unit from a list of sub-units that contain non-multiplicative base converters.");
 
-    const newName = subUnits
+    const newName = name ?? subUnits
       .filter(su => su.exponent !== 0)
       .map(su => {
         if (su.exponent > 0) {
@@ -78,6 +77,17 @@ export class Unit {
     );
   }
 
+  public withFactor(factor: number, name: string, prefix?: Prefix, subUnits?: SubUnit[]): Unit {
+    return new Unit(
+      name,
+      this.dimension,
+      this.baseUnit,
+      this.baseConverter.prependMultiplication(factor),
+      prefix,
+      subUnits
+    );
+  }
+
   public toBase(value: number): number {
     return this.baseConverter.apply(value);
   }
@@ -86,7 +96,15 @@ export class Unit {
     return this.baseConverter.applyInverse(value);
   }
 
-  public multiplyWith(unit: Unit): Unit {
-    return Unit.fromSubUnits([{unit: this, exponent: 1}, {unit, exponent: 1}]);
+  public multipliedWith(unit: Unit, name?: string): Unit {
+    return Unit.fromSubUnits([{unit: this, exponent: 1}, {unit, exponent: 1}], name);
+  }
+
+  public dividedBy(unit: Unit, name?: string): Unit {
+    return Unit.fromSubUnits([{unit: this, exponent: 1}, {unit, exponent: -1}], name);
+  }
+
+  public raisedTo(exponent: number, name?: string): Unit {
+    return Unit.fromSubUnits([{unit: this, exponent}], name);
   }
 }
