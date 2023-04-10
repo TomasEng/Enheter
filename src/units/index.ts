@@ -14,3 +14,4 @@ export {pressureUnits} from './pressure';
 export {energyUnits} from './energy';
 export {powerUnits} from './power';
 export {chargeUnits} from './charge';
+export {voltageUnits} from './voltage';

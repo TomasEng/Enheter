@@ -21,6 +21,7 @@ export const pascal = newton.dividedBy(squareMetre, 'Pa');
 export const joule = newton.multipliedWith(metre, 'J');
 export const watt = joule.dividedBy(second, 'W');
 export const coulomb = ampere.multipliedWith(second, 'C');
+export const elementaryCharge = coulomb.withFactor(1.602176634e-19, 'e');
 export const volt = watt.dividedBy(ampere, 'V');
 export const farad = coulomb.dividedBy(volt, 'F');
 export const ohm = volt.dividedBy(ampere, 'Ω');

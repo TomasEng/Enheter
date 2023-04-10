@@ -1,12 +1,12 @@
 import {UnitList} from '../UnitList';
 import {timeUnits} from './time';
-import {joule, watt} from './basicUnits';
+import {elementaryCharge, joule, volt, watt} from './basicUnits';
 
 const calorie = joule.withFactor(4.184, 'cal');
 
 export const energyUnits: UnitList = {
   joule,
-  electronVolt: joule.withFactor(1.602176634e-19, 'eV'),
+  electronVolt: volt.multipliedWith(elementaryCharge, 'eV'),
   erg: joule.withFactor(1e-7, 'erg'),
   calorie,
   kilocalorie: calorie.withPrefix('kilo'),
