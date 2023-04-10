@@ -1,4 +1,4 @@
-import {getPrefixFactor, removePrefixFromSymbol} from "./Prefix";
+import {getPrefixFactor, removePrefixFromSymbol} from './Prefix';
 
 describe('Prefix', () => {
   describe('getPrefixFactor', () => {

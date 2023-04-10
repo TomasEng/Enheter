@@ -4,7 +4,7 @@ import {
   mergeDimensions, multiplyAllExponentsWith,
   multiplyDimensions,
   removeZerosFromDimension
-} from "./Dimension";
+} from './Dimension';
 
 describe('Dimension', () => {
 

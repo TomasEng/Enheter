@@ -1,4 +1,4 @@
-import {TimeUnit, timeUnits} from "./time";
+import {TimeUnit, timeUnits} from './time';
 
 describe('time', () => {
   test.each(Object.keys(timeUnits) as TimeUnit[])(

@@ -1,4 +1,4 @@
-import {TemperatureUnit, temperatureUnits} from "./temperature";
+import {TemperatureUnit, temperatureUnits} from './temperature';
 
 describe('temperature', () => {
   test.each(Object.keys(temperatureUnits) as TemperatureUnit[])(

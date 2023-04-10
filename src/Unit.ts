@@ -1,6 +1,6 @@
-import {Dimension, mergeDimensions, multiplyAllExponentsWith} from "./Dimension";
-import {BijectiveOperationChain} from "./BijectiveOperation";
-import {getPrefixFactor, Prefix, prefixes, removePrefixFromSymbol} from "./Prefix";
+import {Dimension, mergeDimensions, multiplyAllExponentsWith} from './Dimension';
+import {BijectiveOperationChain} from './BijectiveOperation';
+import {getPrefixFactor, Prefix, prefixes, removePrefixFromSymbol} from './Prefix';
 
 interface SubUnit {
   unit: Unit;
@@ -40,8 +40,8 @@ export class Unit {
   }
 
   public static fromSubUnits(subUnits: SubUnit[], symbol?: string): Unit {
-    if (subUnits.length === 0) throw new Error("Cannot create a unit from an empty list of sub-units.");
-    if (subUnits.some(su => !su.unit.baseConverter.isMultiplicationOnly())) throw new Error("Cannot create a unit from a list of sub-units that contain non-multiplicative base converters.");
+    if (subUnits.length === 0) throw new Error('Cannot create a unit from an empty list of sub-units.');
+    if (subUnits.some(su => !su.unit.baseConverter.isMultiplicationOnly())) throw new Error('Cannot create a unit from a list of sub-units that contain non-multiplicative base converters.');
 
     const newSymbol = symbol ?? subUnits
       .filter(su => su.exponent !== 0)
@@ -54,7 +54,7 @@ export class Unit {
           return `/${su.unit.symbol}^${su.exponent}`;
         }
       })
-      .join("");
+      .join('');
     const newDimension = mergeDimensions(subUnits.map(su => multiplyAllExponentsWith(su.unit.dimension, su.exponent)));
     const newBaseConverter = subUnits.reduce(
       (acc, su) => acc.concat(su.unit.baseConverter.raise(su.exponent)!),

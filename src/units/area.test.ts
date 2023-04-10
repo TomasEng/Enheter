@@ -1,4 +1,4 @@
-import {AreaUnit, areaUnits} from "./area";
+import {AreaUnit, areaUnits} from './area';
 
 describe('area', () => {
   test.each(Object.keys(areaUnits) as AreaUnit[])(

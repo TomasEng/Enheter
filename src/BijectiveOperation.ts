@@ -12,7 +12,7 @@ const operations: { [key: string]: BijectiveOperation } = {
     function: (accumulator, parameter) => accumulator * parameter,
     inverseFunction: (accumulator, parameter) => accumulator / parameter
   }
-}
+};
 
 export interface BijectiveOperationWithParam {
   operation: keyof typeof operations;
@@ -31,7 +31,7 @@ export const simplifyOperationChain = (chain: BijectiveOperationWithParam[]): Bi
     }
   });
   return chain.length > simplifiedChain.length ? simplifyOperationChain(simplifiedChain) : simplifiedChain;
-}
+};
 
 interface BijectiveOperationObjectWithParam {
   operation: BijectiveOperation;

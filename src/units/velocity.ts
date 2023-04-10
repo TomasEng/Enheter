@@ -1,5 +1,5 @@
-import {lengthUnits} from "./length";
-import {timeUnits} from "./time";
+import {lengthUnits} from './length';
+import {timeUnits} from './time';
 
 export const velocityBase = lengthUnits.metre.dividedBy(timeUnits.second, 'm/s');
 

@@ -1,4 +1,4 @@
-import {BijectiveOperationChain, simplifyOperationChain} from "./BijectiveOperation";
+import {BijectiveOperationChain, simplifyOperationChain} from './BijectiveOperation';
 
 describe('ReversibleOperation', () => {
 

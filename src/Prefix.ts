@@ -1,7 +1,7 @@
 type PrefixExponent = {
   symbol: string;
   exponent: number;
-}
+};
 
 export const prefixes: {[prefix: string]: PrefixExponent} = {
   quetta: { symbol: 'Q', exponent: 30 },
@@ -37,10 +37,10 @@ export const getPrefixFactor = (prefix?: Prefix): number => {
     return 1;
   }
   return Math.pow(10, prefixes[prefix].exponent);
-}
+};
 
 export const removePrefixFromSymbol = (symbol: string, prefix: Prefix): string => {
   return prefix === null
     ? symbol
     : symbol.replace(RegExp(`^${prefixes[prefix].symbol}`), '');
-}
+};

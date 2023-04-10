@@ -1,4 +1,4 @@
-import {massUnits, MassUnit} from "./mass";
+import {massUnits, MassUnit} from './mass';
 
 describe('mass', () => {
   test.each(Object.keys(massUnits) as MassUnit[])(

@@ -1,5 +1,5 @@
-import {Measure} from "./Measure";
-import {lengthUnits} from "./units";
+import {Measure} from './Measure';
+import {lengthUnits} from './units';
 
 describe('Measure', () => {
 
@@ -21,7 +21,7 @@ describe('Measure', () => {
     });
 
     it('Returns the value in base units when the given value is in prefixed base units', () => {
-      const kilometre = lengthUnits.metre.withPrefix("kilo");
+      const kilometre = lengthUnits.metre.withPrefix('kilo');
       const testMeasure = new Measure(kilometre, 12);
       expect(testMeasure.baseValue()).toBe(12000);
     });

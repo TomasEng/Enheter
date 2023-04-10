@@ -1,4 +1,4 @@
-import {AccelerationUnit, accelerationUnits} from "./acceleration";
+import {AccelerationUnit, accelerationUnits} from './acceleration';
 
 describe('acceleration', () => {
   test.each(Object.keys(accelerationUnits) as AccelerationUnit[])(

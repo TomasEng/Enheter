@@ -1,4 +1,4 @@
-import {LuminousIntensityUnit, luminousIntensityUnits} from "./luminousIntensity";
+import {LuminousIntensityUnit, luminousIntensityUnits} from './luminousIntensity';
 
 describe('luminousIntensity', () => {
   test.each(Object.keys(luminousIntensityUnits) as LuminousIntensityUnit[])(

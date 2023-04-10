@@ -1,5 +1,5 @@
-import {Unit} from "./Unit";
-import {lengthUnits, temperatureUnits, timeUnits} from "./units";
+import {Unit} from './Unit';
+import {lengthUnits, temperatureUnits, timeUnits} from './units';
 
 describe('Unit', () => {
 

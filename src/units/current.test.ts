@@ -1,4 +1,4 @@
-import {CurrentUnit, currentUnits} from "./current";
+import {CurrentUnit, currentUnits} from './current';
 
 describe('current', () => {
   test.each(Object.keys(currentUnits) as CurrentUnit[])(

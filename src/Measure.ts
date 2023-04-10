@@ -1,5 +1,5 @@
-import {dimensionsEqual} from "./Dimension";
-import {Unit} from "./Unit";
+import {dimensionsEqual} from './Dimension';
+import {Unit} from './Unit';
 
 export class Measure {
 
@@ -32,14 +32,14 @@ export class Measure {
 
   public add(measure: Measure): Measure {
     if (!dimensionsEqual(this.unit.dimension, measure.unit.dimension)) {
-      throw new Error("Cannot add measures of different dimensions.");
+      throw new Error('Cannot add measures of different dimensions.');
     }
     return this.setBaseValue(this.baseValue() + measure.baseValue());
   }
 
   public subtract(measure: Measure): Measure {
     if (!dimensionsEqual(this.unit.dimension, measure.unit.dimension)) {
-      throw new Error("Cannot subtract a measure of a different dimension.");
+      throw new Error('Cannot subtract a measure of a different dimension.');
     }
     return this.setBaseValue(this.baseValue() - measure.baseValue());
   }

@@ -1,4 +1,4 @@
-import {ForceUnit, forceUnits} from "./force";
+import {ForceUnit, forceUnits} from './force';
 
 describe('force', () => {
   test.each(Object.keys(forceUnits) as ForceUnit[])(

@@ -18,7 +18,7 @@ export const removeZerosFromDimension = (dimension: Dimension): Dimension => {
     }
   });
   return dimension;
-}
+};
 
 export const dimensionsEqual = (a: Dimension, b: Dimension): boolean => {
   const aKeys = Object.keys(a);
@@ -29,7 +29,7 @@ export const dimensionsEqual = (a: Dimension, b: Dimension): boolean => {
     if (aValue !== bValue) return false;
   }
   return true;
-}
+};
 
 export const multiplyDimensions = (a: Dimension, b: Dimension): Dimension => {
   const result: Dimension = {};
@@ -40,7 +40,7 @@ export const multiplyDimensions = (a: Dimension, b: Dimension): Dimension => {
     result[key as BaseDimension] = aValue + bValue;
   }
   return removeZerosFromDimension(result);
-}
+};
 
 export const divideDimensions = (dividend: Dimension, divisor: Dimension): Dimension => {
   const result: Dimension = {};
@@ -51,13 +51,13 @@ export const divideDimensions = (dividend: Dimension, divisor: Dimension): Dimen
     result[key as BaseDimension] = dividendValue - divisorValue;
   }
   return removeZerosFromDimension(result);
-}
+};
 
 export const mergeDimensions = (dimensions: Dimension[]): Dimension => {
     return dimensions.reduce((result, dimension) => {
         return multiplyDimensions(result, dimension);
     }, {});
-}
+};
 
 export const multiplyAllExponentsWith = (dimension: Dimension, factor: number): Dimension => {
   const result: Dimension = {};
@@ -65,4 +65,4 @@ export const multiplyAllExponentsWith = (dimension: Dimension, factor: number): 
     result[key as BaseDimension] = dimension[key as BaseDimension]! * factor;
   }
   return removeZerosFromDimension(result);
-}
+};
