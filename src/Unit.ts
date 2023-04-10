@@ -77,9 +77,9 @@ export class Unit {
     );
   }
 
-  public withFactor(factor: number, name: string, prefix?: Prefix, subUnits?: SubUnit[]): Unit {
+  public withFactor(factor: number, symbol: string, prefix?: Prefix, subUnits?: SubUnit[]): Unit {
     return new Unit(
-      name,
+      symbol,
       this.dimension,
       this.baseUnit,
       this.baseConverter.prependMultiplication(factor),

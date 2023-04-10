@@ -20,3 +20,7 @@ export const newton = kilogram.multipliedWith(metrePerSecondSquared, 'N');
 export const pascal = newton.dividedBy(squareMetre, 'Pa');
 export const joule = newton.multipliedWith(metre, 'J');
 export const watt = joule.dividedBy(second, 'W');
+export const coulomb = ampere.multipliedWith(second, 'C');
+export const volt = watt.dividedBy(ampere, 'V');
+export const farad = coulomb.dividedBy(volt, 'F');
+export const ohm = volt.dividedBy(ampere, 'Ω');

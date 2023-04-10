@@ -13,3 +13,4 @@ export {forceUnits} from './force';
 export {pressureUnits} from './pressure';
 export {energyUnits} from './energy';
 export {powerUnits} from './power';
+export {chargeUnits} from './charge';
