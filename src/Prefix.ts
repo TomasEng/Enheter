@@ -39,6 +39,8 @@ export const getPrefixFactor = (prefix?: Prefix): number => {
   return Math.pow(10, prefixes[prefix].exponent);
 }
 
-export const removePrefixFromName = (name: string, prefix: Prefix): string => {
-  return name.replace(RegExp(`^${prefix}`), '');
+export const removePrefixFromSymbol = (symbol: string, prefix: Prefix): string => {
+  return prefix === null
+    ? symbol
+    : symbol.replace(RegExp(`^${prefixes[prefix].symbol}`), '');
 }

@@ -1,4 +1,4 @@
-import {getPrefixFactor, removePrefixFromName} from "./Prefix";
+import {getPrefixFactor, removePrefixFromSymbol} from "./Prefix";
 
 describe('Prefix', () => {
   describe('getPrefixFactor', () => {
@@ -32,21 +32,21 @@ describe('Prefix', () => {
     });
   });
 
-  describe('removePrefixFromName', () => {
+  describe('removePrefixFromSymbol', () => {
     it('Removes given prefix from beginning of string', () => {
-      expect(removePrefixFromName('quettafoo', 'quetta')).toBe('foo');
+      expect(removePrefixFromSymbol('Qfoo', 'quetta')).toBe('foo');
     });
 
     it('Does not remove prefix if not at beginning of string', () => {
-      expect(removePrefixFromName('fooquetta', 'quetta')).toBe('fooquetta');
+      expect(removePrefixFromSymbol('fooQ', 'quetta')).toBe('fooQ');
     });
 
     it('Does not change anything if prefix is not present', () => {
-      expect(removePrefixFromName('foo', 'quetta')).toBe('foo');
+      expect(removePrefixFromSymbol('foo', 'quetta')).toBe('foo');
     });
 
     it('Does not change anything if prefix is null', () => {
-      expect(removePrefixFromName('foo', null)).toBe('foo');
+      expect(removePrefixFromSymbol('foo', null)).toBe('foo');
     });
   });
 });

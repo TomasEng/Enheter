@@ -5,13 +5,13 @@ import {massUnits} from "./mass";
 import {accelerationUnits} from "./acceleration";
 
 export const forceDimension: Dimension = { mass: 1, length: 1, time: -2 };
-export const forceBase = massUnits.kilogram.multipliedWith(accelerationUnits.metrePerSecondSquared, "newton");
+export const forceBase = massUnits.kilogram.multipliedWith(accelerationUnits.metrePerSecondSquared, "N");
 
 export function forceUnit(name: string, factor: number): Unit {
   return new Unit(name, forceDimension, forceBase, BijectiveOperationChain.fromFactor(factor));
 }
 
-const pond = forceUnit("pond", 0.00980665);
+const pond = massUnits.kilogram.multipliedWith(accelerationUnits.standardGravity, "pond");
 
 export const forceUnits = {
   newton: forceBase,

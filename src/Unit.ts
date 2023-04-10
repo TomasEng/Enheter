@@ -1,6 +1,6 @@
 import {Dimension, mergeDimensions, multiplyAllExponentsWith} from "./Dimension";
 import {BijectiveOperationChain} from "./BijectiveOperation";
-import {getPrefixFactor, Prefix, removePrefixFromName} from "./Prefix";
+import {getPrefixFactor, Prefix, prefixes, removePrefixFromSymbol} from "./Prefix";
 
 interface SubUnit {
   unit: Unit;
@@ -9,7 +9,7 @@ interface SubUnit {
 
 export class Unit {
 
-  readonly name: string;
+  readonly symbol: string;
   readonly dimension: Dimension;
   readonly isBase: boolean;
   readonly baseConverter: BijectiveOperationChain;
@@ -18,14 +18,14 @@ export class Unit {
   readonly baseUnit: Unit;
 
   constructor(
-    name: string,
+    symbol: string,
     dimension: Dimension,
     baseUnit?: Unit,
     toBase?: BijectiveOperationChain,
     prefix?: Prefix,
     subUnits?: SubUnit[]
   ) {
-    this.name = name;
+    this.symbol = symbol;
     this.dimension = dimension;
     this.baseUnit = baseUnit ?? this;
     this.subUnits = subUnits;
@@ -39,22 +39,22 @@ export class Unit {
     }
   }
 
-  public static fromSubUnits(subUnits: SubUnit[], name?: string): Unit {
+  public static fromSubUnits(subUnits: SubUnit[], symbol?: string): Unit {
     if (subUnits.length === 0) throw new Error("Cannot create a unit from an empty list of sub-units.");
     if (subUnits.some(su => !su.unit.baseConverter.isMultiplicationOnly())) throw new Error("Cannot create a unit from a list of sub-units that contain non-multiplicative base converters.");
 
-    const newName = name ?? subUnits
+    const newSymbol = symbol ?? subUnits
       .filter(su => su.exponent !== 0)
       .map(su => {
         if (su.exponent > 0) {
-          if (su.exponent === 1) return su.unit.name;
-          return `${su.unit.name}^${su.exponent}`;
+          if (su.exponent === 1) return su.unit.symbol;
+          return `${su.unit.symbol}^${su.exponent}`;
         } else {
-          if (su.exponent === -1) return `per ${su.unit.name}`;
-          return `per ${su.unit.name}^${su.exponent}`;
+          if (su.exponent === -1) return `/${su.unit.symbol}`;
+          return `/${su.unit.symbol}^${su.exponent}`;
         }
       })
-      .join(" ");
+      .join("");
     const newDimension = mergeDimensions(subUnits.map(su => multiplyAllExponentsWith(su.unit.dimension, su.exponent)));
     const newBaseConverter = subUnits.reduce(
       (acc, su) => acc.concat(su.unit.baseConverter.raise(su.exponent)!),
@@ -63,12 +63,12 @@ export class Unit {
     const newBaseUnit = subUnits.some(su => su.unit.baseUnit !== su.unit)
       ? Unit.fromSubUnits(subUnits.map(su => ({unit: su.unit.baseUnit ?? su.unit, exponent: su.exponent})))
       : undefined;
-    return new Unit(newName, newDimension, newBaseUnit, newBaseConverter, null, subUnits);
+    return new Unit(newSymbol, newDimension, newBaseUnit, newBaseConverter, null, subUnits);
   }
 
   public withPrefix(prefix: Prefix): Unit {
     return new Unit(
-      (prefix || '') + removePrefixFromName(this.name, this.prefix),
+      (prefix && prefixes[prefix].symbol || '') + removePrefixFromSymbol(this.symbol, this.prefix),
       this.dimension,
       this.baseUnit,
       this.baseConverter.prependMultiplication(getPrefixFactor(prefix)/getPrefixFactor(this.prefix)),
@@ -96,15 +96,15 @@ export class Unit {
     return this.baseConverter.applyInverse(value);
   }
 
-  public multipliedWith(unit: Unit, name?: string): Unit {
-    return Unit.fromSubUnits([{unit: this, exponent: 1}, {unit, exponent: 1}], name);
+  public multipliedWith(unit: Unit, symbol?: string): Unit {
+    return Unit.fromSubUnits([{unit: this, exponent: 1}, {unit, exponent: 1}], symbol);
   }
 
-  public dividedBy(unit: Unit, name?: string): Unit {
-    return Unit.fromSubUnits([{unit: this, exponent: 1}, {unit, exponent: -1}], name);
+  public dividedBy(unit: Unit, symbol?: string): Unit {
+    return Unit.fromSubUnits([{unit: this, exponent: 1}, {unit, exponent: -1}], symbol);
   }
 
-  public raisedTo(exponent: number, name?: string): Unit {
-    return Unit.fromSubUnits([{unit: this, exponent}], name);
+  public raisedTo(exponent: number, symbol?: string): Unit {
+    return Unit.fromSubUnits([{unit: this, exponent}], symbol);
   }
 }

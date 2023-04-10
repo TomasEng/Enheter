@@ -7,7 +7,7 @@ describe('Unit', () => {
 
     const metrePerSecond = Unit.fromSubUnits([{unit: lengthUnits.metre, exponent: 1}, {unit: timeUnits.second, exponent: -1}]);
     const metrePerHour = Unit.fromSubUnits([{unit: lengthUnits.metre, exponent: 1}, {unit: timeUnits.hour, exponent: -1}]);
-    const knot = Unit.fromSubUnits([{unit: lengthUnits.nauticalMile, exponent: 1}, {unit: timeUnits.hour, exponent: -1},], 'knot');
+    const knot = Unit.fromSubUnits([{unit: lengthUnits.nauticalMile, exponent: 1}, {unit: timeUnits.hour, exponent: -1},], 'kt');
 
     it('Creates a unit from a list of sub-units', () => {
 
@@ -27,13 +27,13 @@ describe('Unit', () => {
       expect(knot.baseUnit).toEqual(metrePerSecond);
     });
 
-    it('Generates a name for the unit if no name is given', () => {
-      expect(metrePerSecond.name).toBe('metre per second');
-      expect(metrePerHour.name).toBe('metre per hour');
+    it('Generates a symbol for the unit if no symbol is given', () => {
+      expect(metrePerSecond.symbol).toBe('m/s');
+      expect(metrePerHour.symbol).toBe('m/h');
     });
 
-    it('Uses the given name if one is given', () => {
-      expect(knot.name).toBe('knot');
+    it('Uses the given symbol if one is given', () => {
+      expect(knot.symbol).toBe('kt');
     });
   });
 
@@ -41,7 +41,7 @@ describe('Unit', () => {
     it('Creates a unit with the given prefix', () => {
       const celsius = temperatureUnits.celsius;
       const kilocelsius = celsius.withPrefix('kilo');
-      expect(kilocelsius.name).toBe('kilocelsius');
+      expect(kilocelsius.symbol).toBe('k°C');
       expect(kilocelsius.dimension).toEqual({temperature: 1});
       expect(kilocelsius.isBase).toBe(false);
       expect(kilocelsius.baseUnit).toBe(celsius.baseUnit);
@@ -50,7 +50,7 @@ describe('Unit', () => {
         {operation: 'add', parameter: 273.15},
       ]);
       const centicelsius = kilocelsius.withPrefix('centi');
-      expect(centicelsius.name).toBe('centicelsius');
+      expect(centicelsius.symbol).toBe('c°C');
       expect(centicelsius.dimension).toEqual({temperature: 1});
       expect(centicelsius.isBase).toBe(false);
       expect(kilocelsius.baseUnit).toBe(celsius.baseUnit);
@@ -59,7 +59,7 @@ describe('Unit', () => {
         {operation: 'add', parameter: 273.15},
       ]);
       const newCelsius = centicelsius.withPrefix(null);
-      expect(newCelsius.name).toBe('celsius');
+      expect(newCelsius.symbol).toBe('°C');
       expect(newCelsius.dimension).toEqual({temperature: 1});
       expect(newCelsius.isBase).toBe(false);
       expect(kilocelsius.baseUnit).toBe(celsius.baseUnit);
@@ -73,7 +73,7 @@ describe('Unit', () => {
       it('Creates a unit with the given factor', () => {
         const metre = lengthUnits.metre;
         const nauticalMile = metre.withFactor(1852, 'nautical mile');
-        expect(nauticalMile.name).toBe('nautical mile');
+        expect(nauticalMile.symbol).toBe('nautical mile');
         expect(nauticalMile.dimension).toEqual(metre.dimension);
         expect(nauticalMile.isBase).toBe(false);
         expect(nauticalMile.baseUnit).toBe(metre.baseUnit);
