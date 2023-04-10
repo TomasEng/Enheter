@@ -1,26 +1,18 @@
-import {Dimension} from "../Dimension";
-import {Unit} from "../Unit";
-import {BijectiveOperationChain} from "../BijectiveOperation";
 import {massUnits} from "./mass";
 import {accelerationUnits} from "./acceleration";
 
-export const forceDimension: Dimension = { mass: 1, length: 1, time: -2 };
 export const forceBase = massUnits.kilogram.multipliedWith(accelerationUnits.metrePerSecondSquared, "N");
-
-export function forceUnit(name: string, factor: number): Unit {
-  return new Unit(name, forceDimension, forceBase, BijectiveOperationChain.fromFactor(factor));
-}
 
 const pond = massUnits.kilogram.multipliedWith(accelerationUnits.standardGravity, "pond");
 
 export const forceUnits = {
   newton: forceBase,
   kilonewton: forceBase.withPrefix("kilo"),
-  dyne: forceUnit("dyne", 0.00001),
+  dyne: forceBase.withFactor(0.00001, "dyn"),
   pond,
   kilopond: pond.withPrefix("kilo"),
-  poundal: massUnits.pound.multipliedWith(accelerationUnits.footPerSecondSquared, "poundal"),
-  pound: forceBase.withFactor(4.4482216152605, "pound"),
-}
+  poundal: massUnits.pound.multipliedWith(accelerationUnits.footPerSecondSquared, "pdl"),
+  pound: forceBase.withFactor(4.4482216152605, "lbf"),
+};
 
 export type ForceUnit = keyof typeof forceUnits;

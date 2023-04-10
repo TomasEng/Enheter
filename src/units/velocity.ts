@@ -1,8 +1,6 @@
-import {Dimension} from "../Dimension";
 import {lengthUnits} from "./length";
 import {timeUnits} from "./time";
 
-export const velocityDimension: Dimension = { length: 1, time: -1 };
 export const velocityBase = lengthUnits.metre.dividedBy(timeUnits.second, 'm/s');
 
 export const velocityUnits = {
@@ -11,4 +9,6 @@ export const velocityUnits = {
   metrePerHour: lengthUnits.metre.dividedBy(timeUnits.hour),
   metrePerSecond: velocityBase,
   milePerHour: lengthUnits.statuteMile.dividedBy(timeUnits.hour, 'mph'),
-}
+};
+
+export type VelocityUnit = keyof typeof velocityUnits;

@@ -8,6 +8,6 @@ export const volumeUnits = {
   cubicMetre: volumeBase,
   cubicYard: lengthUnits.yard.raisedTo(3, "yd^3"),
   litre: volumeBase.withFactor(0.001, "L"),
-}
+};
 
 export type VolumeUnit = keyof typeof volumeUnits;

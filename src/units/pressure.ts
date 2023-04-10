@@ -1,9 +1,7 @@
-import {Dimension} from "../Dimension";
 import {areaUnits} from "./area";
 import {forceUnits} from "./force";
 import {lengthUnits} from "./length";
 
-export const pressureDimension: Dimension = { mass: 1, length: -1, time: -2 };
 export const pressureBase = forceUnits.newton.dividedBy(areaUnits.squareMetre, "Pa");
 
 const bar = pressureBase.withFactor(100000, "bar");
@@ -18,4 +16,6 @@ export const pressureUnits = {
   torr: standardAtmosphere.withFactor(1 / 760, "Torr"),
   poundPerSquareInch: forceUnits.pound.dividedBy(areaUnits.squareInch, "lb/(in^2)"),
   inchOfMercury: pressureBase.withFactor(3386.389, "inHg"),
-}
+};
+
+export type PressureUnit = keyof typeof pressureUnits;

@@ -2,7 +2,7 @@ import {Dimension} from "../Dimension";
 import {Unit} from "../Unit";
 import {BijectiveOperationChain} from "../BijectiveOperation";
 
-export const temperatureDimension: Dimension = { temperature: 1 };
+const temperatureDimension: Dimension = { temperature: 1 };
 export const temperatureBase = new Unit("Kelvin", temperatureDimension);
 
 export const temperatureUnits = {
@@ -14,4 +14,6 @@ export const temperatureUnits = {
   rankine: temperatureBase.withFactor(5/9, "°R"),
   reaumur: new Unit("°Ré", temperatureDimension, temperatureBase, new BijectiveOperationChain([{operation: 'multiply', parameter: 5/4}, {operation: 'add', parameter: 273.15}])),
   romer: new Unit("°Rø", temperatureDimension, temperatureBase, new BijectiveOperationChain([{operation: 'add', parameter: -7.5}, {operation: 'multiply', parameter: 40/21}, {operation: 'add', parameter: 273.15}])),
-}
+};
+
+export type TemperatureUnit = keyof typeof temperatureUnits;
