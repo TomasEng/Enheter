@@ -71,7 +71,7 @@ export class Unit {
       (prefix && prefixes[prefix].symbol || '') + removePrefixFromSymbol(this.symbol, this.prefix),
       this.dimension,
       this.baseUnit,
-      this.baseConverter.prependMultiplication(getPrefixFactor(prefix)/getPrefixFactor(this.prefix)),
+      this.baseConverter.prependMultiplication(getPrefixFactor(prefix) / getPrefixFactor(this.prefix)),
       prefix,
       this.subUnits
     );
@@ -106,5 +106,13 @@ export class Unit {
 
   public raisedTo(exponent: number, symbol?: string): Unit {
     return Unit.fromSubUnits([{unit: this, exponent}], symbol);
+  }
+
+  public squared(symbol?: string): Unit {
+    return this.raisedTo(2, symbol ?? this.symbol + '²');
+  }
+
+  public cubed(symbol?: string): Unit {
+    return this.raisedTo(3, symbol ?? this.symbol + '³');
   }
 }
