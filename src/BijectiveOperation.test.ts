@@ -15,14 +15,14 @@ describe('ReversibleOperation', () => {
 
     test('fromFactor', () => {
       const parameter = 2;
-      const operationChain = BijectiveOperationChain.fromFactor(parameter);
-      expect(operationChain.nameChain).toEqual([{operation: 'multiply', parameter}]);
+      const { nameChain } = BijectiveOperationChain.fromFactor(parameter);
+      expect(nameChain).toEqual([{operation: 'multiply', parameter}]);
     });
 
     test('fromOffset', () => {
       const parameter = 2;
-      const operationChain = BijectiveOperationChain.fromOffset(parameter);
-      expect(operationChain.nameChain).toEqual([{operation: 'add', parameter}]);
+      const { nameChain } = BijectiveOperationChain.fromOffset(parameter);
+      expect(nameChain).toEqual([{operation: 'add', parameter}]);
     });
 
     test('apply', () => {
@@ -51,29 +51,29 @@ describe('ReversibleOperation', () => {
 
     describe('isMultiplicationOnly', () => {
       it('Returns true if the chain only contains multiplications', () => {
-        const operationChain = new BijectiveOperationChain([
+        const chain = new BijectiveOperationChain([
           {operation: 'multiply', parameter: 2},
           {operation: 'multiply', parameter: 3},
           {operation: 'multiply', parameter: 4},
         ]);
-        expect(operationChain.isMultiplicationOnly()).toBe(true);
+        expect(chain.isMultiplicationOnly()).toBe(true);
       });
 
       it('Returns false if the chain contains other operations', () => {
-        const operationChain = new BijectiveOperationChain([
+        const chain = new BijectiveOperationChain([
           {operation: 'multiply', parameter: 2},
           {operation: 'add', parameter: 3},
           {operation: 'multiply', parameter: 4},
         ]);
-        expect(operationChain.isMultiplicationOnly()).toBe(false);
+        expect(chain.isMultiplicationOnly()).toBe(false);
       });
     });
 
     test('raise', () => {
-      const operationChain = new BijectiveOperationChain([
+      const chain = new BijectiveOperationChain([
         {operation: 'multiply', parameter: 3},
       ]);
-      const raisedChain = operationChain.raise(2);
+      const raisedChain = chain.raise(2);
       expect(raisedChain?.nameChain[0].parameter).toBe(9);
     });
 
