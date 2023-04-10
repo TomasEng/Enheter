@@ -1,13 +1,12 @@
-import {Unit} from '../Unit';
+import {UnitList} from '../UnitList';
+import {second} from './basicUnits';
 
-export const timeBase = new Unit('s', { time: 1 });
-
-export const timeUnits = {
-  day: timeBase.withFactor(86400, 'd'),
-  hour: timeBase.withFactor(3600, 'h'),
-  minute: timeBase.withFactor(60, 'min'),
-  second: timeBase,
-  week: timeBase.withFactor(604800, 'week'),
+export const timeUnits: UnitList = {
+  day: second.withFactor(86400, 'd'),
+  hour: second.withFactor(3600, 'h'),
+  minute: second.withFactor(60, 'min'),
+  second,
+  week: second.withFactor(604800, 'week'),
 };
 
 export type TimeUnit = keyof typeof timeUnits;

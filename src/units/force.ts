@@ -1,18 +1,17 @@
-import {massUnits} from './mass';
+import {UnitList} from '../UnitList';
 import {accelerationUnits} from './acceleration';
+import {kilogram, newton, pound} from './basicUnits';
 
-export const forceBase = massUnits.kilogram.multipliedWith(accelerationUnits.metrePerSecondSquared, 'N');
+const pond = kilogram.multipliedWith(accelerationUnits.standardGravity, 'pond');
 
-const pond = massUnits.kilogram.multipliedWith(accelerationUnits.standardGravity, 'pond');
-
-export const forceUnits = {
-  newton: forceBase,
-  kilonewton: forceBase.withPrefix('kilo'),
-  dyne: forceBase.withFactor(0.00001, 'dyn'),
+export const forceUnits: UnitList = {
+  newton,
+  kilonewton: newton.withPrefix('kilo'),
+  dyne: newton.withFactor(0.00001, 'dyn'),
   pond,
   kilopond: pond.withPrefix('kilo'),
-  poundal: massUnits.pound.multipliedWith(accelerationUnits.footPerSecondSquared, 'pdl'),
-  pound: forceBase.withFactor(4.4482216152605, 'lbf'),
+  poundal: pound.multipliedWith(accelerationUnits.footPerSecondSquared, 'pdl'),
+  pound: newton.withFactor(4.4482216152605, 'lbf'),
 };
 
 export type ForceUnit = keyof typeof forceUnits;

@@ -1,15 +1,15 @@
 import {lengthUnits} from './length';
+import {UnitList} from '../UnitList';
+import {squareMetre} from './basicUnits';
 
-export const areaBase = lengthUnits.metre.raisedTo(2, 'm^2');
-
-export const areaUnits = {
-  acre: areaBase.withFactor(4046.8564224, 'ac'),
-  are: areaBase.withFactor(100, 'a'),
-  dekare: areaBase.withFactor(1000, 'daa'),
-  hectare: areaBase.withFactor(10000, 'ha'),
+export const areaUnits: UnitList = {
+  acre: squareMetre.withFactor(4046.8564224, 'ac'),
+  are: squareMetre.withFactor(100, 'a'),
+  dekare: squareMetre.withFactor(1000, 'daa'),
+  hectare: squareMetre.withFactor(10000, 'ha'),
   squareFoot: lengthUnits.foot.raisedTo(2, 'ft^2'),
   squareInch: lengthUnits.inch.raisedTo(2, 'in^2'),
-  squareMetre: areaBase,
+  squareMetre,
 };
 
 export type AreaUnit = keyof typeof areaUnits;

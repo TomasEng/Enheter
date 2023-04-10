@@ -1,9 +1,6 @@
-import {Unit} from '../Unit';
+import {UnitList} from '../UnitList';
+import {mole} from './basicUnits';
 
-export const amountOfSubstanceBase = new Unit('mol', {amountOfSubstance: 1});
-
-export const amountOfSubstanceUnits = {
-  mole: amountOfSubstanceBase,
-};
+export const amountOfSubstanceUnits: UnitList = {mole};
 
 export type AmountOfSubstanceUnit = keyof typeof amountOfSubstanceUnits;

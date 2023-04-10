@@ -1,9 +1,6 @@
-import {Unit} from '../Unit';
+import {UnitList} from '../UnitList';
+import {ampere} from './basicUnits';
 
-export const currentBase = new Unit('A', {current: 1});
-
-export const currentUnits = {
-  ampere: currentBase,
-};
+export const currentUnits: UnitList = {ampere};
 
 export type CurrentUnit = keyof typeof currentUnits;
