@@ -5,9 +5,18 @@ describe('Unit', () => {
 
   describe('fromSubUnits', () => {
 
-    const metrePerSecond = Unit.fromSubUnits([{unit: lengthUnits.metre, exponent: 1}, {unit: timeUnits.second, exponent: -1}]);
-    const metrePerHour = Unit.fromSubUnits([{unit: lengthUnits.metre, exponent: 1}, {unit: timeUnits.hour, exponent: -1}]);
-    const knot = Unit.fromSubUnits([{unit: lengthUnits.nauticalMile, exponent: 1}, {unit: timeUnits.hour, exponent: -1},], 'kt');
+    const metrePerSecond = Unit.fromSubUnits([{unit: lengthUnits.metre, exponent: 1}, {
+      unit: timeUnits.second,
+      exponent: -1
+    }]);
+    const metrePerHour = Unit.fromSubUnits([{unit: lengthUnits.metre, exponent: 1}, {
+      unit: timeUnits.hour,
+      exponent: -1
+    }]);
+    const knot = Unit.fromSubUnits([{unit: lengthUnits.nauticalMile, exponent: 1}, {
+      unit: timeUnits.hour,
+      exponent: -1
+    },], 'kt');
 
     it('Creates a unit from a list of sub-units', () => {
 
@@ -64,20 +73,32 @@ describe('Unit', () => {
       expect(newCelsius.isBase).toBe(false);
       expect(kilocelsius.baseUnit).toBe(celsius.baseUnit);
       expect(newCelsius.baseConverter.nameChain).toEqual([
-          {operation: 'add', parameter: 273.15},
+        {operation: 'add', parameter: 273.15},
       ]);
     });
   });
 
-    describe('withFactor', () => {
-      it('Creates a unit with the given factor', () => {
-        const metre = lengthUnits.metre;
-        const nauticalMile = metre.withFactor(1852, 'nautical mile');
-        expect(nauticalMile.symbol).toBe('nautical mile');
-        expect(nauticalMile.dimension).toEqual(metre.dimension);
-        expect(nauticalMile.isBase).toBe(false);
-        expect(nauticalMile.baseUnit).toBe(metre.baseUnit);
-        expect(nauticalMile.baseConverter.nameChain).toEqual([{operation: 'multiply', parameter: 1852}]);
-      });
+  describe('withFactor', () => {
+    it('Creates a unit with the given factor', () => {
+      const metre = lengthUnits.metre;
+      const nauticalMile = metre.withFactor(1852, 'nautical mile');
+      expect(nauticalMile.symbol).toBe('nautical mile');
+      expect(nauticalMile.dimension).toEqual(metre.dimension);
+      expect(nauticalMile.isBase).toBe(false);
+      expect(nauticalMile.baseUnit).toBe(metre.baseUnit);
+      expect(nauticalMile.baseConverter.nameChain).toEqual([{operation: 'multiply', parameter: 1852}]);
     });
+  });
+
+  describe('withOffset', () => {
+    it('Creates a unit with the given offset', () => {
+      const kelvin = temperatureUnits.kelvin;
+      const celsius = kelvin.withOffset(273.15, 'C');
+      expect(celsius.symbol).toBe('C');
+      expect(celsius.dimension).toEqual(kelvin.dimension);
+      expect(celsius.isBase).toBe(false);
+      expect(celsius.baseUnit).toBe(kelvin.baseUnit);
+      expect(celsius.baseConverter.nameChain).toEqual([{operation: 'add', parameter: 273.15}]);
+    });
+  });
 });

@@ -77,12 +77,23 @@ export class Unit {
     );
   }
 
-  public withFactor(factor: number, symbol: string, prefix?: Prefix, subUnits?: SubUnit[]): Unit {
+  public withFactor(factor: number, symbol: string = '', prefix?: Prefix, subUnits?: SubUnit[]): Unit {
     return new Unit(
       symbol,
       this.dimension,
       this.baseUnit,
       this.baseConverter.prependMultiplication(factor),
+      prefix,
+      subUnits
+    );
+  }
+
+  public withOffset(offset: number, symbol: string = '', prefix?: Prefix, subUnits?: SubUnit[]): Unit {
+    return new Unit(
+      symbol,
+      this.dimension,
+      this.baseUnit,
+      this.baseConverter.prependAddition(offset),
       prefix,
       subUnits
     );
