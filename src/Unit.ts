@@ -119,6 +119,10 @@ export class Unit {
     return Unit.fromSubUnits([{unit: this, exponent}], symbol);
   }
 
+  public reciprocal(symbol?: string): Unit {
+    return this.raisedTo(-1, symbol);
+  }
+
   public squared(symbol?: string): Unit {
     return this.raisedTo(2, symbol ?? this.symbol + '²');
   }
