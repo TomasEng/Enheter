@@ -27,3 +27,5 @@ export const volt = watt.dividedBy(ampere, 'V');
 export const farad = coulomb.dividedBy(volt, 'F');
 export const ohm = volt.dividedBy(ampere, 'Ω');
 export const siemens = ohm.reciprocal('S');
+export const ohmMetre = ohm.multipliedWith(metre, 'Ω·m');
+export const siemensPerMetre = siemens.dividedBy(metre, 'S/m');
