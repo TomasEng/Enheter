@@ -32,3 +32,6 @@ export const ohm = volt.dividedBy(ampere, 'Ω');
 export const siemens = ohm.reciprocal('S');
 export const ohmMetre = ohm.multipliedWith(metre, 'Ω·m');
 export const siemensPerMetre = siemens.dividedBy(metre, 'S/m');
+export const weber = volt.multipliedWith(second, 'Wb');
+export const tesla = weber.dividedBy(squareMetre, 'T');
+export const henry = weber.dividedBy(ampere, 'H');
