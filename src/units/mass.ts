@@ -1,7 +1,6 @@
-import {UnitList} from '../UnitList';
 import {kilogram, pound} from './basicUnits';
 
-export const massUnits: UnitList = {
+export const massUnits = {
   carat: kilogram.withFactor(.0002, 'ct'),
   gram: kilogram.withPrefix(null),
   kilogram,

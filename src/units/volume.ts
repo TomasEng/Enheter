@@ -1,8 +1,7 @@
 import {lengthUnits} from './length';
-import {UnitList} from '../UnitList';
 import {cubicMetre} from './basicUnits';
 
-export const volumeUnits: UnitList = {
+export const volumeUnits = {
   cubicFoot: lengthUnits.foot.raisedTo(3, 'ft^3'),
   cubicInch: lengthUnits.inch.raisedTo(3, 'in^3'),
   cubicMetre,

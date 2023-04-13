@@ -1,6 +1,5 @@
 import {siemens} from './basicUnits';
-import {UnitList} from '../UnitList';
 
-export const conductanceUnits: UnitList = {siemens};
+export const conductanceUnits = {siemens};
 
 export type ConductanceUnit = keyof typeof conductanceUnits;

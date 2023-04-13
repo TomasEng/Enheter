@@ -1,6 +1,5 @@
 import {farad} from './basicUnits';
-import {UnitList} from '../UnitList';
 
-export const capacitanceUnits: UnitList = {farad};
+export const capacitanceUnits = {farad};
 
 export type CapacitanceUnit = keyof typeof capacitanceUnits;

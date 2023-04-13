@@ -1,8 +1,7 @@
 import {lengthUnits} from './length';
-import {UnitList} from '../UnitList';
 import {squareMetre} from './basicUnits';
 
-export const areaUnits: UnitList = {
+export const areaUnits = {
   acre: squareMetre.withFactor(4046.8564224, 'ac'),
   are: squareMetre.withFactor(100, 'a'),
   dekare: squareMetre.withFactor(1000, 'daa'),

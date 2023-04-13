@@ -1,7 +1,6 @@
-import {UnitList} from '../UnitList';
 import {candela} from './basicUnits';
 
-export const luminousIntensityUnits: UnitList = {
+export const luminousIntensityUnits = {
   candela,
   candlepower: candela.withFactor(0.981, 'cp'),
 };

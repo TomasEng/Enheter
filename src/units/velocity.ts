@@ -1,9 +1,8 @@
 import {lengthUnits} from './length';
 import {timeUnits} from './time';
-import {UnitList} from '../UnitList';
 import {metre, metrePerSecond} from './basicUnits';
 
-export const velocityUnits: UnitList = {
+export const velocityUnits = {
   footPerSecond: lengthUnits.foot.dividedBy(timeUnits.second),
   kilometrePerHour: metre.withPrefix('kilo').dividedBy(timeUnits.hour, 'km/h'),
   knot: lengthUnits.nauticalMile.dividedBy(timeUnits.hour, 'kt'),

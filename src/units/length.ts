@@ -1,4 +1,3 @@
-import {UnitList} from '../UnitList';
 import {metre} from './basicUnits';
 
 const inch = metre.withFactor(0.0254, 'in');
@@ -11,7 +10,7 @@ const link = chain.withFactor(1 / 100, 'link');
 const furlong = chain.withFactor(10, 'furlong');
 const statuteMile = furlong.withFactor(8, 'mi');
 
-export const lengthUnits: UnitList = {
+export const lengthUnits = {
   angstrom: metre.withFactor(1e-10, 'Å'),
   astronomicalUnit: metre.withFactor(149597870700, 'AU'),
   chain,

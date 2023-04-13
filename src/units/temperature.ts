@@ -1,10 +1,9 @@
-import {UnitList} from '../UnitList';
 import {kelvin} from './basicUnits';
 
 const rankine = kelvin.withFactor(5 / 9, '°R');
 const celsius = kelvin.withOffset(273.15, '°C');
 
-export const temperatureUnits: UnitList = {
+export const temperatureUnits = {
   celsius,
   delisle: kelvin.withOffset(373.15).withFactor(-2 / 3, '°De'),
   fahrenheit: rankine.withOffset(459.67, '°F'),

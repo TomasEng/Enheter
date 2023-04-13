@@ -1,13 +1,12 @@
 import {areaUnits} from './area';
 import {forceUnits} from './force';
 import {lengthUnits} from './length';
-import {UnitList} from '../UnitList';
 import {pascal} from './basicUnits';
 
 const bar = pascal.withFactor(100000, 'bar');
 const standardAtmosphere = pascal.withFactor(101325, 'atm');
 
-export const pressureUnits: UnitList = {
+export const pressureUnits = {
   pascal,
   standardAtmosphere,
   bar,

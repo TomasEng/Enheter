@@ -1,7 +1,6 @@
 import {gram, kilogramPerCubicMetre, metre} from './basicUnits';
-import {UnitList} from '../UnitList';
 
-export const densityUnits: UnitList = {
+export const densityUnits = {
   kilogramPerCubicMetre,
   gramPerCubicCentimetre: gram.dividedBy(metre.withPrefix('centi').cubed()),
 };

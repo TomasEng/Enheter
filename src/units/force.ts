@@ -1,10 +1,9 @@
-import {UnitList} from '../UnitList';
 import {accelerationUnits} from './acceleration';
 import {kilogram, newton, pound} from './basicUnits';
 
 const pond = kilogram.multipliedWith(accelerationUnits.standardGravity, 'pond');
 
-export const forceUnits: UnitList = {
+export const forceUnits = {
   newton,
   kilonewton: newton.withPrefix('kilo'),
   dyne: newton.withFactor(0.00001, 'dyn'),
