@@ -1,8 +1,5 @@
-import {metre} from './basicUnits';
+import {foot, inch, metre, yard} from './basicUnits';
 
-const inch = metre.withFactor(0.0254, 'in');
-const foot = inch.withFactor(12, 'ft');
-const yard = foot.withFactor(3, 'yd');
 const fathom = yard.withFactor(2, 'fathom');
 const chain = fathom.withFactor(11, 'chain');
 const rod = chain.withFactor(1 / 4, 'rod');

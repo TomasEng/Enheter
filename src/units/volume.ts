@@ -1,12 +1,15 @@
-import {lengthUnits} from './length';
-import {cubicMetre} from './basicUnits';
+import {cubicMetre, foot, inch, yard} from './basicUnits';
+
+const cubicInch = inch.cubed();
 
 export const volumeUnits = {
-  cubicFoot: lengthUnits.foot.raisedTo(3, 'ft^3'),
-  cubicInch: lengthUnits.inch.raisedTo(3, 'in^3'),
+  cubicFoot: foot.cubed(),
+  cubicInch,
   cubicMetre,
-  cubicYard: lengthUnits.yard.raisedTo(3, 'yd^3'),
-  litre: cubicMetre.withFactor(0.001, 'L'),
+  cubicYard: yard.cubed(),
+  imperialGallon: cubicMetre.withFactor(0.00454609, 'imp gal'),
+  litre: cubicMetre.withPrefix('deci').copy('L'),
+  usGallon: cubicInch.withFactor(231, 'US gal'),
 };
 
 export type VolumeUnit = keyof typeof volumeUnits;
