@@ -78,6 +78,20 @@ describe('Unit', () => {
     });
   });
 
+  describe('copy', () => {
+    it('Creates a copy of the unit with the given symbol', () => {
+      const copySymbol = 'ÆØÅ';
+      const {metre} = lengthUnits;
+      const kilometre = metre.withPrefix('kilo');
+      const kilometreCopy = kilometre.copy(copySymbol);
+      expect(kilometreCopy.symbol).toBe(copySymbol);
+      expect(kilometreCopy.dimension).toEqual(metre.dimension);
+      expect(kilometreCopy.baseUnit).toBe(metre.baseUnit);
+      expect(kilometreCopy.baseConverter.nameChain).toEqual(kilometre.baseConverter.nameChain);
+      expect(kilometreCopy.prefix).toBe(null);
+    });
+  });
+
   describe('withFactor', () => {
     it('Creates a unit with the given factor', () => {
       const metre = lengthUnits.metre;

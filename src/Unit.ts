@@ -107,6 +107,16 @@ export class Unit {
     return this.baseConverter.applyInverse(value);
   }
 
+  public copy(symbol?: string, prefix: Prefix = null): Unit {
+    return new Unit(
+      symbol ?? this.symbol,
+      this.dimension,
+      this.baseUnit,
+      this.baseConverter,
+      prefix,
+    );
+  }
+
   public multipliedWith(unit: Unit, symbol?: string): Unit {
     return Unit.fromSubUnits([{unit: this, exponent: 1}, {unit, exponent: 1}], symbol);
   }
