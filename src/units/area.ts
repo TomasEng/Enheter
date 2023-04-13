@@ -1,13 +1,15 @@
-import {lengthUnits} from './length';
-import {squareMetre} from './basicUnits';
+import {foot, inch, squareMetre, yard} from './basicUnits';
+
+const squareYard = yard.squared();
 
 export const areaUnits = {
-  acre: squareMetre.withFactor(4046.8564224, 'ac'),
+  acre: squareYard.withFactor(4840, 'ac'),
   are: squareMetre.withFactor(100, 'a'),
   dekare: squareMetre.withFactor(1000, 'daa'),
   hectare: squareMetre.withFactor(10000, 'ha'),
-  squareFoot: lengthUnits.foot.raisedTo(2, 'ft^2'),
-  squareInch: lengthUnits.inch.raisedTo(2, 'in^2'),
+  squareFoot: foot.squared(),
+  squareInch: inch.squared(),
+  squareYard,
   squareMetre,
 };
 
