@@ -1,4 +1,5 @@
 import {foot, inch, metre, yard} from './basicUnits';
+import {Measure} from '../Measure';
 
 const fathom = yard.withFactor(2, 'fathom');
 const chain = fathom.withFactor(11, 'chain');
@@ -29,3 +30,11 @@ export const lengthUnits = {
 };
 
 export type LengthUnit = keyof typeof lengthUnits;
+
+/**
+ * Initiates a measure of length.
+ * @param unit The unit of the measure.
+ * @param value The value of the measure.
+ * @returns The new Measure object.
+ */
+export const length = (unit: LengthUnit, value: number): Measure => new Measure(lengthUnits[unit], value);

@@ -2,6 +2,7 @@ import {areaUnits} from './area';
 import {forceUnits} from './force';
 import {lengthUnits} from './length';
 import {pascal} from './basicUnits';
+import {Measure} from '../Measure';
 
 const bar = pascal.withFactor(100000, 'bar');
 const standardAtmosphere = pascal.withFactor(101325, 'atm');
@@ -18,3 +19,11 @@ export const pressureUnits = {
 };
 
 export type PressureUnit = keyof typeof pressureUnits;
+
+/**
+ * Initiates a measure of pressure.
+ * @param unit The unit of the pressure measure.
+ * @param value The value of the pressure measure.
+ * @returns The new Measure object.
+ */
+export const pressure = (unit: PressureUnit, value: number): Measure => new Measure(pressureUnits[unit], value);

@@ -1,4 +1,5 @@
 import {foot, inch, squareMetre, yard} from './basicUnits';
+import {Measure} from '../Measure';
 
 const squareYard = yard.squared();
 
@@ -14,3 +15,14 @@ export const areaUnits = {
 };
 
 export type AreaUnit = keyof typeof areaUnits;
+
+/**
+ * Initiates a measure of area.
+ * @param unit The unit of the area measure.
+ * @param value The value of the area measure.
+ * @returns The new Measure object.
+ */
+export const area = (
+  unit: AreaUnit,
+  value: number
+): Measure => new Measure(areaUnits[unit], value);

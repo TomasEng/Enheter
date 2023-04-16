@@ -1,4 +1,5 @@
 import {coulomb} from './basicUnits';
+import {Measure} from '../Measure';
 
 export const chargeUnits = {
   coulomb,
@@ -7,3 +8,14 @@ export const chargeUnits = {
 };
 
 export type ChargeUnit = keyof typeof chargeUnits;
+
+/**
+ * Initiates a measure of charge.
+ * @param unit The unit of the measure.
+ * @param value The value of the measure.
+ * @returns The new Measure object.
+ */
+export const charge = (
+  unit: ChargeUnit,
+  value: number
+): Measure => new Measure(chargeUnits[unit], value);

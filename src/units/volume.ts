@@ -1,4 +1,5 @@
 import {cubicMetre, foot, inch, yard} from './basicUnits';
+import {Measure} from '../Measure';
 
 const cubicInch = inch.cubed();
 
@@ -13,3 +14,12 @@ export const volumeUnits = {
 };
 
 export type VolumeUnit = keyof typeof volumeUnits;
+
+/**
+ * Initiates a measure of volume.
+ * @param unit The unit of the measure.
+ * @param value The value of the measure.
+ * @returns The new Measure object.
+ */
+export const volume = (unit: VolumeUnit, value: number): Measure =>
+  new Measure(volumeUnits[unit], value);

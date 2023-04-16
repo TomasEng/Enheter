@@ -1,4 +1,5 @@
 import {second} from './basicUnits';
+import {Measure} from '../Measure';
 
 export const timeUnits = {
   day: second.withFactor(86400, 'd'),
@@ -9,3 +10,12 @@ export const timeUnits = {
 };
 
 export type TimeUnit = keyof typeof timeUnits;
+
+/**
+ * Initiates a measure of time.
+ * @param unit The unit of the measure.
+ * @param value The value of the measure.
+ * @returns The new Measure object.
+ */
+export const time = (unit: TimeUnit, value: number): Measure =>
+  new Measure(timeUnits[unit], value);

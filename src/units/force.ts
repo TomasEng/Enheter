@@ -1,5 +1,6 @@
 import {accelerationUnits} from './acceleration';
 import {kilogram, newton, pound} from './basicUnits';
+import {Measure} from '../Measure';
 
 const pond = kilogram.multipliedWith(accelerationUnits.standardGravity, 'pond');
 
@@ -14,3 +15,11 @@ export const forceUnits = {
 };
 
 export type ForceUnit = keyof typeof forceUnits;
+
+/**
+ * Initiates a measure of force.
+ * @param unit The unit of the force measure.
+ * @param value The value of the force measure.
+ * @returns The new Measure object.
+ */
+export const force = (unit: ForceUnit, value: number): Measure => new Measure(forceUnits[unit], value);

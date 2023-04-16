@@ -1,5 +1,6 @@
 import {timeUnits} from './time';
 import {elementaryCharge, joule, volt, watt} from './basicUnits';
+import {Measure} from '../Measure';
 
 const calorie = joule.withFactor(4.184, 'cal');
 
@@ -15,3 +16,12 @@ export const energyUnits = {
 };
 
 export type EnergyUnit = keyof typeof energyUnits;
+
+/**
+ * Initiates a measure of energy.
+ * @param unit The unit of the energy measure.
+ * @param value The value of the energy measure.
+ * @returns The new Measure object.
+ */
+export const energy = (unit: EnergyUnit, value: number): Measure =>
+  new Measure(energyUnits[unit], value);

@@ -2,6 +2,7 @@ import {velocityUnits} from './velocity';
 import {timeUnits} from './time';
 import {lengthUnits} from './length';
 import {metrePerSecondSquared} from './basicUnits';
+import {Measure} from '../Measure';
 
 export const accelerationUnits = {
   metrePerSecondSquared,
@@ -11,3 +12,14 @@ export const accelerationUnits = {
 };
 
 export type AccelerationUnit = keyof typeof accelerationUnits;
+
+/**
+ * Initiates a measure of acceleration.
+ * @param unit The unit of the acceleration measure.
+ * @param value The value of the acceleration measure.
+ * @returns The new Measure object.
+ */
+export const acceleration = (
+  unit: AccelerationUnit,
+  value: number
+): Measure => new Measure(accelerationUnits[unit], value);

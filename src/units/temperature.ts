@@ -1,4 +1,5 @@
 import {kelvin} from './basicUnits';
+import {Measure} from '../Measure';
 
 const rankine = kelvin.withFactor(5 / 9, '°R');
 const celsius = kelvin.withOffset(273.15, '°C');
@@ -15,3 +16,14 @@ export const temperatureUnits = {
 };
 
 export type TemperatureUnit = keyof typeof temperatureUnits;
+
+/**
+ * Initiates a measure of temperature.
+ * @param unit The unit of the measure.
+ * @param value The value of the measure.
+ * @returns The new Measure object.
+ */
+export const temperature = (
+  unit: TemperatureUnit,
+  value: number
+): Measure => new Measure(temperatureUnits[unit], value);

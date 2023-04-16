@@ -1,5 +1,4 @@
-import {Dimension} from './Dimension';
-import {Unit} from './Unit';
-
-export {Dimension, Unit};
+export {Dimension} from './Dimension';
+export {Unit} from './Unit';
 export {Measure} from './Measure';
+export * from './units';
