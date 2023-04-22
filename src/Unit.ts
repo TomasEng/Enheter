@@ -7,20 +7,20 @@ interface SubUnit {
   exponent: number;
 }
 
-export class Unit {
+export class Unit<T extends Dimension = Dimension> {
 
   readonly symbol: string;
-  readonly dimension: Dimension;
+  readonly dimension: T;
   readonly isBase: boolean;
   readonly baseConverter: BijectiveOperationChain;
   readonly prefix: Prefix;
   readonly subUnits?: SubUnit[];
-  readonly baseUnit: Unit;
+  readonly baseUnit: Unit<T>;
 
   constructor(
     symbol: string,
-    dimension: Dimension,
-    baseUnit?: Unit,
+    dimension: T,
+    baseUnit?: Unit<T>,
     toBase?: BijectiveOperationChain,
     prefix?: Prefix,
     subUnits?: SubUnit[]
@@ -66,7 +66,7 @@ export class Unit {
     return new Unit(newSymbol, newDimension, newBaseUnit, newBaseConverter, null, subUnits);
   }
 
-  public withPrefix(prefix: Prefix): Unit {
+  public withPrefix(prefix: Prefix): Unit<T> {
     return new Unit(
       (prefix && prefixes[prefix].symbol || '') + removePrefixFromSymbol(this.symbol, this.prefix),
       this.dimension,
@@ -77,7 +77,7 @@ export class Unit {
     );
   }
 
-  public withFactor(factor: number, symbol: string = '', prefix?: Prefix, subUnits?: SubUnit[]): Unit {
+  public withFactor(factor: number, symbol: string = '', prefix?: Prefix, subUnits?: SubUnit[]): Unit<T> {
     return new Unit(
       symbol,
       this.dimension,
@@ -88,7 +88,7 @@ export class Unit {
     );
   }
 
-  public withOffset(offset: number, symbol: string = '', prefix?: Prefix, subUnits?: SubUnit[]): Unit {
+  public withOffset(offset: number, symbol: string = '', prefix?: Prefix, subUnits?: SubUnit[]): Unit<T> {
     return new Unit(
       symbol,
       this.dimension,
@@ -107,7 +107,7 @@ export class Unit {
     return this.baseConverter.applyInverse(value);
   }
 
-  public copy(symbol?: string, prefix: Prefix = null): Unit {
+  public copy(symbol?: string, prefix: Prefix = null): Unit<T> {
     return new Unit(
       symbol ?? this.symbol,
       this.dimension,

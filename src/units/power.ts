@@ -1,5 +1,7 @@
 import {watt} from './basicUnits';
 import {Measure} from '../Measure';
+import {UnitList} from '../types/UnitList';
+import {PowerDimension} from '../types/dimensions';
 
 export const powerUnits = {
   watt,
@@ -7,6 +9,11 @@ export const powerUnits = {
 };
 
 export type PowerUnit = keyof typeof powerUnits;
+
+export const powerUnitList: UnitList<PowerDimension, PowerUnit> = {
+  dimension: {mass: 1, length: 2, time: -3},
+  units: powerUnits,
+};
 
 /**
  * Initiates a measure of power.

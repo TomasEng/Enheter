@@ -1,5 +1,7 @@
 import {kilogram, pound} from './basicUnits';
 import {Measure} from '../Measure';
+import {UnitList} from '../types/UnitList';
+import {MassDimension} from '../types/dimensions';
 
 export const massUnits = {
   carat: kilogram.withFactor(.0002, 'ct'),
@@ -11,6 +13,11 @@ export const massUnits = {
 };
 
 export type MassUnit = keyof typeof massUnits;
+
+export const massUnitList: UnitList<MassDimension, MassUnit> = {
+  dimension: {mass: 1},
+  units: massUnits,
+};
 
 /**
  * Initiates a measure of mass.

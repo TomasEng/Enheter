@@ -1,9 +1,16 @@
 import {ampere} from './basicUnits';
 import {Measure} from '../Measure';
+import {CurrentDimension} from '../types/dimensions';
+import {UnitList} from '../types/UnitList';
 
 export const currentUnits = {ampere};
 
 export type CurrentUnit = keyof typeof currentUnits;
+
+export const currentUnitList: UnitList<CurrentDimension, CurrentUnit> = {
+  dimension: {current: 1},
+  units: currentUnits,
+};
 
 /**
  * Initiates a measure of current.

@@ -1,5 +1,7 @@
 import {second} from './basicUnits';
 import {Measure} from '../Measure';
+import {UnitList} from '../types/UnitList';
+import {TimeDimension} from '../types/dimensions';
 
 export const timeUnits = {
   day: second.withFactor(86400, 'd'),
@@ -10,6 +12,11 @@ export const timeUnits = {
 };
 
 export type TimeUnit = keyof typeof timeUnits;
+
+export const timeUnitList: UnitList<TimeDimension, TimeUnit> = {
+  dimension: {time: 1},
+  units: timeUnits,
+};
 
 /**
  * Initiates a measure of time.

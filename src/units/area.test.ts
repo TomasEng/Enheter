@@ -14,5 +14,5 @@ describe('area', () => {
     const measure = area(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(areaUnits[unit]);
-  })
+  });
 });

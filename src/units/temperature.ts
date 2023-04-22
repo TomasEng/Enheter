@@ -1,5 +1,7 @@
 import {kelvin} from './basicUnits';
 import {Measure} from '../Measure';
+import {UnitList} from '../types/UnitList';
+import {TemperatureDimension} from '../types/dimensions';
 
 const rankine = kelvin.withFactor(5 / 9, '°R');
 const celsius = kelvin.withOffset(273.15, '°C');
@@ -16,6 +18,11 @@ export const temperatureUnits = {
 };
 
 export type TemperatureUnit = keyof typeof temperatureUnits;
+
+export const temperatureUnitList: UnitList<TemperatureDimension, TemperatureUnit> = {
+  dimension: {temperature: 1},
+  units: temperatureUnits,
+};
 
 /**
  * Initiates a measure of temperature.

@@ -4,7 +4,7 @@ export * from './area';
 export * from './capacitance';
 export * from './charge';
 export * from './conductance';
-export * from './conductivity'
+export * from './conductivity';
 export * from './current';
 export * from './density';
 export * from './energy';

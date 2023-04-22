@@ -1,5 +1,7 @@
 import {candela} from './basicUnits';
 import {Measure} from '../Measure';
+import {UnitList} from '../types/UnitList';
+import {LuminousIntensityDimension} from '../types/dimensions';
 
 export const luminousIntensityUnits = {
   candela,
@@ -7,6 +9,11 @@ export const luminousIntensityUnits = {
 };
 
 export type LuminousIntensityUnit = keyof typeof luminousIntensityUnits;
+
+export const luminousIntensityUnitList: UnitList<LuminousIntensityDimension, LuminousIntensityUnit> = {
+  dimension: {luminousIntensity: 1},
+  units: luminousIntensityUnits,
+};
 
 /**
  * Initiates a measure of luminous intensity.

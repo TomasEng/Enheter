@@ -1,5 +1,7 @@
 import {coulomb} from './basicUnits';
 import {Measure} from '../Measure';
+import {UnitList} from '../types/UnitList';
+import {ChargeDimension} from '../types/dimensions';
 
 export const chargeUnits = {
   coulomb,
@@ -8,6 +10,11 @@ export const chargeUnits = {
 };
 
 export type ChargeUnit = keyof typeof chargeUnits;
+
+export const chargeUnitList: UnitList<ChargeDimension, ChargeUnit> = {
+  dimension: {current: 1, time: 1},
+  units: chargeUnits,
+};
 
 /**
  * Initiates a measure of charge.
