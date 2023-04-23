@@ -3,16 +3,16 @@ import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {MagneticFluxDensityDimension} from '../types/dimensions';
 
-export const magneticFluxDensityUnits = {
+const units = {
   gauss: tesla.withFactor(1e-4, 'G'),
   tesla,
 };
 
-export type MagneticFluxDensityUnit = keyof typeof magneticFluxDensityUnits;
+export type MagneticFluxDensityUnit = keyof typeof units;
 
-export const magneticFluxDensityUnitList: UnitList<MagneticFluxDensityDimension, MagneticFluxDensityUnit> = {
+export const magneticFluxDensityUnits: UnitList<MagneticFluxDensityDimension, MagneticFluxDensityUnit> = {
   dimension: {mass: 1, time: -2, current: -1},
-  units: magneticFluxDensityUnits,
+  units,
 };
 
 /**
@@ -24,4 +24,4 @@ export const magneticFluxDensityUnitList: UnitList<MagneticFluxDensityDimension,
 export const magneticFluxDensity = (
   unit: MagneticFluxDensityUnit,
   value: number
-): Measure => new Measure(magneticFluxDensityUnits[unit], value);
+): Measure => new Measure(units[unit], value);

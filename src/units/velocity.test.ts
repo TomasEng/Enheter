@@ -2,9 +2,9 @@ import {velocity, VelocityUnit, velocityUnits} from './velocity';
 
 describe('velocity', () => {
   describe('velocityUnits', () => {
-    test.each(Object.keys(velocityUnits) as VelocityUnit[])(
+    test.each(Object.keys(velocityUnits.units) as VelocityUnit[])(
       '%s has correct dimension',
-      (unit) => expect(velocityUnits[unit].dimension).toEqual({length: 1, time: -1})
+      (unit) => expect(velocityUnits.units[unit].dimension).toEqual({length: 1, time: -1})
     );
   });
 
@@ -13,6 +13,6 @@ describe('velocity', () => {
     const value = 12;
     const measure = velocity(unit, value);
     expect(measure.value).toEqual(value);
-    expect(measure.unit).toEqual(velocityUnits[unit]);
+    expect(measure.unit).toEqual(velocityUnits.units[unit]);
   });
 });

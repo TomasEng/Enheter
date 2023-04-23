@@ -3,13 +3,13 @@ import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {CapacitanceDimension} from '../types/dimensions';
 
-export const capacitanceUnits = {farad};
+const units = {farad};
 
-export type CapacitanceUnit = keyof typeof capacitanceUnits;
+export type CapacitanceUnit = keyof typeof units;
 
-export const capacitanceUnitList: UnitList<CapacitanceDimension, CapacitanceUnit> = {
+export const capacitanceUnits: UnitList<CapacitanceDimension, CapacitanceUnit> = {
   dimension: {current: -2, length: -2, mass: 1, time: 4},
-  units: capacitanceUnits,
+  units,
 };
 
 /**
@@ -21,4 +21,4 @@ export const capacitanceUnitList: UnitList<CapacitanceDimension, CapacitanceUnit
 export const capacitance = (
   unit: CapacitanceUnit,
   value: number
-): Measure => new Measure(capacitanceUnits[unit], value);
+): Measure => new Measure(units[unit], value);

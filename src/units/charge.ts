@@ -3,17 +3,17 @@ import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {ChargeDimension} from '../types/dimensions';
 
-export const chargeUnits = {
+const units = {
   coulomb,
   elementaryCharge: coulomb.withFactor(1.602176634e-19, 'e'),
   statcoulomb: coulomb.withFactor(3.335641e-10, 'statC'),
 };
 
-export type ChargeUnit = keyof typeof chargeUnits;
+export type ChargeUnit = keyof typeof units;
 
-export const chargeUnitList: UnitList<ChargeDimension, ChargeUnit> = {
+export const chargeUnits: UnitList<ChargeDimension, ChargeUnit> = {
   dimension: {current: 1, time: 1},
-  units: chargeUnits,
+  units,
 };
 
 /**
@@ -25,4 +25,4 @@ export const chargeUnitList: UnitList<ChargeDimension, ChargeUnit> = {
 export const charge = (
   unit: ChargeUnit,
   value: number
-): Measure => new Measure(chargeUnits[unit], value);
+): Measure => new Measure(units[unit], value);

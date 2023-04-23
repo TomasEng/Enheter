@@ -6,7 +6,7 @@ import {TemperatureDimension} from '../types/dimensions';
 const rankine = kelvin.withFactor(5 / 9, '°R');
 const celsius = kelvin.withOffset(273.15, '°C');
 
-export const temperatureUnits = {
+const units = {
   celsius,
   delisle: kelvin.withOffset(373.15).withFactor(-2 / 3, '°De'),
   fahrenheit: rankine.withOffset(459.67, '°F'),
@@ -17,11 +17,11 @@ export const temperatureUnits = {
   romer: celsius.withFactor(40 / 21).withOffset(-7.5, '°Rø'),
 };
 
-export type TemperatureUnit = keyof typeof temperatureUnits;
+export type TemperatureUnit = keyof typeof units;
 
-export const temperatureUnitList: UnitList<TemperatureDimension, TemperatureUnit> = {
+export const temperatureUnits: UnitList<TemperatureDimension, TemperatureUnit> = {
   dimension: {temperature: 1},
-  units: temperatureUnits,
+  units,
 };
 
 /**
@@ -33,4 +33,4 @@ export const temperatureUnitList: UnitList<TemperatureDimension, TemperatureUnit
 export const temperature = (
   unit: TemperatureUnit,
   value: number
-): Measure => new Measure(temperatureUnits[unit], value);
+): Measure => new Measure(units[unit], value);

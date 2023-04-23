@@ -2,9 +2,9 @@ import {pressure, PressureUnit, pressureUnits} from './pressure';
 
 describe('pressure', () => {
   describe('pressureUnits', () => {
-    test.each(Object.keys(pressureUnits) as PressureUnit[])(
+    test.each(Object.keys(pressureUnits.units) as PressureUnit[])(
       '%s has correct dimension',
-      (unit) => expect(pressureUnits[unit].dimension).toEqual({length: -1, mass: 1, time: -2})
+      (unit) => expect(pressureUnits.units[unit].dimension).toEqual({length: -1, mass: 1, time: -2})
     );
   });
 
@@ -13,6 +13,6 @@ describe('pressure', () => {
     const value = 12;
     const measure = pressure(unit, value);
     expect(measure.value).toEqual(value);
-    expect(measure.unit).toEqual(pressureUnits[unit]);
+    expect(measure.unit).toEqual(pressureUnits.units[unit]);
   });
 });

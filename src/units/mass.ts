@@ -1,22 +1,22 @@
-import {kilogram, pound} from './basicUnits';
+import {kilogram, poundMass} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {MassDimension} from '../types/dimensions';
 
-export const massUnits = {
+const units = {
   carat: kilogram.withFactor(.0002, 'ct'),
   gram: kilogram.withPrefix(null),
   kilogram,
   ounce: kilogram.withFactor(.028349523125, '℥'),
-  pound,
+  pound: poundMass,
   tonne: kilogram.withFactor(1000, 't'),
 };
 
-export type MassUnit = keyof typeof massUnits;
+export type MassUnit = keyof typeof units;
 
-export const massUnitList: UnitList<MassDimension, MassUnit> = {
+export const massUnits: UnitList<MassDimension, MassUnit> = {
   dimension: {mass: 1},
-  units: massUnits,
+  units,
 };
 
 /**
@@ -26,4 +26,4 @@ export const massUnitList: UnitList<MassDimension, MassUnit> = {
  * @returns The new Measure object.
  */
 export const mass = (unit: MassUnit, value: number): Measure =>
-  new Measure(massUnits[unit], value);
+  new Measure(units[unit], value);

@@ -1,24 +1,21 @@
-import {velocityUnits} from './velocity';
-import {timeUnits} from './time';
-import {lengthUnits} from './length';
-import {metrePerSecondSquared} from './basicUnits';
+import {footPerSecondSquared, metre, metrePerSecondSquared, second, standardGravity} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {Unit} from '../Unit';
 import {AccelerationDimension} from '../types/dimensions';
 
-export const accelerationUnits = {
+const units = {
   metrePerSecondSquared,
-  footPerSecondSquared: velocityUnits.footPerSecond.dividedBy(timeUnits.second, 'ft/s^2') as Unit<AccelerationDimension>,
-  gal: lengthUnits.metre.withPrefix('centi').dividedBy(timeUnits.second.raisedTo(2), 'Gal') as Unit<AccelerationDimension>,
-  standardGravity: metrePerSecondSquared.withFactor(9.80665, 'g_0'),
+  footPerSecondSquared,
+  gal: metre.withPrefix('centi').dividedBy(second.raisedTo(2), 'Gal') as Unit<AccelerationDimension>,
+  standardGravity,
 };
 
-export type AccelerationUnit = keyof typeof accelerationUnits;
+export type AccelerationUnit = keyof typeof units;
 
-export const accelerationUnitList: UnitList<AccelerationDimension, AccelerationUnit> = {
+export const accelerationUnits: UnitList<AccelerationDimension, AccelerationUnit> = {
   dimension: {length: 1, time: -2},
-  units: accelerationUnits,
+  units,
 };
 
 /**
@@ -30,4 +27,4 @@ export const accelerationUnitList: UnitList<AccelerationDimension, AccelerationU
 export const acceleration = (
   unit: AccelerationUnit,
   value: number
-): Measure => new Measure(accelerationUnits[unit], value);
+): Measure => new Measure(units[unit], value);

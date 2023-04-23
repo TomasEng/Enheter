@@ -3,16 +3,16 @@ import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {LuminousIntensityDimension} from '../types/dimensions';
 
-export const luminousIntensityUnits = {
+const units = {
   candela,
   candlepower: candela.withFactor(0.981, 'cp'),
 };
 
-export type LuminousIntensityUnit = keyof typeof luminousIntensityUnits;
+export type LuminousIntensityUnit = keyof typeof units;
 
-export const luminousIntensityUnitList: UnitList<LuminousIntensityDimension, LuminousIntensityUnit> = {
+export const luminousIntensityUnits: UnitList<LuminousIntensityDimension, LuminousIntensityUnit> = {
   dimension: {luminousIntensity: 1},
-  units: luminousIntensityUnits,
+  units,
 };
 
 /**
@@ -24,4 +24,4 @@ export const luminousIntensityUnitList: UnitList<LuminousIntensityDimension, Lum
 export const luminousIntensity = (
   unit: LuminousIntensityUnit,
   value: number
-): Measure => new Measure(luminousIntensityUnits[unit], value);
+): Measure => new Measure(units[unit], value);

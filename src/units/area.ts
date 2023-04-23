@@ -1,4 +1,4 @@
-import {foot, inch, squareMetre, yard} from './basicUnits';
+import {foot, squareInch, squareMetre, yard} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {AreaDimension} from '../types/dimensions';
@@ -6,22 +6,22 @@ import {Unit} from '../Unit';
 
 const squareYard = yard.squared() as Unit<AreaDimension>;
 
-export const areaUnits = {
+const units = {
   acre: squareYard.withFactor(4840, 'ac'),
   are: squareMetre.withFactor(100, 'a'),
   dekare: squareMetre.withFactor(1000, 'daa'),
   hectare: squareMetre.withFactor(10000, 'ha'),
   squareFoot: foot.squared() as Unit<AreaDimension>,
-  squareInch: inch.squared() as Unit<AreaDimension>,
+  squareInch,
   squareYard,
   squareMetre,
 };
 
-export type AreaUnit = keyof typeof areaUnits;
+export type AreaUnit = keyof typeof units;
 
-export const areaUnitList: UnitList<AreaDimension, AreaUnit> = {
+export const areaUnits: UnitList<AreaDimension, AreaUnit> = {
   dimension: {length: 2},
-  units: areaUnits,
+  units,
 };
 
 /**
@@ -33,4 +33,4 @@ export const areaUnitList: UnitList<AreaDimension, AreaUnit> = {
 export const area = (
   unit: AreaUnit,
   value: number
-): Measure => new Measure(areaUnits[unit], value);
+): Measure => new Measure(units[unit], value);

@@ -3,13 +3,13 @@ import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {AmountOfSubstanceDimension} from '../types/dimensions';
 
-export const amountOfSubstanceUnits = {mole};
+const units = {mole};
 
-export type AmountOfSubstanceUnit = keyof typeof amountOfSubstanceUnits;
+export type AmountOfSubstanceUnit = keyof typeof units;
 
-export const amountOfSubstanceUnitList: UnitList<AmountOfSubstanceDimension, AmountOfSubstanceUnit> = {
+export const amountOfSubstanceUnits: UnitList<AmountOfSubstanceDimension, AmountOfSubstanceUnit> = {
   dimension: {amountOfSubstance: 1},
-  units: amountOfSubstanceUnits,
+  units,
 };
 
 /**
@@ -21,4 +21,4 @@ export const amountOfSubstanceUnitList: UnitList<AmountOfSubstanceDimension, Amo
 export const amountOfSubstance = (
   unit: AmountOfSubstanceUnit,
   value: number
-): Measure => new Measure(amountOfSubstanceUnits[unit], value);
+): Measure => new Measure(units[unit], value);

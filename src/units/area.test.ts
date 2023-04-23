@@ -2,9 +2,9 @@ import {area, AreaUnit, areaUnits} from './area';
 
 describe('area', () => {
   describe('areaUnits', () => {
-    test.each(Object.keys(areaUnits) as AreaUnit[])(
+    test.each(Object.keys(areaUnits.units) as AreaUnit[])(
       '%s has correct dimension',
-      (unit) => expect(areaUnits[unit].dimension).toEqual({length: 2})
+      (unit) => expect(areaUnits.units[unit].dimension).toEqual({length: 2})
     );
   });
 
@@ -13,6 +13,6 @@ describe('area', () => {
     const value = 12;
     const measure = area(unit, value);
     expect(measure.value).toEqual(value);
-    expect(measure.unit).toEqual(areaUnits[unit]);
+    expect(measure.unit).toEqual(areaUnits.units[unit]);
   });
 });

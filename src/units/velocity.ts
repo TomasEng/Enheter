@@ -1,25 +1,23 @@
-import {lengthUnits} from './length';
-import {timeUnits} from './time';
-import {metre, metrePerSecond} from './basicUnits';
+import {footPerSecond, hour, metre, metrePerSecond, nauticalMile, statuteMile} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {Unit} from '../Unit';
 import {VelocityDimension} from '../types/dimensions';
 
-export const velocityUnits = {
-  footPerSecond: lengthUnits.foot.dividedBy(timeUnits.second) as Unit<VelocityDimension>,
-  kilometrePerHour: metre.withPrefix('kilo').dividedBy(timeUnits.hour, 'km/h') as Unit<VelocityDimension>,
-  knot: lengthUnits.nauticalMile.dividedBy(timeUnits.hour, 'kt') as Unit<VelocityDimension>,
-  metrePerHour: metre.dividedBy(timeUnits.hour) as Unit<VelocityDimension>,
+const units = {
+  footPerSecond,
+  kilometrePerHour: metre.withPrefix('kilo').dividedBy(hour, 'km/h') as Unit<VelocityDimension>,
+  knot: nauticalMile.dividedBy(hour, 'kt') as Unit<VelocityDimension>,
+  metrePerHour: metre.dividedBy(hour) as Unit<VelocityDimension>,
   metrePerSecond,
-  milePerHour: lengthUnits.statuteMile.dividedBy(timeUnits.hour, 'mph') as Unit<VelocityDimension>,
+  milePerHour: statuteMile.dividedBy(hour, 'mph') as Unit<VelocityDimension>,
 };
 
-export type VelocityUnit = keyof typeof velocityUnits;
+export type VelocityUnit = keyof typeof units;
 
-export const velocityUnitList: UnitList<VelocityDimension, VelocityUnit> = {
+export const velocityUnits: UnitList<VelocityDimension, VelocityUnit> = {
   dimension: {length: 1, time: -1},
-  units: velocityUnits,
+  units,
 };
 
 /**
@@ -29,4 +27,4 @@ export const velocityUnitList: UnitList<VelocityDimension, VelocityUnit> = {
  * @returns The new Measure object.
  */
 export const velocity = (unit: VelocityUnit, value: number): Measure =>
-  new Measure(velocityUnits[unit], value);
+  new Measure(units[unit], value);

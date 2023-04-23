@@ -2,9 +2,9 @@ import {conductance, ConductanceUnit, conductanceUnits} from './conductance';
 
 describe('conductance', () => {
   describe('conductanceUnits', () => {
-    test.each(Object.keys(conductanceUnits) as ConductanceUnit[])(
+    test.each(Object.keys(conductanceUnits.units) as ConductanceUnit[])(
       '%s has the correct dimension',
-      (unit) => expect(conductanceUnits[unit].dimension).toEqual({mass: -1, length: -2, time: 3, current: 2})
+      (unit) => expect(conductanceUnits.units[unit].dimension).toEqual({mass: -1, length: -2, time: 3, current: 2})
     );
   });
 
@@ -13,6 +13,6 @@ describe('conductance', () => {
     const value = 12;
     const measure = conductance(unit, value);
     expect(measure.value).toEqual(value);
-    expect(measure.unit).toEqual(conductanceUnits[unit]);
+    expect(measure.unit).toEqual(conductanceUnits.units[unit]);
   });
 });

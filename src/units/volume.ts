@@ -6,7 +6,7 @@ import {Unit} from '../Unit';
 
 const cubicInch = inch.cubed() as Unit<VolumeDimension>;
 
-export const volumeUnits = {
+const units = {
   cubicFoot: foot.cubed() as Unit<VolumeDimension>,
   cubicInch,
   cubicMetre,
@@ -16,11 +16,11 @@ export const volumeUnits = {
   usGallon: cubicInch.withFactor(231, 'US gal'),
 };
 
-export type VolumeUnit = keyof typeof volumeUnits;
+export type VolumeUnit = keyof typeof units;
 
-export const volumeUnitList: UnitList<VolumeDimension, VolumeUnit> = {
+export const volumeUnits: UnitList<VolumeDimension, VolumeUnit> = {
   dimension: {length: 3},
-  units: volumeUnits,
+  units,
 };
 
 /**
@@ -30,4 +30,4 @@ export const volumeUnitList: UnitList<VolumeDimension, VolumeUnit> = {
  * @returns The new Measure object.
  */
 export const volume = (unit: VolumeUnit, value: number): Measure =>
-  new Measure(volumeUnits[unit], value);
+  new Measure(units[unit], value);

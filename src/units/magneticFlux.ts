@@ -3,16 +3,16 @@ import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {MagneticFluxDimension} from '../types/dimensions';
 
-export const magneticFluxUnits = {
+const units = {
   maxwell: weber.withFactor(1e-8, 'Mx'),
   weber,
 };
 
-export type MagneticFluxUnit = keyof typeof magneticFluxUnits;
+export type MagneticFluxUnit = keyof typeof units;
 
-export const magneticFluxUnitList: UnitList<MagneticFluxDimension, MagneticFluxUnit> = {
+export const magneticFluxUnits: UnitList<MagneticFluxDimension, MagneticFluxUnit> = {
   dimension: {mass: 1, length: 2, time: -2, current: -1},
-  units: magneticFluxUnits,
+  units,
 };
 
 /**
@@ -24,4 +24,4 @@ export const magneticFluxUnitList: UnitList<MagneticFluxDimension, MagneticFluxU
 export const magneticFlux = (
   unit: MagneticFluxUnit,
   value: number
-): Measure => new Measure(magneticFluxUnits[unit], value);
+): Measure => new Measure(units[unit], value);

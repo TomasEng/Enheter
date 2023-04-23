@@ -3,16 +3,16 @@ import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {PowerDimension} from '../types/dimensions';
 
-export const powerUnits = {
+const units = {
   watt,
   horsepower: watt.withFactor(735.49875, 'hp'),
 };
 
-export type PowerUnit = keyof typeof powerUnits;
+export type PowerUnit = keyof typeof units;
 
-export const powerUnitList: UnitList<PowerDimension, PowerUnit> = {
+export const powerUnits: UnitList<PowerDimension, PowerUnit> = {
   dimension: {mass: 1, length: 2, time: -3},
-  units: powerUnits,
+  units,
 };
 
 /**
@@ -22,4 +22,4 @@ export const powerUnitList: UnitList<PowerDimension, PowerUnit> = {
  * @returns The new Measure object.
  */
 export const power = (unit: PowerUnit, value: number): Measure =>
-  new Measure(powerUnits[unit], value);
+  new Measure(units[unit], value);

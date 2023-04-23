@@ -5,16 +5,16 @@ describe('Unit', () => {
 
   describe('fromSubUnits', () => {
 
-    const metrePerSecond = Unit.fromSubUnits([{unit: lengthUnits.metre, exponent: 1}, {
-      unit: timeUnits.second,
+    const metrePerSecond = Unit.fromSubUnits([{unit: lengthUnits.units.metre, exponent: 1}, {
+      unit: timeUnits.units.second,
       exponent: -1
     }]);
-    const metrePerHour = Unit.fromSubUnits([{unit: lengthUnits.metre, exponent: 1}, {
-      unit: timeUnits.hour,
+    const metrePerHour = Unit.fromSubUnits([{unit: lengthUnits.units.metre, exponent: 1}, {
+      unit: timeUnits.units.hour,
       exponent: -1
     }]);
-    const knot = Unit.fromSubUnits([{unit: lengthUnits.nauticalMile, exponent: 1}, {
-      unit: timeUnits.hour,
+    const knot = Unit.fromSubUnits([{unit: lengthUnits.units.nauticalMile, exponent: 1}, {
+      unit: timeUnits.units.hour,
       exponent: -1
     },], 'kt');
 
@@ -48,7 +48,7 @@ describe('Unit', () => {
 
   describe('withPrefix', () => {
     it('Creates a unit with the given prefix', () => {
-      const celsius = temperatureUnits.celsius;
+      const celsius = temperatureUnits.units.celsius;
       const kilocelsius = celsius.withPrefix('kilo');
       expect(kilocelsius.symbol).toBe('k°C');
       expect(kilocelsius.dimension).toEqual({temperature: 1});
@@ -81,7 +81,7 @@ describe('Unit', () => {
   describe('copy', () => {
     it('Creates a copy of the unit with the given symbol', () => {
       const copySymbol = 'ÆØÅ';
-      const {metre} = lengthUnits;
+      const {metre} = lengthUnits.units;
       const kilometre = metre.withPrefix('kilo');
       const kilometreCopy = kilometre.copy(copySymbol);
       expect(kilometreCopy.symbol).toBe(copySymbol);
@@ -94,7 +94,7 @@ describe('Unit', () => {
 
   describe('withFactor', () => {
     it('Creates a unit with the given factor', () => {
-      const metre = lengthUnits.metre;
+      const metre = lengthUnits.units.metre;
       const nauticalMile = metre.withFactor(1852, 'nautical mile');
       expect(nauticalMile.symbol).toBe('nautical mile');
       expect(nauticalMile.dimension).toEqual(metre.dimension);
@@ -106,7 +106,7 @@ describe('Unit', () => {
 
   describe('withOffset', () => {
     it('Creates a unit with the given offset', () => {
-      const kelvin = temperatureUnits.kelvin;
+      const kelvin = temperatureUnits.units.kelvin;
       const celsius = kelvin.withOffset(273.15, 'C');
       expect(celsius.symbol).toBe('C');
       expect(celsius.dimension).toEqual(kelvin.dimension);

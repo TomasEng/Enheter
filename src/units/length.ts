@@ -1,16 +1,9 @@
-import {foot, inch, metre, yard} from './basicUnits';
+import {chain, fathom, foot, furlong, inch, link, metre, rod, statuteMile, yard} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {LengthDimension} from '../types/dimensions';
 
-const fathom = yard.withFactor(2, 'fathom');
-const chain = fathom.withFactor(11, 'chain');
-const rod = chain.withFactor(1 / 4, 'rod');
-const link = chain.withFactor(1 / 100, 'link');
-const furlong = chain.withFactor(10, 'furlong');
-const statuteMile = furlong.withFactor(8, 'mi');
-
-export const lengthUnits = {
+const units = {
   angstrom: metre.withFactor(1e-10, 'Å'),
   astronomicalUnit: metre.withFactor(149597870700, 'AU'),
   chain,
@@ -31,11 +24,11 @@ export const lengthUnits = {
   yard,
 };
 
-export type LengthUnit = keyof typeof lengthUnits;
+export type LengthUnit = keyof typeof units;
 
-export const lengthUnitList: UnitList<LengthDimension, LengthUnit> = {
+export const lengthUnits: UnitList<LengthDimension, LengthUnit> = {
   dimension: {length: 1},
-  units: lengthUnits,
+  units,
 };
 
 /**
@@ -44,4 +37,4 @@ export const lengthUnitList: UnitList<LengthDimension, LengthUnit> = {
  * @param value The value of the measure.
  * @returns The new Measure object.
  */
-export const length = (unit: LengthUnit, value: number): Measure => new Measure(lengthUnits[unit], value);
+export const length = (unit: LengthUnit, value: number): Measure => new Measure(units[unit], value);

@@ -2,9 +2,9 @@ import {luminousIntensity, LuminousIntensityUnit, luminousIntensityUnits} from '
 
 describe('luminousIntensity', () => {
   describe('luminousIntensityUnits', () => {
-    test.each(Object.keys(luminousIntensityUnits) as LuminousIntensityUnit[])(
+    test.each(Object.keys(luminousIntensityUnits.units) as LuminousIntensityUnit[])(
       '%s has correct dimension',
-      (unit) => expect(luminousIntensityUnits[unit].dimension).toEqual({luminousIntensity: 1})
+      (unit) => expect(luminousIntensityUnits.units[unit].dimension).toEqual({luminousIntensity: 1})
     );
   });
 
@@ -13,6 +13,6 @@ describe('luminousIntensity', () => {
     const value = 12;
     const measure = luminousIntensity(unit, value);
     expect(measure.value).toEqual(value);
-    expect(measure.unit).toEqual(luminousIntensityUnits[unit]);
+    expect(measure.unit).toEqual(luminousIntensityUnits.units[unit]);
   });
 });

@@ -3,13 +3,13 @@ import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {ResistivityDimension} from '../types/dimensions';
 
-export const resistivityUnits = {ohmMetre};
+const units = {ohmMetre};
 
-export type ResistivityUnit = keyof typeof resistivityUnits;
+export type ResistivityUnit = keyof typeof units;
 
-export const resistivityUnitList: UnitList<ResistivityDimension, ResistivityUnit> = {
+export const resistivityUnits: UnitList<ResistivityDimension, ResistivityUnit> = {
   dimension: {mass: 1, length: 3, time: -3, current: -2},
-  units: resistivityUnits,
+  units,
 };
 
 /**
@@ -21,4 +21,4 @@ export const resistivityUnitList: UnitList<ResistivityDimension, ResistivityUnit
 export const resistivity = (
   unit: ResistivityUnit,
   value: number
-): Measure => new Measure(resistivityUnits[unit], value);
+): Measure => new Measure(units[unit], value);

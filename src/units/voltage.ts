@@ -3,13 +3,13 @@ import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {VoltageDimension} from '../types/dimensions';
 
-export const voltageUnits = {volt};
+const units = {volt};
 
-export type VoltageUnit = keyof typeof voltageUnits;
+export type VoltageUnit = keyof typeof units;
 
-export const voltageUnitList: UnitList<VoltageDimension, VoltageUnit> = {
+export const voltageUnits: UnitList<VoltageDimension, VoltageUnit> = {
   dimension: {mass: 1, length: 2, time: -3, current: -1},
-  units: voltageUnits,
+  units,
 };
 
 /**
@@ -19,4 +19,4 @@ export const voltageUnitList: UnitList<VoltageDimension, VoltageUnit> = {
  * @returns The new Measure object.
  */
 export const voltage = (unit: VoltageUnit, value: number): Measure =>
-  new Measure(voltageUnits[unit], value);
+  new Measure(units[unit], value);

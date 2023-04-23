@@ -3,7 +3,7 @@ import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {TimeDimension} from '../types/dimensions';
 
-export const timeUnits = {
+const units = {
   day: second.withFactor(86400, 'd'),
   hour: second.withFactor(3600, 'h'),
   minute: second.withFactor(60, 'min'),
@@ -11,11 +11,11 @@ export const timeUnits = {
   week: second.withFactor(604800, 'week'),
 };
 
-export type TimeUnit = keyof typeof timeUnits;
+export type TimeUnit = keyof typeof units;
 
-export const timeUnitList: UnitList<TimeDimension, TimeUnit> = {
+export const timeUnits: UnitList<TimeDimension, TimeUnit> = {
   dimension: {time: 1},
-  units: timeUnits,
+  units,
 };
 
 /**
@@ -25,4 +25,4 @@ export const timeUnitList: UnitList<TimeDimension, TimeUnit> = {
  * @returns The new Measure object.
  */
 export const time = (unit: TimeUnit, value: number): Measure =>
-  new Measure(timeUnits[unit], value);
+  new Measure(units[unit], value);

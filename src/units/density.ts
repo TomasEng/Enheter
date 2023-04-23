@@ -4,16 +4,16 @@ import {UnitList} from '../types/UnitList';
 import {DensityDimension} from '../types/dimensions';
 import {Unit} from '../Unit';
 
-export const densityUnits = {
+const units = {
   kilogramPerCubicMetre,
   gramPerCubicCentimetre: gram.dividedBy(metre.withPrefix('centi').cubed()) as Unit<DensityDimension>,
 };
 
-export type DensityUnit = keyof typeof densityUnits;
+export type DensityUnit = keyof typeof units;
 
-export const densityUnitList: UnitList<DensityDimension, DensityUnit> = {
+export const densityUnits: UnitList<DensityDimension, DensityUnit> = {
   dimension: {mass: 1, length: -3},
-  units: densityUnits,
+  units,
 };
 
 /**
@@ -23,4 +23,4 @@ export const densityUnitList: UnitList<DensityDimension, DensityUnit> = {
  * @returns The new Measure object.
  */
 export const density = (unit: DensityUnit, value: number): Measure =>
-  new Measure(densityUnits[unit], value);
+  new Measure(units[unit], value);

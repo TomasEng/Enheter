@@ -2,9 +2,9 @@ import {magneticFluxDensity, MagneticFluxDensityUnit, magneticFluxDensityUnits} 
 
 describe('magneticFluxDensity', () => {
   describe('magneticFluxDensityUnits', () => {
-    test.each(Object.keys(magneticFluxDensityUnits) as MagneticFluxDensityUnit[])(
+    test.each(Object.keys(magneticFluxDensityUnits.units) as MagneticFluxDensityUnit[])(
       '%s has the correct dimension',
-      (unit) => expect(magneticFluxDensityUnits[unit].dimension).toEqual({mass: 1, time: -2, current: -1})
+      (unit) => expect(magneticFluxDensityUnits.units[unit].dimension).toEqual({mass: 1, time: -2, current: -1})
     );
   });
 
@@ -13,6 +13,6 @@ describe('magneticFluxDensity', () => {
     const value = 12;
     const measure = magneticFluxDensity(unit, value);
     expect(measure.value).toEqual(value);
-    expect(measure.unit).toEqual(magneticFluxDensityUnits[unit]);
+    expect(measure.unit).toEqual(magneticFluxDensityUnits.units[unit]);
   });
 });

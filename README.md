@@ -57,5 +57,5 @@ result as the previous one:
 ```javascript
 import {lengthUnits, Measure} from 'enheter';
 
-const measure = new Measure(lengthUnits.metre, 1);
+const measure = new Measure(lengthUnits.units.metre, 1);
 ```

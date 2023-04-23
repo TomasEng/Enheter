@@ -2,9 +2,9 @@ import {mass, MassUnit, massUnits} from './mass';
 
 describe('mass', () => {
   describe('massUnits', () => {
-    test.each(Object.keys(massUnits) as MassUnit[])(
+    test.each(Object.keys(massUnits.units) as MassUnit[])(
       '%s has correct dimension',
-      (unit) => expect(massUnits[unit].dimension).toEqual({mass: 1})
+      (unit) => expect(massUnits.units[unit].dimension).toEqual({mass: 1})
     );
   });
 
@@ -13,6 +13,6 @@ describe('mass', () => {
     const value = 12;
     const measure = mass(unit, value);
     expect(measure.value).toEqual(value);
-    expect(measure.unit).toEqual(massUnits[unit]);
+    expect(measure.unit).toEqual(massUnits.units[unit]);
   });
 });

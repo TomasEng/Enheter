@@ -3,13 +3,13 @@ import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {FrequencyDimension} from '../types/dimensions';
 
-export const frequencyUnits = {hertz};
+const units = {hertz};
 
-export type FrequencyUnit = keyof typeof frequencyUnits;
+export type FrequencyUnit = keyof typeof units;
 
-export const frequencyUnitList: UnitList<FrequencyDimension, FrequencyUnit> = {
+export const frequencyUnits: UnitList<FrequencyDimension, FrequencyUnit> = {
   dimension: {time: -1},
-  units: frequencyUnits,
+  units,
 };
 
 /**
@@ -21,4 +21,4 @@ export const frequencyUnitList: UnitList<FrequencyDimension, FrequencyUnit> = {
 export const frequency = (
   unit: FrequencyUnit,
   value: number
-): Measure => new Measure(frequencyUnits[unit], value);
+): Measure => new Measure(units[unit], value);

@@ -2,9 +2,9 @@ import {density, DensityUnit, densityUnits} from './density';
 
 describe('density', () => {
   describe('densityUnits', () => {
-    test.each(Object.keys(densityUnits) as DensityUnit[])(
+    test.each(Object.keys(densityUnits.units) as DensityUnit[])(
       '%s has the correct dimension',
-      (unit) => expect(densityUnits[unit].dimension).toEqual({mass: 1, length: -3})
+      (unit) => expect(densityUnits.units[unit].dimension).toEqual({mass: 1, length: -3})
     );
   });
 
@@ -13,6 +13,6 @@ describe('density', () => {
     const value = 12;
     const measure = density(unit, value);
     expect(measure.value).toEqual(value);
-    expect(measure.unit).toEqual(densityUnits[unit]);
+    expect(measure.unit).toEqual(densityUnits.units[unit]);
   });
 });

@@ -3,13 +3,13 @@ import {Measure} from '../Measure';
 import {CurrentDimension} from '../types/dimensions';
 import {UnitList} from '../types/UnitList';
 
-export const currentUnits = {ampere};
+const units = {ampere};
 
-export type CurrentUnit = keyof typeof currentUnits;
+export type CurrentUnit = keyof typeof units;
 
-export const currentUnitList: UnitList<CurrentDimension, CurrentUnit> = {
+export const currentUnits: UnitList<CurrentDimension, CurrentUnit> = {
   dimension: {current: 1},
-  units: currentUnits,
+  units,
 };
 
 /**
@@ -21,4 +21,4 @@ export const currentUnitList: UnitList<CurrentDimension, CurrentUnit> = {
 export const current = (
   unit: CurrentUnit,
   value: number
-): Measure => new Measure(currentUnits[unit], value);
+): Measure => new Measure(units[unit], value);

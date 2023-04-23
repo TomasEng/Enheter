@@ -2,9 +2,9 @@ import {power, PowerUnit, powerUnits} from './power';
 
 describe('power', () => {
   describe('powerUnits', () => {
-    test.each(Object.keys(powerUnits) as PowerUnit[])(
+    test.each(Object.keys(powerUnits.units) as PowerUnit[])(
       '%s has correct dimension',
-      (unit) => expect(powerUnits[unit].dimension).toEqual({mass: 1, length: 2, time: -3})
+      (unit) => expect(powerUnits.units[unit].dimension).toEqual({mass: 1, length: 2, time: -3})
     );
   });
 
@@ -13,6 +13,6 @@ describe('power', () => {
     const value = 12;
     const measure = power(unit, value);
     expect(measure.value).toEqual(value);
-    expect(measure.unit).toEqual(powerUnits[unit]);
+    expect(measure.unit).toEqual(powerUnits.units[unit]);
   });
 });

@@ -2,9 +2,9 @@ import {volume, VolumeUnit, volumeUnits} from './volume';
 
 describe('volume', () => {
   describe('volumeUnits', () => {
-    test.each(Object.keys(volumeUnits) as VolumeUnit[])(
+    test.each(Object.keys(volumeUnits.units) as VolumeUnit[])(
       '%s has correct dimension',
-      (unit) => expect(volumeUnits[unit].dimension).toEqual({length: 3})
+      (unit) => expect(volumeUnits.units[unit].dimension).toEqual({length: 3})
     );
   });
 
@@ -13,6 +13,6 @@ describe('volume', () => {
     const value = 12;
     const measure = volume(unit, value);
     expect(measure.value).toEqual(value);
-    expect(measure.unit).toEqual(volumeUnits[unit]);
+    expect(measure.unit).toEqual(volumeUnits.units[unit]);
   });
 });

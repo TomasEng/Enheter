@@ -1,27 +1,24 @@
-import {accelerationUnits} from './acceleration';
-import {kilogram, newton, pound} from './basicUnits';
+import {footPerSecondSquared, kilopond, newton, pond, poundForce, poundMass} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {ForceDimension} from '../types/dimensions';
 import {Unit} from '../Unit';
 
-const pond = kilogram.multipliedWith(accelerationUnits.standardGravity, 'pond') as Unit<ForceDimension>;
-
-export const forceUnits = {
+const units = {
   newton,
   kilonewton: newton.withPrefix('kilo'),
   dyne: newton.withFactor(0.00001, 'dyn'),
   pond,
-  kilopond: pond.withPrefix('kilo'),
-  poundal: pound.multipliedWith(accelerationUnits.footPerSecondSquared, 'pdl') as Unit<ForceDimension>,
-  pound: newton.withFactor(4.4482216152605, 'lbf'),
+  kilopond,
+  poundal: poundMass.multipliedWith(footPerSecondSquared, 'pdl') as Unit<ForceDimension>,
+  pound: poundForce,
 };
 
-export type ForceUnit = keyof typeof forceUnits;
+export type ForceUnit = keyof typeof units;
 
-export const forceUnitList: UnitList<ForceDimension, ForceUnit> = {
+export const forceUnits: UnitList<ForceDimension, ForceUnit> = {
   dimension: {mass: 1, length: 1, time: -2},
-  units: forceUnits,
+  units,
 };
 
 /**
@@ -30,4 +27,4 @@ export const forceUnitList: UnitList<ForceDimension, ForceUnit> = {
  * @param value The value of the force measure.
  * @returns The new Measure object.
  */
-export const force = (unit: ForceUnit, value: number): Measure => new Measure(forceUnits[unit], value);
+export const force = (unit: ForceUnit, value: number): Measure => new Measure(units[unit], value);
