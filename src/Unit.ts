@@ -1,11 +1,8 @@
 import {Dimension, mergeDimensions, multiplyAllExponentsWith} from './Dimension';
 import {BijectiveOperationChain} from './BijectiveOperation';
 import {getPrefixFactor, Prefix, prefixes, removePrefixFromSymbol} from './Prefix';
-
-interface SubUnit {
-  unit: Unit;
-  exponent: number;
-}
+import {SubUnit} from './types/SubUnit';
+import {mergeSymbols, superscriptCharactersFromNumber} from './utils/symbolUtils';
 
 export class Unit<T extends Dimension = Dimension> {
 
@@ -43,18 +40,7 @@ export class Unit<T extends Dimension = Dimension> {
     if (subUnits.length === 0) throw new Error('Cannot create a unit from an empty list of sub-units.');
     if (subUnits.some(su => !su.unit.baseConverter.isMultiplicationOnly())) throw new Error('Cannot create a unit from a list of sub-units that contain non-multiplicative base converters.');
 
-    const newSymbol = symbol ?? subUnits
-      .filter(su => su.exponent !== 0)
-      .map(su => {
-        if (su.exponent > 0) {
-          if (su.exponent === 1) return su.unit.symbol;
-          return `${su.unit.symbol}^${su.exponent}`;
-        } else {
-          if (su.exponent === -1) return `/${su.unit.symbol}`;
-          return `/${su.unit.symbol}^${su.exponent}`;
-        }
-      })
-      .join('');
+    const newSymbol = symbol ?? mergeSymbols(subUnits.map(su => `${su.unit.symbol}${superscriptCharactersFromNumber(su.exponent)}`)); // Todo: Solve this in a better way
     const newDimension = mergeDimensions(subUnits.map(su => multiplyAllExponentsWith(su.unit.dimension, su.exponent)));
     const newBaseConverter = subUnits.reduce(
       (acc, su) => acc.concat(su.unit.baseConverter.raise(su.exponent)!),
