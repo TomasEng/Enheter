@@ -2,7 +2,7 @@ import {Dimension, mergeDimensions, multiplyAllExponentsWith} from './Dimension'
 import {BijectiveOperationChain} from './BijectiveOperation';
 import {getPrefixFactor, Prefix, prefixes, removePrefixFromSymbol} from './Prefix';
 import {SubUnit} from './types/SubUnit';
-import {mergeSymbols, superscriptCharactersFromNumber} from './utils/symbolUtils';
+import {mergeSymbols, raisedSymbol, symbolFromSubUnit} from './utils/symbolUtils';
 
 export class Unit<T extends Dimension = Dimension> {
 
@@ -40,7 +40,7 @@ export class Unit<T extends Dimension = Dimension> {
     if (subUnits.length === 0) throw new Error('Cannot create a unit from an empty list of sub-units.');
     if (subUnits.some(su => !su.unit.baseConverter.isMultiplicationOnly())) throw new Error('Cannot create a unit from a list of sub-units that contain non-multiplicative base converters.');
 
-    const newSymbol = symbol ?? mergeSymbols(subUnits.map(su => `${su.unit.symbol}${superscriptCharactersFromNumber(su.exponent)}`)); // Todo: Solve this in a better way
+    const newSymbol = symbol ?? mergeSymbols(subUnits.map(symbolFromSubUnit));
     const newDimension = mergeDimensions(subUnits.map(su => multiplyAllExponentsWith(su.unit.dimension, su.exponent)));
     const newBaseConverter = subUnits.reduce(
       (acc, su) => acc.concat(su.unit.baseConverter.raise(su.exponent)!),
@@ -116,14 +116,14 @@ export class Unit<T extends Dimension = Dimension> {
   }
 
   public reciprocal(symbol?: string): Unit {
-    return this.raisedTo(-1, symbol);
+    return this.raisedTo(-1, symbol ?? raisedSymbol(this.symbol, -1));
   }
 
   public squared(symbol?: string): Unit {
-    return this.raisedTo(2, symbol ?? this.symbol + '²');
+    return this.raisedTo(2, symbol ?? raisedSymbol(this.symbol, 2));
   }
 
   public cubed(symbol?: string): Unit {
-    return this.raisedTo(3, symbol ?? this.symbol + '³');
+    return this.raisedTo(3, symbol ?? raisedSymbol(this.symbol, 3));
   }
 }

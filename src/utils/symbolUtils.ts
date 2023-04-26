@@ -1,3 +1,5 @@
+import {SubUnit} from '../types/SubUnit';
+
 interface SymbolPart {
   symbol: string;
   exponent: string;
@@ -136,9 +138,7 @@ export const superscriptCharacterFromNumber = (num: number): string => {
 //@formatter:on
 
 export const superscriptCharactersFromNumber = (num: number): string => {
-  if (num === 0) return '⁰';
   if (num === 1) return '';
-  if (num === -1) return '⁻1';
   let str = '';
   let isNegative = num < 0;
   if (isNegative) num = -num;
@@ -209,19 +209,30 @@ export const mergeDuplicateSymbols = (symbolsAndExponents: SymbolAndExponent[]):
   return result;
 }
 
+export const symbolFromSymbolAndExponent = ({symbol, exponent}: SymbolAndExponent): string =>
+  symbol + superscriptCharactersFromNumber(exponent);
+
+export const invertExponents = (symbolsAndExponents: SymbolAndExponent[]): SymbolAndExponent[] =>
+  symbolsAndExponents.map(s => ({...s, exponent: -s.exponent}));
+
 export const symbolFromSymbolsAndExponents = (symbolsAndExponents: SymbolAndExponent[]): string => {
   const merged = mergeDuplicateSymbols(symbolsAndExponents);
   const positiveExponents = merged.filter(s => s.exponent > 0);
   const negativeExponents = merged.filter(s => s.exponent < 0);
-  const dividend = positiveExponents.map(s => s.symbol + superscriptCharactersFromNumber(s.exponent)).join('⋅');
-  let divisor = negativeExponents.map(s => s.symbol + superscriptCharactersFromNumber(-s.exponent)).join('⋅');
-  if (negativeExponents.length > 1) {
-    divisor = '(' + divisor + ')';
-  }
-  if (divisor && dividend) return dividend + '/' + divisor;
-  if (divisor) return '1/' + divisor;
-  return dividend;
+  const dividend = positiveExponents.map(symbolFromSymbolAndExponent).join('⋅');
+  if (dividend) {
+    let divisor = invertExponents(negativeExponents).map(symbolFromSymbolAndExponent).join('⋅');
+    if (!divisor) return dividend;
+    if (negativeExponents.length > 1) divisor = '(' + divisor + ')';
+    return dividend + '/' + divisor;
+  } else return negativeExponents.map(symbolFromSymbolAndExponent).join('⋅');
 }
+
+export const raisedSymbol = (symbol: string, exponent: number): string =>
+  symbolFromSymbolsAndExponents(splitAndRaise({symbol, exponent}));
 
 export const mergeSymbols = (symbols: string[]): string =>
   symbolFromSymbolsAndExponents(symbols.map(deepSplit).flat());
+
+export const symbolFromSubUnit = (subUnit: SubUnit): string =>
+  raisedSymbol(subUnit.unit.symbol, subUnit.exponent);

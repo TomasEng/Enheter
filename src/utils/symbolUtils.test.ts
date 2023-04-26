@@ -4,12 +4,16 @@ import {
   mergeDuplicateSymbols,
   mergeSymbols,
   numberFromSuperscriptCharacters,
+  raisedSymbol,
   splitAndRaise,
   splitSymbolIntoParts,
   splitSymbolIntoSymbolsAndExponents,
   superscriptCharactersFromNumber,
+  symbolFromSubUnit,
   symbolFromSymbolsAndExponents
 } from './symbolUtils';
+import {areaUnits} from '../units';
+import {SubUnit} from '../types/SubUnit';
 
 describe('symbolUtils', () => {
   describe('splitSymbolIntoParts', () => {
@@ -90,11 +94,12 @@ describe('symbolUtils', () => {
       expect(superscriptCharactersFromNumber(1)).toBe('');
     });
 
-    it('Returns correct number', () => {
+    it('Returns correct character', () => {
       expect(superscriptCharactersFromNumber(2)).toBe('²');
       expect(superscriptCharactersFromNumber(12)).toBe('¹²');
       expect(superscriptCharactersFromNumber(123)).toBe('¹²³');
       expect(superscriptCharactersFromNumber(1234)).toBe('¹²³⁴');
+      expect(superscriptCharactersFromNumber(-1)).toBe('⁻¹');
       expect(superscriptCharactersFromNumber(-12)).toBe('⁻¹²');
     });
   });
@@ -173,11 +178,27 @@ describe('symbolUtils', () => {
       {symbol: 'm', exponent: 2},
       {symbol: 'g', exponent: -1},
     ])).toBe('m³/(s⋅g)');
+    expect(symbolFromSymbolsAndExponents([
+      {symbol: 'm', exponent: -1},
+      {symbol: 's', exponent: -1}
+    ])).toBe('m⁻¹⋅s⁻¹');
+  });
+
+  test('raisedSymbol', () => {
+    expect(raisedSymbol('m', 3)).toBe('m³');
+    expect(raisedSymbol('m²', -3)).toBe('m⁻⁶');
   });
 
   test('mergeSymbols', () => {
     expect(mergeSymbols(['m', 's'])).toBe('m⋅s');
     expect(mergeSymbols(['m/s', 'm²g⁻¹'])).toBe('m³/(s⋅g)');
+  });
+
+  test('symbolFromSubUnit', () => {
+    const unit = areaUnits.units.squareMetre;
+    const exponent = 3;
+    const subUnit: SubUnit = {unit, exponent};
+    expect(symbolFromSubUnit(subUnit)).toBe('m⁶');
   });
 });
 
