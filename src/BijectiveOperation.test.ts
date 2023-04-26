@@ -1,27 +1,27 @@
 import {BijectiveOperationChain, simplifyOperationChain} from './BijectiveOperation';
 
-describe('ReversibleOperation', () => {
+describe('BijectiveOperation', () => {
 
-  describe('ReversibleOperationChain', () => {
+  describe('BijectiveOperationChain', () => {
 
     const startValue = 12;
     const operationChain = new BijectiveOperationChain([
       {operation: 'add', parameter: 2}, // 14
       {operation: 'multiply', parameter: 3}, // 42
       {operation: 'add', parameter: -10}, // 32
-      {operation: 'multiply', parameter: 1/2}, // 16
+      {operation: 'multiply', parameter: 1 / 2}, // 16
     ]);
     const expectedEndValue = 16;
 
     test('fromFactor', () => {
       const parameter = 2;
-      const { nameChain } = BijectiveOperationChain.fromFactor(parameter);
+      const {nameChain} = BijectiveOperationChain.fromFactor(parameter);
       expect(nameChain).toEqual([{operation: 'multiply', parameter}]);
     });
 
     test('fromOffset', () => {
       const parameter = 2;
-      const { nameChain } = BijectiveOperationChain.fromOffset(parameter);
+      const {nameChain} = BijectiveOperationChain.fromOffset(parameter);
       expect(nameChain).toEqual([{operation: 'add', parameter}]);
     });
 
@@ -40,13 +40,13 @@ describe('ReversibleOperation', () => {
     });
 
     test('concat', () => {
-        const operationChain2 = new BijectiveOperationChain([
-            {operation: 'add', parameter: 2}, // 18
-            {operation: 'multiply', parameter: 3}, // 54
-        ]);
-        const concatenatedChain = operationChain.concat(operationChain2);
-        expect(concatenatedChain.apply(startValue)).toBe(54);
-        expect(concatenatedChain.applyInverse(54)).toBe(startValue);
+      const operationChain2 = new BijectiveOperationChain([
+        {operation: 'add', parameter: 2}, // 18
+        {operation: 'multiply', parameter: 3}, // 54
+      ]);
+      const concatenatedChain = operationChain.concat(operationChain2);
+      expect(concatenatedChain.apply(startValue)).toBe(54);
+      expect(concatenatedChain.applyInverse(54)).toBe(startValue);
     });
 
     describe('isMultiplicationOnly', () => {
@@ -87,6 +87,26 @@ describe('ReversibleOperation', () => {
       const newAddition = addition.prependMultiplication(2);
       expect(newAddition.nameChain).toEqual([{operation: 'multiply', parameter: 2}, {operation: 'add', parameter: 3}]);
     });
+
+    test('equals', () => {
+      const chain1 = new BijectiveOperationChain([
+        {operation: 'multiply', parameter: 3},
+        {operation: 'add', parameter: 2},
+      ]);
+      const chain2 = new BijectiveOperationChain([
+        {operation: 'multiply', parameter: 3},
+        {operation: 'add', parameter: 2},
+      ]);
+      const chain3 = new BijectiveOperationChain([
+        {operation: 'multiply', parameter: 3},
+        {operation: 'add', parameter: 3},
+      ]);
+      const emptyChain1 = new BijectiveOperationChain([]);
+      const emptyChain2 = new BijectiveOperationChain([]);
+      expect(chain1.equals(chain2)).toBe(true);
+      expect(chain1.equals(chain3)).toBe(false);
+      expect(emptyChain1.equals(emptyChain2)).toBe(true);
+    });
   });
 
   describe('simplifyOperationChain', () => {
@@ -113,7 +133,7 @@ describe('ReversibleOperation', () => {
         {operation: 'add', parameter: 2},
         {operation: 'multiply', parameter: 3},
         {operation: 'add', parameter: 0},
-        {operation: 'multiply', parameter: 1/2},
+        {operation: 'multiply', parameter: 1 / 2},
         {operation: 'add', parameter: -10},
         {operation: 'multiply', parameter: 1},
         {operation: 'add', parameter: 1}
@@ -121,7 +141,7 @@ describe('ReversibleOperation', () => {
       const simplifiedChain = simplifyOperationChain(operationChain);
       expect(simplifiedChain).toEqual([
         {operation: 'add', parameter: 2},
-        {operation: 'multiply', parameter: 3/2},
+        {operation: 'multiply', parameter: 3 / 2},
         {operation: 'add', parameter: -9},
       ]);
     });

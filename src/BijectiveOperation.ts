@@ -109,4 +109,9 @@ export class BijectiveOperationChain {
   public prependAddition(offset: number): BijectiveOperationChain {
     return new BijectiveOperationChain([{operation: 'add', parameter: offset}, ...this.nameChain]);
   }
+
+  public equals(other: BijectiveOperationChain): boolean {
+    return this.nameChain.length === other.nameChain.length &&
+      this.nameChain.every((o, i) => o.operation === other.nameChain[i].operation && o.parameter === other.nameChain[i].parameter);
+  }
 }

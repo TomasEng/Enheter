@@ -1,5 +1,6 @@
 import {dimensionsEqual} from './Dimension';
 import {Unit} from './Unit';
+import {findEqualUnit} from './utils/findEqualUnit';
 
 export class Measure {
 
@@ -44,9 +45,17 @@ export class Measure {
     return this.setBaseValue(this.baseValue() - measure.baseValue());
   }
 
-  public multiply(measure: Measure): Measure {
+  public multiplyWith(measure: Measure): Measure {
     this.value *= measure.value;
-    this.unit = this.unit.multipliedWith(measure.unit);
+    const newUnit = this.unit.multipliedWith(measure.unit);
+    this.unit = findEqualUnit(newUnit) || newUnit;
+    return this;
+  }
+
+  public divideBy(measure: Measure): Measure {
+    this.value /= measure.value;
+    const newUnit = this.unit.dividedBy(measure.unit);
+    this.unit = findEqualUnit(newUnit) || newUnit;
     return this;
   }
 }

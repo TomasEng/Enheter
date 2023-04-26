@@ -1,5 +1,7 @@
 import {Unit} from './Unit';
 import {lengthUnits, temperatureUnits, timeUnits} from './units';
+import {gram, kilogram, metre, metrePerSecondSquared, nauticalMile, second} from './units/basicUnits';
+import {BijectiveOperationChain} from './BijectiveOperation';
 
 describe('Unit', () => {
 
@@ -113,6 +115,30 @@ describe('Unit', () => {
       expect(celsius.isBase).toBe(false);
       expect(celsius.baseUnit).toBe(kelvin.baseUnit);
       expect(celsius.baseConverter.nameChain).toEqual([{operation: 'add', parameter: 273.15}]);
+    });
+  });
+
+  describe('equals', () => {
+    it('Returns true if dimensions and base converters are equal', () => {
+      const nauticalMileCopy = new Unit(
+        'custom',
+        {length: 1},
+        metre,
+        new BijectiveOperationChain([{operation: 'multiply', parameter: 1852}]),
+      );
+      expect(nauticalMile.equals(nauticalMileCopy)).toBe(true);
+
+      const metrePerSecondSquaredCopy = metre.dividedBy(second.squared());
+      expect(metrePerSecondSquared.equals(metrePerSecondSquaredCopy)).toBe(true);
+    });
+
+    it('Returns false if dimensions are not equal', () => {
+      expect(metre.equals(second)).toBe(false);
+    });
+
+    it('Returns false if base converters are not equal', () => {
+      expect(nauticalMile.equals(metre)).toBe(false);
+      expect(gram.equals(kilogram)).toBe(false);
     });
   });
 });

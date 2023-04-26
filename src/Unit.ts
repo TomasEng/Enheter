@@ -1,4 +1,4 @@
-import {Dimension, mergeDimensions, multiplyAllExponentsWith} from './Dimension';
+import {Dimension, dimensionsEqual, mergeDimensions, multiplyAllExponentsWith} from './Dimension';
 import {BijectiveOperationChain} from './BijectiveOperation';
 import {getPrefixFactor, Prefix, prefixes, removePrefixFromSymbol} from './Prefix';
 import {SubUnit} from './types/SubUnit';
@@ -125,5 +125,10 @@ export class Unit<T extends Dimension = Dimension> {
 
   public cubed(symbol?: string): Unit {
     return this.raisedTo(3, symbol ?? raisedSymbol(this.symbol, 3));
+  }
+
+  public equals(other: Unit): boolean {
+    return dimensionsEqual(this.dimension, other.dimension)
+      && this.baseConverter.equals(other.baseConverter);
   }
 }

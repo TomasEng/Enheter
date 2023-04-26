@@ -1,5 +1,6 @@
 import {Measure} from './Measure';
 import {lengthUnits} from './units';
+import {ampere, newton, pascal, squareMetre, volt, watt} from './units/basicUnits';
 
 describe('Measure', () => {
 
@@ -57,6 +58,36 @@ describe('Measure', () => {
       testMeasure.add(testMeasure2);
       expect(testMeasure.unit).toBe(lengthUnits.units.foot);
       expect(testMeasure.value).toBe(5292);
+    });
+  });
+
+  describe('subtract', () => {
+    it('Subtracts the given measure from the current measure', () => {
+      const testMeasure = new Measure(lengthUnits.units.foot, 6000);
+      const testMeasure2 = new Measure(lengthUnits.units.statuteMile, 1);
+      testMeasure.subtract(testMeasure2);
+      expect(testMeasure.unit).toBe(lengthUnits.units.foot);
+      expect(testMeasure.value).toBeCloseTo(720);
+    });
+  });
+
+  describe('multiplyWith', () => {
+    it('Multiplies the given measure with the current measure', () => {
+      const testMeasure = new Measure(ampere, 10);
+      const testMeasure2 = new Measure(volt, 230);
+      testMeasure.multiplyWith(testMeasure2);
+      expect(testMeasure.unit).toBe(watt);
+      expect(testMeasure.value).toBe(2300);
+    });
+  });
+
+  describe('divideBy', () => {
+    it('Divides the current measure by the given measure', () => {
+      const testMeasure = new Measure(newton, 200);
+      const testMeasure2 = new Measure(squareMetre, 2);
+      testMeasure.divideBy(testMeasure2);
+      expect(testMeasure.unit).toBe(pascal);
+      expect(testMeasure.value).toBe(100);
     });
   });
 });
