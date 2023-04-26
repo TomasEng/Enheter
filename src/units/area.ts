@@ -4,14 +4,14 @@ import {UnitList} from '../types/UnitList';
 import {AreaDimension} from '../types/dimensions';
 import {Unit} from '../Unit';
 
-const squareYard = yard.squared() as Unit<AreaDimension>;
+const squareYard = yard.squared(undefined, 'squareYard') as Unit<AreaDimension>;
 
 const units = {
-  acre: squareYard.withFactor(4840, 'ac'),
-  are: squareMetre.withFactor(100, 'a'),
-  dekare: squareMetre.withFactor(1000, 'daa'),
-  hectare: squareMetre.withFactor(10000, 'ha'),
-  squareFoot: foot.squared() as Unit<AreaDimension>,
+  acre: squareYard.withFactor(4840, 'ac', 'acre'),
+  are: squareMetre.withFactor(100, 'a', 'are'),
+  dekare: squareMetre.withFactor(1000, 'daa', 'dekare'),
+  hectare: squareMetre.withFactor(10000, 'ha', 'hectare'),
+  squareFoot: foot.squared(undefined, 'squareFoot') as Unit<AreaDimension>,
   squareInch,
   squareYard,
   squareMetre,

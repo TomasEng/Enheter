@@ -4,18 +4,18 @@ import {UnitList} from '../types/UnitList';
 import {PressureDimension} from '../types/dimensions';
 import {Unit} from '../Unit';
 
-const bar = pascal.withFactor(100000, 'bar');
-const standardAtmosphere = pascal.withFactor(101325, 'atm');
+const bar = pascal.withFactor(100000, 'bar', 'bar');
+const standardAtmosphere = pascal.withFactor(101325, 'atm', 'standardAtmosphere');
 
 const units = {
   pascal,
   standardAtmosphere,
   bar,
-  millibar: bar.withPrefix('milli'),
-  kilopondPerSquareCentimetre: kilopond.dividedBy(metre.withPrefix('centi').raisedTo(2), 'kgf/(cm^2)') as Unit<PressureDimension>,
-  torr: standardAtmosphere.withFactor(1 / 760, 'Torr'),
-  poundPerSquareInch: poundForce.dividedBy(squareInch, 'lb/(in^2)') as Unit<PressureDimension>,
-  inchOfMercury: pascal.withFactor(3386.389, 'inHg'),
+  millibar: bar.withPrefix('milli', 'millibar'),
+  kilopondPerSquareCentimetre: kilopond.dividedBy(metre.withPrefix('centi').raisedTo(2), 'kgf/cm²', 'kilopondPerSquareCentimetre') as Unit<PressureDimension>,
+  torr: standardAtmosphere.withFactor(1 / 760, 'Torr', 'torr'),
+  poundPerSquareInch: poundForce.dividedBy(squareInch, 'lb/in²', 'poundPerSquareInch') as Unit<PressureDimension>,
+  inchOfMercury: pascal.withFactor(3386.389, 'inHg', 'inchOfMercury'),
 };
 
 export type PressureUnit = keyof typeof units;

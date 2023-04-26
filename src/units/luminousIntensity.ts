@@ -5,7 +5,7 @@ import {LuminousIntensityDimension} from '../types/dimensions';
 
 const units = {
   candela,
-  candlepower: candela.withFactor(0.981, 'cp'),
+  candlepower: candela.withFactor(0.981, 'cp', 'candlepower'),
 };
 
 export type LuminousIntensityUnit = keyof typeof units;

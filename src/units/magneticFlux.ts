@@ -4,7 +4,7 @@ import {UnitList} from '../types/UnitList';
 import {MagneticFluxDimension} from '../types/dimensions';
 
 const units = {
-  maxwell: weber.withFactor(1e-8, 'Mx'),
+  maxwell: weber.withFactor(1e-8, 'Mx', 'maxwell'),
   weber,
 };
 

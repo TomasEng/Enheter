@@ -1,12 +1,12 @@
-import {coulomb} from './basicUnits';
+import {coulomb, elementaryCharge} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {ChargeDimension} from '../types/dimensions';
 
 const units = {
   coulomb,
-  elementaryCharge: coulomb.withFactor(1.602176634e-19, 'e'),
-  statcoulomb: coulomb.withFactor(3.335641e-10, 'statC'),
+  elementaryCharge,
+  statcoulomb: coulomb.withFactor(3.335641e-10, 'statC', 'statcoulomb'),
 };
 
 export type ChargeUnit = keyof typeof units;

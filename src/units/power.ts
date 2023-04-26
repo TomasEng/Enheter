@@ -5,7 +5,7 @@ import {PowerDimension} from '../types/dimensions';
 
 const units = {
   watt,
-  horsepower: watt.withFactor(735.49875, 'hp'),
+  horsepower: watt.withFactor(735.49875, 'hp', 'horsepower'),
 };
 
 export type PowerUnit = keyof typeof units;

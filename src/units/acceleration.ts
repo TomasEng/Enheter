@@ -7,7 +7,7 @@ import {AccelerationDimension} from '../types/dimensions';
 const units = {
   metrePerSecondSquared,
   footPerSecondSquared,
-  gal: metre.withPrefix('centi').dividedBy(second.raisedTo(2), 'Gal') as Unit<AccelerationDimension>,
+  gal: metre.withPrefix('centi').dividedBy(second.raisedTo(2), 'Gal', 'gal') as Unit<AccelerationDimension>,
   standardGravity,
 };
 

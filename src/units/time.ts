@@ -1,14 +1,14 @@
-import {second} from './basicUnits';
+import {hour, minute, second} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {TimeDimension} from '../types/dimensions';
 
 const units = {
-  day: second.withFactor(86400, 'd'),
-  hour: second.withFactor(3600, 'h'),
-  minute: second.withFactor(60, 'min'),
+  day: second.withFactor(86400, 'd', 'day'),
+  hour,
+  minute,
   second,
-  week: second.withFactor(604800, 'week'),
+  week: second.withFactor(604800, 'week', 'week'),
 };
 
 export type TimeUnit = keyof typeof units;

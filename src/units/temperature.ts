@@ -3,18 +3,18 @@ import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {TemperatureDimension} from '../types/dimensions';
 
-const rankine = kelvin.withFactor(5 / 9, '°R');
-const celsius = kelvin.withOffset(273.15, '°C');
+const rankine = kelvin.withFactor(5 / 9, '°R', 'rankine');
+const celsius = kelvin.withOffset(273.15, '°C', 'celsius');
 
 const units = {
   celsius,
-  delisle: kelvin.withOffset(373.15).withFactor(-2 / 3, '°De'),
-  fahrenheit: rankine.withOffset(459.67, '°F'),
+  delisle: kelvin.withOffset(373.15).withFactor(-2 / 3, '°De', 'delisle'),
+  fahrenheit: rankine.withOffset(459.67, '°F', 'fahrenheit'),
   kelvin,
-  newton: celsius.withFactor(100 / 33, '°N'),
+  newton: celsius.withFactor(100 / 33, '°N', 'newton'),
   rankine,
-  reaumur: celsius.withFactor(5 / 4, '°Ré'),
-  romer: celsius.withFactor(40 / 21).withOffset(-7.5, '°Rø'),
+  reaumur: celsius.withFactor(5 / 4, '°Ré', 'reaumur'),
+  romer: celsius.withFactor(40 / 21).withOffset(-7.5, '°Rø', 'romer'),
 };
 
 export type TemperatureUnit = keyof typeof units;

@@ -4,7 +4,7 @@ import {UnitList} from '../types/UnitList';
 import {MagneticFluxDensityDimension} from '../types/dimensions';
 
 const units = {
-  gauss: tesla.withFactor(1e-4, 'G'),
+  gauss: tesla.withFactor(1e-4, 'G', 'gauss'),
   tesla,
 };
 

@@ -6,7 +6,7 @@ import {Unit} from '../Unit';
 
 const units = {
   kilogramPerCubicMetre,
-  gramPerCubicCentimetre: gram.dividedBy(metre.withPrefix('centi').cubed()) as Unit<DensityDimension>,
+  gramPerCubicCentimetre: gram.dividedBy(metre.withPrefix('centi').cubed(), undefined, 'gramPerCubicCentimetre') as Unit<DensityDimension>,
 };
 
 export type DensityUnit = keyof typeof units;

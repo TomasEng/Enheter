@@ -1,25 +1,25 @@
-import {chain, fathom, foot, furlong, inch, link, metre, rod, statuteMile, yard} from './basicUnits';
+import {chain, fathom, foot, furlong, inch, link, metre, nauticalMile, rod, statuteMile, yard} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {LengthDimension} from '../types/dimensions';
 
 const units = {
-  angstrom: metre.withFactor(1e-10, 'Å'),
-  astronomicalUnit: metre.withFactor(149597870700, 'AU'),
+  angstrom: metre.withFactor(1e-10, 'Å', 'angstrom'),
+  astronomicalUnit: metre.withFactor(149597870700, 'AU', 'astronomicalUnit'),
   chain,
   fathom,
-  fermi: metre.withFactor(1e-15, 'fm'),
+  fermi: metre.withFactor(1e-15, 'fm', 'fermi'),
   foot,
   furlong,
   inch,
-  lightYear: metre.withFactor(9460730472580800, 'ly'),
+  lightYear: metre.withFactor(9460730472580800, 'ly', 'lightYear'),
   link,
   metre,
-  micron: metre.withFactor(1e-6, 'μm'),
-  nauticalMile: metre.withFactor(1852, 'NM'),
-  parsec: metre.withFactor(30856775814913600, 'pc'),
+  micron: metre.withFactor(1e-6, 'μm', 'micron'),
+  nauticalMile,
+  parsec: metre.withFactor(30856775814913600, 'pc', 'parsec'),
   rod,
-  scandinavianMile: metre.withFactor(10000, 'mil'),
+  scandinavianMile: metre.withFactor(10000, 'mil', 'scandinavianMile'),
   statuteMile,
   yard,
 };

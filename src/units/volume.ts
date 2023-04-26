@@ -4,16 +4,16 @@ import {UnitList} from '../types/UnitList';
 import {VolumeDimension} from '../types/dimensions';
 import {Unit} from '../Unit';
 
-const cubicInch = inch.cubed() as Unit<VolumeDimension>;
+const cubicInch = inch.cubed(undefined, 'cubicInch') as Unit<VolumeDimension>;
 
 const units = {
-  cubicFoot: foot.cubed() as Unit<VolumeDimension>,
+  cubicFoot: foot.cubed(undefined, 'cubicFoot') as Unit<VolumeDimension>,
   cubicInch,
   cubicMetre,
-  cubicYard: yard.cubed() as Unit<VolumeDimension>,
-  imperialGallon: cubicMetre.withFactor(0.00454609, 'imp gal'),
-  litre: cubicMetre.withPrefix('deci').copy('L'),
-  usGallon: cubicInch.withFactor(231, 'US gal'),
+  cubicYard: yard.cubed(undefined, 'cubicYard') as Unit<VolumeDimension>,
+  imperialGallon: cubicMetre.withFactor(0.00454609, 'imp gal', 'imperialGallon'),
+  litre: cubicMetre.withPrefix('deci').copy('L', 'litre'),
+  usGallon: cubicInch.withFactor(231, 'US gal', 'usGallon'),
 };
 
 export type VolumeUnit = keyof typeof units;

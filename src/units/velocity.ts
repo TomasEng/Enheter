@@ -6,11 +6,11 @@ import {VelocityDimension} from '../types/dimensions';
 
 const units = {
   footPerSecond,
-  kilometrePerHour: metre.withPrefix('kilo').dividedBy(hour, 'km/h') as Unit<VelocityDimension>,
-  knot: nauticalMile.dividedBy(hour, 'kt') as Unit<VelocityDimension>,
-  metrePerHour: metre.dividedBy(hour) as Unit<VelocityDimension>,
+  kilometrePerHour: metre.withPrefix('kilo').dividedBy(hour, 'km/h', 'kilometrePerHour') as Unit<VelocityDimension>,
+  knot: nauticalMile.dividedBy(hour, 'kt', 'knot') as Unit<VelocityDimension>,
+  metrePerHour: metre.dividedBy(hour, undefined, 'metrePerHour') as Unit<VelocityDimension>,
   metrePerSecond,
-  milePerHour: statuteMile.dividedBy(hour, 'mph') as Unit<VelocityDimension>,
+  milePerHour: statuteMile.dividedBy(hour, 'mph', 'milePerHour') as Unit<VelocityDimension>,
 };
 
 export type VelocityUnit = keyof typeof units;

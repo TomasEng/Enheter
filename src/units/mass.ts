@@ -1,15 +1,15 @@
-import {kilogram, poundMass} from './basicUnits';
+import {gram, kilogram, poundMass} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {MassDimension} from '../types/dimensions';
 
 const units = {
-  carat: kilogram.withFactor(.0002, 'ct'),
-  gram: kilogram.withPrefix(null),
+  carat: kilogram.withFactor(.0002, 'ct', 'carat'),
+  gram,
   kilogram,
-  ounce: kilogram.withFactor(.028349523125, '℥'),
+  ounce: kilogram.withFactor(.028349523125, '℥', 'ounce'),
   pound: poundMass,
-  tonne: kilogram.withFactor(1000, 't'),
+  tonne: kilogram.withFactor(1000, 't', 'tonne'),
 };
 
 export type MassUnit = keyof typeof units;

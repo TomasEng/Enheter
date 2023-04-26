@@ -6,11 +6,11 @@ import {Unit} from '../Unit';
 
 const units = {
   newton,
-  kilonewton: newton.withPrefix('kilo'),
-  dyne: newton.withFactor(0.00001, 'dyn'),
+  kilonewton: newton.withPrefix('kilo', 'kilonewton'),
+  dyne: newton.withFactor(0.00001, 'dyn', 'dyne'),
   pond,
   kilopond,
-  poundal: poundMass.multipliedWith(footPerSecondSquared, 'pdl') as Unit<ForceDimension>,
+  poundal: poundMass.multipliedWith(footPerSecondSquared, 'pdl', 'poundal') as Unit<ForceDimension>,
   pound: poundForce,
 };
 

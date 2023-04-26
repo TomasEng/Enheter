@@ -4,17 +4,17 @@ import {UnitList} from '../types/UnitList';
 import {EnergyDimension} from '../types/dimensions';
 import {Unit} from '../Unit';
 
-const calorie = joule.withFactor(4.184, 'cal');
+const calorie = joule.withFactor(4.184, 'cal', 'calorie');
 
 const units = {
   joule,
-  electronVolt: volt.multipliedWith(elementaryCharge, 'eV') as Unit<EnergyDimension>,
-  erg: joule.withFactor(1e-7, 'erg'),
+  electronVolt: volt.multipliedWith(elementaryCharge, 'eV', 'electronVolt') as Unit<EnergyDimension>,
+  erg: joule.withFactor(1e-7, 'erg', 'erg'),
   calorie,
-  kilocalorie: calorie.withPrefix('kilo'),
-  wattHour: watt.multipliedWith(hour, 'Wh') as Unit<EnergyDimension>,
-  kilowattHour: watt.withPrefix('kilo').multipliedWith(hour, 'kWh') as Unit<EnergyDimension>,
-  wattSecond: watt.multipliedWith(second, 'Ws') as Unit<EnergyDimension>,
+  kilocalorie: calorie.withPrefix('kilo', 'kilocalorie'),
+  wattHour: watt.multipliedWith(hour, 'Wh', 'wattHour') as Unit<EnergyDimension>,
+  kilowattHour: watt.withPrefix('kilo').multipliedWith(hour, 'kWh', 'kilowattHour') as Unit<EnergyDimension>,
+  wattSecond: watt.multipliedWith(second, 'Ws', 'wattSecond') as Unit<EnergyDimension>,
 };
 
 export type EnergyUnit = keyof typeof units;
