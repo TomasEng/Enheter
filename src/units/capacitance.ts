@@ -8,6 +8,7 @@ const units = {farad};
 export type CapacitanceUnit = keyof typeof units;
 
 export const capacitanceUnits: UnitList<CapacitanceDimension, CapacitanceUnit> = {
+  dimensionName: 'capacitance',
   dimension: {current: -2, length: -2, mass: 1, time: 4},
   units,
 };

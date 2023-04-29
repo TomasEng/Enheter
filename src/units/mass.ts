@@ -15,6 +15,7 @@ const units = {
 export type MassUnit = keyof typeof units;
 
 export const massUnits: UnitList<MassDimension, MassUnit> = {
+  dimensionName: 'mass',
   dimension: {mass: 1},
   units,
 };

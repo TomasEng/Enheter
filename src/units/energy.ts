@@ -20,6 +20,7 @@ const units = {
 export type EnergyUnit = keyof typeof units;
 
 export const energyUnits: UnitList<EnergyDimension, EnergyUnit> = {
+  dimensionName: 'energy',
   dimension: {mass: 1, length: 2, time: -2},
   units,
 };

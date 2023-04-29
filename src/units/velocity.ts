@@ -16,6 +16,7 @@ const units = {
 export type VelocityUnit = keyof typeof units;
 
 export const velocityUnits: UnitList<VelocityDimension, VelocityUnit> = {
+  dimensionName: 'velocity',
   dimension: {length: 1, time: -1},
   units,
 };

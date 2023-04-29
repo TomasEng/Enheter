@@ -12,6 +12,7 @@ const units = {
 export type ChargeUnit = keyof typeof units;
 
 export const chargeUnits: UnitList<ChargeDimension, ChargeUnit> = {
+  dimensionName: 'charge',
   dimension: {current: 1, time: 1},
   units,
 };

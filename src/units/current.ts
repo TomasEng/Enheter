@@ -8,6 +8,7 @@ const units = {ampere};
 export type CurrentUnit = keyof typeof units;
 
 export const currentUnits: UnitList<CurrentDimension, CurrentUnit> = {
+  dimensionName: 'current',
   dimension: {current: 1},
   units,
 };

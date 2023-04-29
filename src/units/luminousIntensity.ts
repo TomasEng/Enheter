@@ -11,6 +11,7 @@ const units = {
 export type LuminousIntensityUnit = keyof typeof units;
 
 export const luminousIntensityUnits: UnitList<LuminousIntensityDimension, LuminousIntensityUnit> = {
+  dimensionName: 'luminousIntensity',
   dimension: {luminousIntensity: 1},
   units,
 };

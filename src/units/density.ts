@@ -12,6 +12,7 @@ const units = {
 export type DensityUnit = keyof typeof units;
 
 export const densityUnits: UnitList<DensityDimension, DensityUnit> = {
+  dimensionName: 'density',
   dimension: {mass: 1, length: -3},
   units,
 };

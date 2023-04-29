@@ -8,6 +8,7 @@ const units = {volt};
 export type VoltageUnit = keyof typeof units;
 
 export const voltageUnits: UnitList<VoltageDimension, VoltageUnit> = {
+  dimensionName: 'voltage',
   dimension: {mass: 1, length: 2, time: -3, current: -1},
   units,
 };

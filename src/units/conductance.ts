@@ -8,6 +8,7 @@ const units = {siemens};
 export type ConductanceUnit = keyof typeof units;
 
 export const conductanceUnits: UnitList<ConductanceDimension, ConductanceUnit> = {
+  dimensionName: 'conductance',
   dimension: {mass: -1, length: -2, time: 3, current: 2},
   units,
 };

@@ -8,6 +8,7 @@ const units = {hertz};
 export type FrequencyUnit = keyof typeof units;
 
 export const frequencyUnits: UnitList<FrequencyDimension, FrequencyUnit> = {
+  dimensionName: 'frequency',
   dimension: {time: -1},
   units,
 };

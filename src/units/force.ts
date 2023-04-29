@@ -17,6 +17,7 @@ const units = {
 export type ForceUnit = keyof typeof units;
 
 export const forceUnits: UnitList<ForceDimension, ForceUnit> = {
+  dimensionName: 'force',
   dimension: {mass: 1, length: 1, time: -2},
   units,
 };

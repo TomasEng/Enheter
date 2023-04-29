@@ -14,6 +14,7 @@ const units = {
 export type TimeUnit = keyof typeof units;
 
 export const timeUnits: UnitList<TimeDimension, TimeUnit> = {
+  dimensionName: 'time',
   dimension: {time: 1},
   units,
 };

@@ -8,6 +8,7 @@ const units = {ohm};
 export type ResistanceUnit = keyof typeof units;
 
 export const resistanceUnits: UnitList<ResistanceDimension, ResistanceUnit> = {
+  dimensionName: 'resistance',
   dimension: {mass: 1, length: 2, time: -3, current: -2},
   units,
 };

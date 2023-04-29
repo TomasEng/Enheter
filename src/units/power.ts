@@ -11,6 +11,7 @@ const units = {
 export type PowerUnit = keyof typeof units;
 
 export const powerUnits: UnitList<PowerDimension, PowerUnit> = {
+  dimensionName: 'power',
   dimension: {mass: 1, length: 2, time: -3},
   units,
 };

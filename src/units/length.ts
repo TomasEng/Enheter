@@ -27,6 +27,7 @@ const units = {
 export type LengthUnit = keyof typeof units;
 
 export const lengthUnits: UnitList<LengthDimension, LengthUnit> = {
+  dimensionName: 'length',
   dimension: {length: 1},
   units,
 };

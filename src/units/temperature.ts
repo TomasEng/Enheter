@@ -20,6 +20,7 @@ const units = {
 export type TemperatureUnit = keyof typeof units;
 
 export const temperatureUnits: UnitList<TemperatureDimension, TemperatureUnit> = {
+  dimensionName: 'temperature',
   dimension: {temperature: 1},
   units,
 };

@@ -8,6 +8,7 @@ const units = {mole};
 export type AmountOfSubstanceUnit = keyof typeof units;
 
 export const amountOfSubstanceUnits: UnitList<AmountOfSubstanceDimension, AmountOfSubstanceUnit> = {
+  dimensionName: 'amountOfSubstance',
   dimension: {amountOfSubstance: 1},
   units,
 };

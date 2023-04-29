@@ -8,6 +8,7 @@ const units = {siemensPerMetre};
 export type ConductivityUnit = keyof typeof units;
 
 export const conductivityUnits: UnitList<ConductivityDimension, ConductivityUnit> = {
+  dimensionName: 'conductivity',
   dimension: {mass: -1, length: -3, time: 3, current: 2},
   units,
 };

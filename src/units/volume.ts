@@ -19,6 +19,7 @@ const units = {
 export type VolumeUnit = keyof typeof units;
 
 export const volumeUnits: UnitList<VolumeDimension, VolumeUnit> = {
+  dimensionName: 'volume',
   dimension: {length: 3},
   units,
 };

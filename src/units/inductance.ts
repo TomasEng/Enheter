@@ -8,6 +8,7 @@ const units = {henry};
 export type InductanceUnit = keyof typeof units;
 
 export const inductanceUnits: UnitList<InductanceDimension, InductanceUnit> = {
+  dimensionName: 'inductance',
   dimension: {mass: 1, length: 2, time: -2, current: -2},
   units,
 };

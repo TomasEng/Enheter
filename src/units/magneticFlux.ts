@@ -11,6 +11,7 @@ const units = {
 export type MagneticFluxUnit = keyof typeof units;
 
 export const magneticFluxUnits: UnitList<MagneticFluxDimension, MagneticFluxUnit> = {
+  dimensionName: 'magneticFlux',
   dimension: {mass: 1, length: 2, time: -2, current: -1},
   units,
 };

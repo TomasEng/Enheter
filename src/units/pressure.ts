@@ -21,6 +21,7 @@ const units = {
 export type PressureUnit = keyof typeof units;
 
 export const pressureUnits: UnitList<PressureDimension, PressureUnit> = {
+  dimensionName: 'pressure',
   dimension: {mass: 1, length: -1, time: -2},
   units,
 };

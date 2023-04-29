@@ -20,6 +20,7 @@ const units = {
 export type AreaUnit = keyof typeof units;
 
 export const areaUnits: UnitList<AreaDimension, AreaUnit> = {
+  dimensionName: 'area',
   dimension: {length: 2},
   units,
 };
