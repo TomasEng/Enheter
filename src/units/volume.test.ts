@@ -1,4 +1,4 @@
-import {volume, VolumeUnit, volumeUnits} from './volume';
+import {volume, volumeUnit, VolumeUnit, volumeUnits} from './volume';
 
 describe('volume', () => {
   describe('volumeUnits', () => {
@@ -14,5 +14,10 @@ describe('volume', () => {
     const measure = volume(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(volumeUnits.units[unit]);
+  });
+
+  test('volumeUnit', () => {
+    const unit: VolumeUnit = 'cubicMetre';
+    expect(volumeUnit(unit)).toEqual(volumeUnits.units[unit]);
   });
 });

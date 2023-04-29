@@ -1,4 +1,4 @@
-import {time, TimeUnit, timeUnits} from './time';
+import {time, timeUnit, TimeUnit, timeUnits} from './time';
 
 describe('time', () => {
   describe('timeUnits', () => {
@@ -14,5 +14,10 @@ describe('time', () => {
     const measure = time(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(timeUnits.units[unit]);
+  });
+
+  test('timeUnit', () => {
+    const unit: TimeUnit = 'minute';
+    expect(timeUnit(unit)).toEqual(timeUnits.units[unit]);
   });
 });

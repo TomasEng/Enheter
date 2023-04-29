@@ -2,6 +2,7 @@ import {weber} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {MagneticFluxDimension} from '../types/dimensions';
+import {Unit} from '../Unit';
 
 const units = {
   maxwell: weber.withFactor(1e-8, 'Mx', 'maxwell'),
@@ -26,3 +27,10 @@ export const magneticFlux = (
   unit: MagneticFluxUnit,
   value: number
 ): Measure => new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of magneticFlux.
+ * @param key The key of the unit.
+ * @returns The magneticFlux unit.
+ */
+export const magneticFluxUnit = (key: MagneticFluxUnit): Unit<MagneticFluxDimension> => units[key];

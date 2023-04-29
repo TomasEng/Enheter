@@ -1,4 +1,4 @@
-import {velocity, VelocityUnit, velocityUnits} from './velocity';
+import {velocity, velocityUnit, VelocityUnit, velocityUnits} from './velocity';
 
 describe('velocity', () => {
   describe('velocityUnits', () => {
@@ -14,5 +14,10 @@ describe('velocity', () => {
     const measure = velocity(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(velocityUnits.units[unit]);
+  });
+
+  test('velocityUnit', () => {
+    const unit: VelocityUnit = 'knot';
+    expect(velocityUnit(unit)).toEqual(velocityUnits.units[unit]);
   });
 });

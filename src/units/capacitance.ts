@@ -2,6 +2,7 @@ import {farad} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {CapacitanceDimension} from '../types/dimensions';
+import {Unit} from '../Unit';
 
 const units = {farad};
 
@@ -23,3 +24,10 @@ export const capacitance = (
   unit: CapacitanceUnit,
   value: number
 ): Measure => new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of capacitance.
+ * @param key The key of the unit.
+ * @returns The capacitance unit.
+ */
+export const capacitanceUnit = (key: CapacitanceUnit): Unit<CapacitanceDimension> => units[key];

@@ -29,3 +29,10 @@ export const acceleration = (
   unit: AccelerationUnit,
   value: number
 ): Measure => new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of acceleration.
+ * @param key The key of the unit.
+ * @returns The acceleration unit.
+ */
+export const accelerationUnit = (key: AccelerationUnit): Unit<AccelerationDimension> => units[key];

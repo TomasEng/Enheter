@@ -1,4 +1,4 @@
-import {frequency, FrequencyUnit, frequencyUnits} from './frequency';
+import {frequency, frequencyUnit, FrequencyUnit, frequencyUnits} from './frequency';
 
 describe('frequency', () => {
   describe('frequencyUnits', () => {
@@ -14,5 +14,10 @@ describe('frequency', () => {
     const measure = frequency(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(frequencyUnits.units[unit]);
+  });
+
+  test('frequencyUnit', () => {
+    const unit: FrequencyUnit = 'hertz';
+    expect(frequencyUnit(unit)).toEqual(frequencyUnits.units[unit]);
   });
 });

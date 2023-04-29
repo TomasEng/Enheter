@@ -29,3 +29,10 @@ export const forceUnits: UnitList<ForceDimension, ForceUnit> = {
  * @returns The new Measure object.
  */
 export const force = (unit: ForceUnit, value: number): Measure => new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of force.
+ * @param key The key of the unit.
+ * @returns The force unit.
+ */
+export const forceUnit = (key: ForceUnit): Unit<ForceDimension> => units[key];

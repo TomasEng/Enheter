@@ -1,4 +1,9 @@
-import {amountOfSubstance, AmountOfSubstanceUnit, amountOfSubstanceUnits} from './amountOfSubstance';
+import {
+  amountOfSubstance,
+  amountOfSubstanceUnit,
+  AmountOfSubstanceUnit,
+  amountOfSubstanceUnits
+} from './amountOfSubstance';
 
 describe('amountOfSubstance', () => {
   describe('amountOfSubstanceUnits', () => {
@@ -14,5 +19,10 @@ describe('amountOfSubstance', () => {
     const measure = amountOfSubstance(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(amountOfSubstanceUnits.units[unit]);
+  });
+
+  test('amountOfSubstanceUnit', () => {
+    const unit: AmountOfSubstanceUnit = 'mole';
+    expect(amountOfSubstanceUnit(unit)).toEqual(amountOfSubstanceUnits.units[unit]);
   });
 });

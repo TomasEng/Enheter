@@ -2,6 +2,7 @@ import {coulomb, elementaryCharge} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {ChargeDimension} from '../types/dimensions';
+import {Unit} from '../Unit';
 
 const units = {
   coulomb,
@@ -27,3 +28,10 @@ export const charge = (
   unit: ChargeUnit,
   value: number
 ): Measure => new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of charge.
+ * @param key The key of the unit.
+ * @returns The charge unit.
+ */
+export const chargeUnit = (key: ChargeUnit): Unit<ChargeDimension> => units[key];

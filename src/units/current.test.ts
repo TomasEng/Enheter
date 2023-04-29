@@ -1,4 +1,4 @@
-import {current, CurrentUnit, currentUnits} from './current';
+import {current, currentUnit, CurrentUnit, currentUnits} from './current';
 
 describe('current', () => {
   describe('currentUnits', () => {
@@ -14,5 +14,10 @@ describe('current', () => {
     const measure = current(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(currentUnits.units[unit]);
+  });
+
+  test('currentUnit', () => {
+    const unit: CurrentUnit = 'ampere';
+    expect(currentUnit(unit)).toEqual(currentUnits.units[unit]);
   });
 });

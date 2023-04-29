@@ -2,6 +2,7 @@ import {ohm} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {ResistanceDimension} from '../types/dimensions';
+import {Unit} from '../Unit';
 
 const units = {ohm};
 
@@ -23,3 +24,10 @@ export const resistance = (
   unit: ResistanceUnit,
   value: number
 ): Measure => new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of resistance.
+ * @param key The key of the unit.
+ * @returns The resistance unit.
+ */
+export const resistanceUnit = (key: ResistanceUnit): Unit<ResistanceDimension> => units[key];

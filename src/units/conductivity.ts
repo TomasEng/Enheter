@@ -2,6 +2,7 @@ import {siemensPerMetre} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {ConductivityDimension} from '../types/dimensions';
+import {Unit} from '../Unit';
 
 const units = {siemensPerMetre};
 
@@ -23,3 +24,10 @@ export const conductivity = (
   unit: ConductivityUnit,
   value: number
 ): Measure => new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of conductivity.
+ * @param key The key of the unit.
+ * @returns The conductivity unit.
+ */
+export const conductivityUnit = (key: ConductivityUnit): Unit<ConductivityDimension> => units[key];

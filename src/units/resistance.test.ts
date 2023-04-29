@@ -1,4 +1,4 @@
-import {resistance, ResistanceUnit, resistanceUnits} from './resistance';
+import {resistance, resistanceUnit, ResistanceUnit, resistanceUnits} from './resistance';
 
 describe('resistance', () => {
   describe('resistanceUnits', () => {
@@ -14,5 +14,10 @@ describe('resistance', () => {
     const measure = resistance(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(resistanceUnits.units[unit]);
+  });
+
+  test('resistanceUnit', () => {
+    const unit: ResistanceUnit = 'ohm';
+    expect(resistanceUnit(unit)).toEqual(resistanceUnits.units[unit]);
   });
 });

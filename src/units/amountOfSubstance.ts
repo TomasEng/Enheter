@@ -2,6 +2,7 @@ import {mole} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {AmountOfSubstanceDimension} from '../types/dimensions';
+import {Unit} from '../Unit';
 
 const units = {mole};
 
@@ -23,3 +24,10 @@ export const amountOfSubstance = (
   unit: AmountOfSubstanceUnit,
   value: number
 ): Measure => new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of amountOfSubstance.
+ * @param key The key of the unit.
+ * @returns The amountOfSubstance unit.
+ */
+export const amountOfSubstanceUnit = (key: AmountOfSubstanceUnit): Unit<AmountOfSubstanceDimension> => units[key];

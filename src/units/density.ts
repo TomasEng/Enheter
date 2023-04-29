@@ -25,3 +25,10 @@ export const densityUnits: UnitList<DensityDimension, DensityUnit> = {
  */
 export const density = (unit: DensityUnit, value: number): Measure =>
   new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of density.
+ * @param key The key of the unit.
+ * @returns The density unit.
+ */
+export const densityUnit = (key: DensityUnit): Unit<DensityDimension> => units[key];

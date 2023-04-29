@@ -32,3 +32,10 @@ export const volumeUnits: UnitList<VolumeDimension, VolumeUnit> = {
  */
 export const volume = (unit: VolumeUnit, value: number): Measure =>
   new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of volume.
+ * @param key The key of the unit.
+ * @returns The volume unit.
+ */
+export const volumeUnit = (key: VolumeUnit): Unit<VolumeDimension> => units[key];

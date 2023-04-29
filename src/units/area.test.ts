@@ -1,4 +1,4 @@
-import {area, AreaUnit, areaUnits} from './area';
+import {area, areaUnit, AreaUnit, areaUnits} from './area';
 
 describe('area', () => {
   describe('areaUnits', () => {
@@ -14,5 +14,10 @@ describe('area', () => {
     const measure = area(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(areaUnits.units[unit]);
+  });
+
+  test('areaUnit', () => {
+    const unit: AreaUnit = 'are';
+    expect(areaUnit(unit)).toEqual(areaUnits.units[unit]);
   });
 });

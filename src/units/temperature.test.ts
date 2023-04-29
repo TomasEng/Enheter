@@ -1,4 +1,4 @@
-import {temperature, TemperatureUnit, temperatureUnits} from './temperature';
+import {temperature, temperatureUnit, TemperatureUnit, temperatureUnits} from './temperature';
 
 describe('temperature', () => {
   describe('temperatureUnits', () => {
@@ -36,5 +36,10 @@ describe('temperature', () => {
     const measure = temperature(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(temperatureUnits.units[unit]);
+  });
+
+  test('temperatureUnit', () => {
+    const unit: TemperatureUnit = 'delisle';
+    expect(temperatureUnit(unit)).toEqual(temperatureUnits.units[unit]);
   });
 });

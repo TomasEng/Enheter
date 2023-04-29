@@ -35,3 +35,10 @@ export const area = (
   unit: AreaUnit,
   value: number
 ): Measure => new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of area.
+ * @param key The key of the unit.
+ * @returns The area unit.
+ */
+export const areaUnit = (key: AreaUnit): Unit<AreaDimension> => units[key];

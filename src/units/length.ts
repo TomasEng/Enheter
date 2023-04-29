@@ -2,6 +2,7 @@ import {chain, fathom, foot, furlong, inch, link, metre, nauticalMile, rod, stat
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {LengthDimension} from '../types/dimensions';
+import {Unit} from '../Unit';
 
 const units = {
   angstrom: metre.withFactor(1e-10, 'Å', 'angstrom'),
@@ -39,3 +40,10 @@ export const lengthUnits: UnitList<LengthDimension, LengthUnit> = {
  * @returns The new Measure object.
  */
 export const length = (unit: LengthUnit, value: number): Measure => new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of length.
+ * @param key The key of the unit.
+ * @returns The length unit.
+ */
+export const lengthUnit = (key: LengthUnit): Unit<LengthDimension> => units[key];

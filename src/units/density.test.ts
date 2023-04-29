@@ -1,4 +1,4 @@
-import {density, DensityUnit, densityUnits} from './density';
+import {density, densityUnit, DensityUnit, densityUnits} from './density';
 
 describe('density', () => {
   describe('densityUnits', () => {
@@ -14,5 +14,10 @@ describe('density', () => {
     const measure = density(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(densityUnits.units[unit]);
+  });
+
+  test('densityUnit', () => {
+    const unit: DensityUnit = 'gramPerCubicCentimetre';
+    expect(densityUnit(unit)).toEqual(densityUnits.units[unit]);
   });
 });

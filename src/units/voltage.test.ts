@@ -1,4 +1,4 @@
-import {voltage, VoltageUnit, voltageUnits} from './voltage';
+import {voltage, voltageUnit, VoltageUnit, voltageUnits} from './voltage';
 
 describe('voltage', () => {
   describe('voltageUnits', () => {
@@ -14,5 +14,10 @@ describe('voltage', () => {
     const measure = voltage(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(voltageUnits.units[unit]);
+  });
+
+  test('voltageUnit', () => {
+    const unit: VoltageUnit = 'volt';
+    expect(voltageUnit(unit)).toEqual(voltageUnits.units[unit]);
   });
 });

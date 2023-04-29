@@ -1,4 +1,4 @@
-import {charge, ChargeUnit, chargeUnits} from './charge';
+import {charge, chargeUnit, ChargeUnit, chargeUnits} from './charge';
 
 describe('charge', () => {
   describe('chargeUnits', () => {
@@ -14,5 +14,10 @@ describe('charge', () => {
     const measure = charge(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(chargeUnits.units[unit]);
+  });
+
+  test('chargeUnit', () => {
+    const unit: ChargeUnit = 'elementaryCharge';
+    expect(chargeUnit(unit)).toEqual(chargeUnits.units[unit]);
   });
 });

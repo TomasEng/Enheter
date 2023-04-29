@@ -1,4 +1,4 @@
-import {length, LengthUnit, lengthUnits} from './length';
+import {length, lengthUnit, LengthUnit, lengthUnits} from './length';
 
 describe('length', () => {
   describe('lengthUnits', () => {
@@ -35,5 +35,10 @@ describe('length', () => {
     const measure = length(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(lengthUnits.units[unit]);
+  });
+
+  test('lengthUnit', () => {
+    const unit: LengthUnit = 'micron';
+    expect(lengthUnit(unit)).toEqual(lengthUnits.units[unit]);
   });
 });

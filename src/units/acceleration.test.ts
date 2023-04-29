@@ -1,4 +1,4 @@
-import {acceleration, AccelerationUnit, accelerationUnits} from './acceleration';
+import {acceleration, accelerationUnit, AccelerationUnit, accelerationUnits} from './acceleration';
 
 describe('acceleration', () => {
   describe('accelerationUnits', () => {
@@ -14,5 +14,10 @@ describe('acceleration', () => {
     const measure = acceleration(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(accelerationUnits.units[unit]);
+  });
+
+  test('accelerationUnit', () => {
+    const unit: AccelerationUnit = 'metrePerSecondSquared';
+    expect(accelerationUnit(unit)).toEqual(accelerationUnits.units[unit]);
   });
 });

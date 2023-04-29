@@ -1,4 +1,4 @@
-import {force, ForceUnit, forceUnits} from './force';
+import {force, forceUnit, ForceUnit, forceUnits} from './force';
 
 describe('force', () => {
   describe('forceUnits', () => {
@@ -14,5 +14,10 @@ describe('force', () => {
     const measure = force(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(forceUnits.units[unit]);
+  });
+
+  test('forceUnit', () => {
+    const unit: ForceUnit = 'pond';
+    expect(forceUnit(unit)).toEqual(forceUnits.units[unit]);
   });
 });

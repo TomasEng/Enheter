@@ -2,6 +2,7 @@ import {tesla} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {MagneticFluxDensityDimension} from '../types/dimensions';
+import {Unit} from '../Unit';
 
 const units = {
   gauss: tesla.withFactor(1e-4, 'G', 'gauss'),
@@ -26,3 +27,10 @@ export const magneticFluxDensity = (
   unit: MagneticFluxDensityUnit,
   value: number
 ): Measure => new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of magneticFluxDensity.
+ * @param key The key of the unit.
+ * @returns The magneticFluxDensity unit.
+ */
+export const magneticFluxDensityUnit = (key: MagneticFluxDensityUnit): Unit<MagneticFluxDensityDimension> => units[key];

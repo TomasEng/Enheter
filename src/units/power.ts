@@ -2,6 +2,7 @@ import {watt} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {PowerDimension} from '../types/dimensions';
+import {Unit} from '../Unit';
 
 const units = {
   watt,
@@ -24,3 +25,10 @@ export const powerUnits: UnitList<PowerDimension, PowerUnit> = {
  */
 export const power = (unit: PowerUnit, value: number): Measure =>
   new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of power.
+ * @param key The key of the unit.
+ * @returns The power unit.
+ */
+export const powerUnit = (key: PowerUnit): Unit<PowerDimension> => units[key];

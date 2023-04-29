@@ -2,6 +2,7 @@ import {kelvin} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {TemperatureDimension} from '../types/dimensions';
+import {Unit} from '../Unit';
 
 const rankine = kelvin.withFactor(5 / 9, '°R', 'rankine');
 const celsius = kelvin.withOffset(273.15, '°C', 'celsius');
@@ -35,3 +36,10 @@ export const temperature = (
   unit: TemperatureUnit,
   value: number
 ): Measure => new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of temperature.
+ * @param key The key of the unit.
+ * @returns The temperature unit.
+ */
+export const temperatureUnit = (key: TemperatureUnit): Unit<TemperatureDimension> => units[key];

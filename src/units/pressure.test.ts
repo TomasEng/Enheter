@@ -1,4 +1,4 @@
-import {pressure, PressureUnit, pressureUnits} from './pressure';
+import {pressure, pressureUnit, PressureUnit, pressureUnits} from './pressure';
 
 describe('pressure', () => {
   describe('pressureUnits', () => {
@@ -14,5 +14,10 @@ describe('pressure', () => {
     const measure = pressure(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(pressureUnits.units[unit]);
+  });
+
+  test('pressureUnit', () => {
+    const unit: PressureUnit = 'bar';
+    expect(pressureUnit(unit)).toEqual(pressureUnits.units[unit]);
   });
 });

@@ -1,4 +1,4 @@
-import {mass, MassUnit, massUnits} from './mass';
+import {mass, massUnit, MassUnit, massUnits} from './mass';
 
 describe('mass', () => {
   describe('massUnits', () => {
@@ -14,5 +14,10 @@ describe('mass', () => {
     const measure = mass(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(massUnits.units[unit]);
+  });
+
+  test('massUnit', () => {
+    const unit: MassUnit = 'gram';
+    expect(massUnit(unit)).toEqual(massUnits.units[unit]);
   });
 });

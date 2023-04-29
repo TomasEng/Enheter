@@ -1,4 +1,4 @@
-import {conductance, ConductanceUnit, conductanceUnits} from './conductance';
+import {conductance, conductanceUnit, ConductanceUnit, conductanceUnits} from './conductance';
 
 describe('conductance', () => {
   describe('conductanceUnits', () => {
@@ -14,5 +14,10 @@ describe('conductance', () => {
     const measure = conductance(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(conductanceUnits.units[unit]);
+  });
+
+  test('conductanceUnit', () => {
+    const unit: ConductanceUnit = 'siemens';
+    expect(conductanceUnit(unit)).toEqual(conductanceUnits.units[unit]);
   });
 });

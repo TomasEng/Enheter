@@ -1,4 +1,4 @@
-import {energy, EnergyUnit, energyUnits} from './energy';
+import {energy, energyUnit, EnergyUnit, energyUnits} from './energy';
 
 describe('energy', () => {
   describe('energyUnits', () => {
@@ -14,5 +14,10 @@ describe('energy', () => {
     const measure = energy(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(energyUnits.units[unit]);
+  });
+
+  test('energyUnit', () => {
+    const unit: EnergyUnit = 'erg';
+    expect(energyUnit(unit)).toEqual(energyUnits.units[unit]);
   });
 });

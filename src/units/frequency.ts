@@ -2,6 +2,7 @@ import {hertz} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {FrequencyDimension} from '../types/dimensions';
+import {Unit} from '../Unit';
 
 const units = {hertz};
 
@@ -23,3 +24,10 @@ export const frequency = (
   unit: FrequencyUnit,
   value: number
 ): Measure => new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of frequency.
+ * @param key The key of the unit.
+ * @returns The frequency unit.
+ */
+export const frequencyUnit = (key: FrequencyUnit): Unit<FrequencyDimension> => units[key];

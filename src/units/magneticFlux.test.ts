@@ -1,4 +1,4 @@
-import {magneticFlux, MagneticFluxUnit, magneticFluxUnits} from './magneticFlux';
+import {magneticFlux, magneticFluxUnit, MagneticFluxUnit, magneticFluxUnits} from './magneticFlux';
 
 describe('magneticFlux', () => {
   describe('magneticFluxUnits', () => {
@@ -14,5 +14,10 @@ describe('magneticFlux', () => {
     const measure = magneticFlux(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(magneticFluxUnits.units[unit]);
+  });
+
+  test('magneticFluxUnit', () => {
+    const unit: MagneticFluxUnit = 'maxwell';
+    expect(magneticFluxUnit(unit)).toEqual(magneticFluxUnits.units[unit]);
   });
 });

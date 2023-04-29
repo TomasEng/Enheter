@@ -2,6 +2,7 @@ import {candela} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {LuminousIntensityDimension} from '../types/dimensions';
+import {Unit} from '../Unit';
 
 const units = {
   candela,
@@ -26,3 +27,10 @@ export const luminousIntensity = (
   unit: LuminousIntensityUnit,
   value: number
 ): Measure => new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of luminousIntensity.
+ * @param key The key of the unit.
+ * @returns The luminousIntensity unit.
+ */
+export const luminousIntensityUnit = (key: LuminousIntensityUnit): Unit<LuminousIntensityDimension> => units[key];

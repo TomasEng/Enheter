@@ -2,6 +2,7 @@ import {volt} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {VoltageDimension} from '../types/dimensions';
+import {Unit} from '../Unit';
 
 const units = {volt};
 
@@ -21,3 +22,10 @@ export const voltageUnits: UnitList<VoltageDimension, VoltageUnit> = {
  */
 export const voltage = (unit: VoltageUnit, value: number): Measure =>
   new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of voltage.
+ * @param key The key of the unit.
+ * @returns The voltage unit.
+ */
+export const voltageUnit = (key: VoltageUnit): Unit<VoltageDimension> => units[key];

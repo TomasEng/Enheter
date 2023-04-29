@@ -1,4 +1,4 @@
-import {power, PowerUnit, powerUnits} from './power';
+import {power, powerUnit, PowerUnit, powerUnits} from './power';
 
 describe('power', () => {
   describe('powerUnits', () => {
@@ -14,5 +14,10 @@ describe('power', () => {
     const measure = power(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(powerUnits.units[unit]);
+  });
+
+  test('powerUnit', () => {
+    const unit: PowerUnit = 'watt';
+    expect(powerUnit(unit)).toEqual(powerUnits.units[unit]);
   });
 });

@@ -2,6 +2,7 @@ import {gram, kilogram, poundMass} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {MassDimension} from '../types/dimensions';
+import {Unit} from '../Unit';
 
 const units = {
   carat: kilogram.withFactor(.0002, 'ct', 'carat'),
@@ -28,3 +29,10 @@ export const massUnits: UnitList<MassDimension, MassUnit> = {
  */
 export const mass = (unit: MassUnit, value: number): Measure =>
   new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of mass.
+ * @param key The key of the unit.
+ * @returns The mass unit.
+ */
+export const massUnit = (key: MassUnit): Unit<MassDimension> => units[key];

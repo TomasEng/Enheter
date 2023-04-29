@@ -1,4 +1,4 @@
-import {capacitance, CapacitanceUnit, capacitanceUnits} from './capacitance';
+import {capacitance, capacitanceUnit, CapacitanceUnit, capacitanceUnits} from './capacitance';
 
 describe('capacitance', () => {
   describe('capacitanceUnits', () => {
@@ -14,5 +14,10 @@ describe('capacitance', () => {
     const measure = capacitance(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(capacitanceUnits.units[unit]);
+  });
+
+  test('capacitanceUnit', () => {
+    const unit: CapacitanceUnit = 'farad';
+    expect(capacitanceUnit(unit)).toEqual(capacitanceUnits.units[unit]);
   });
 });

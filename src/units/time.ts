@@ -2,6 +2,7 @@ import {hour, minute, second} from './basicUnits';
 import {Measure} from '../Measure';
 import {UnitList} from '../types/UnitList';
 import {TimeDimension} from '../types/dimensions';
+import {Unit} from '../Unit';
 
 const units = {
   day: second.withFactor(86400, 'd', 'day'),
@@ -27,3 +28,10 @@ export const timeUnits: UnitList<TimeDimension, TimeUnit> = {
  */
 export const time = (unit: TimeUnit, value: number): Measure =>
   new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of time.
+ * @param key The key of the unit.
+ * @returns The time unit.
+ */
+export const timeUnit = (key: TimeUnit): Unit<TimeDimension> => units[key];

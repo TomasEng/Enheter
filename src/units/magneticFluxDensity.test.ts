@@ -1,4 +1,9 @@
-import {magneticFluxDensity, MagneticFluxDensityUnit, magneticFluxDensityUnits} from './magneticFluxDensity';
+import {
+  magneticFluxDensity,
+  magneticFluxDensityUnit,
+  MagneticFluxDensityUnit,
+  magneticFluxDensityUnits
+} from './magneticFluxDensity';
 
 describe('magneticFluxDensity', () => {
   describe('magneticFluxDensityUnits', () => {
@@ -14,5 +19,10 @@ describe('magneticFluxDensity', () => {
     const measure = magneticFluxDensity(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(magneticFluxDensityUnits.units[unit]);
+  });
+
+  test('magneticFluxDensityUnit', () => {
+    const unit: MagneticFluxDensityUnit = 'tesla';
+    expect(magneticFluxDensityUnit(unit)).toEqual(magneticFluxDensityUnits.units[unit]);
   });
 });

@@ -29,3 +29,10 @@ export const velocityUnits: UnitList<VelocityDimension, VelocityUnit> = {
  */
 export const velocity = (unit: VelocityUnit, value: number): Measure =>
   new Measure(units[unit], value);
+
+/**
+ * Gets a given unit of velocity.
+ * @param key The key of the unit.
+ * @returns The velocity unit.
+ */
+export const velocityUnit = (key: VelocityUnit): Unit<VelocityDimension> => units[key];

@@ -1,4 +1,4 @@
-import {conductivity, ConductivityUnit, conductivityUnits} from './conductivity';
+import {conductivity, conductivityUnit, ConductivityUnit, conductivityUnits} from './conductivity';
 
 describe('conductivity', () => {
   describe('conductivityUnits', () => {
@@ -14,5 +14,10 @@ describe('conductivity', () => {
     const measure = conductivity(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(conductivityUnits.units[unit]);
+  });
+
+  test('conductivityUnit', () => {
+    const unit: ConductivityUnit = 'siemensPerMetre';
+    expect(conductivityUnit(unit)).toEqual(conductivityUnits.units[unit]);
   });
 });

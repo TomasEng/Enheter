@@ -1,4 +1,9 @@
-import {luminousIntensity, LuminousIntensityUnit, luminousIntensityUnits} from './luminousIntensity';
+import {
+  luminousIntensity,
+  luminousIntensityUnit,
+  LuminousIntensityUnit,
+  luminousIntensityUnits
+} from './luminousIntensity';
 
 describe('luminousIntensity', () => {
   describe('luminousIntensityUnits', () => {
@@ -14,5 +19,10 @@ describe('luminousIntensity', () => {
     const measure = luminousIntensity(unit, value);
     expect(measure.value).toEqual(value);
     expect(measure.unit).toEqual(luminousIntensityUnits.units[unit]);
+  });
+
+  test('luminousIntensityUnit', () => {
+    const unit: LuminousIntensityUnit = 'candlepower';
+    expect(luminousIntensityUnit(unit)).toEqual(luminousIntensityUnits.units[unit]);
   });
 });
