@@ -55,13 +55,13 @@ An alternative approach is to create a `Measure` object using a `Unit` object. T
 result as the previous one:
 
 ```javascript
-import {lengthUnits, Measure} from 'enheter';
+import {lengthUnit, Measure} from 'enheter';
 
-const measure = new Measure(lengthUnits.units.metre, 1);
+const measure = new Measure(lengthUnit('metre'), 1);
 ```
 
-The resulting measure object has a `value` and a `unit` property. The `unit` property is the object given in the first
-parameter of the constructor.
+The resulting measure object has a `value` and a `unit` property. The `unit` property is a unit object, the one returned
+from the `lengthUnit` function in the example above.
 
 ```javascript
 console.log(measure.value, measure.unit.symbol); // Logs "1 m"
@@ -72,9 +72,9 @@ console.log(measure.value, measure.unit.symbol); // Logs "1 m"
 A measure in a given unit can be converted to another unit using the `convertTo` method:
 
 ```javascript
-import {lengthUnits} from 'enheter';
+import {lengthUnit} from 'enheter';
 
-const measure = length('metre', 1).convertTo(lengthUnits.units.inch);
+const measure = length('metre', 1).convertTo(lengthUnit('inch'));
 console.log(measure.value, measure.unit.symbol); // Logs "39.37007874015748 in"
 ```
 
