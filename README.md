@@ -78,6 +78,12 @@ const measure = length('metre', 1).convertTo(lengthUnit('inch'));
 console.log(measure.value, measure.unit.symbol); // Logs "39.37007874015748 in"
 ```
 
+There is also a shorthand version of this method:
+
+```javascript
+length('metre', 1).convertTo('inch');
+```
+
 ## Arithmetics
 
 It is possible to perform arithmetic operations on the measures. Here are some examples:
