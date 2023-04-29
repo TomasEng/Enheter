@@ -1,6 +1,6 @@
 import {Measure} from './Measure';
-import {lengthUnits} from './units';
-import {ampere, newton, pascal, squareMetre, volt, watt} from './units/basicUnits';
+import {lengthUnit, lengthUnits} from './units';
+import {ampere, foot, newton, pascal, squareMetre, statuteMile, volt, watt} from './units/basicUnits';
 
 describe('Measure', () => {
 
@@ -34,11 +34,30 @@ describe('Measure', () => {
   });
 
   describe('convertTo', () => {
-    it('Converts the measure to another unit', () => {
-      const testMeasure = new Measure(lengthUnits.units.statuteMile, 12);
-      const testMeasureAsMetres = testMeasure.convertTo(lengthUnits.units.foot);
+    it('Converts the measure to another unit when the unit is given as an object', () => {
+      const testMeasure = new Measure(statuteMile, 12);
+      const testMeasureAsMetres = testMeasure.convertTo(foot);
       expect(testMeasureAsMetres.value).toBe(63360);
-      expect(testMeasureAsMetres.unit).toBe(lengthUnits.units.foot);
+      expect(testMeasureAsMetres.unit).toBe(lengthUnit('foot'));
+    });
+
+    it('Converts the measure to another unit when the unit is given as a key', () => {
+      const testMeasure = new Measure(statuteMile, 12);
+      const testMeasureAsMetres = testMeasure.convertTo('foot');
+      expect(testMeasureAsMetres.value).toBe(63360);
+      expect(testMeasureAsMetres.unit).toBe(foot);
+    });
+
+    it('Throws an error when the given unit object is not of the current dimension', () => {
+      const testMeasure = new Measure(statuteMile, 12);
+      expect(() => testMeasure.convertTo(ampere))
+        .toThrowError('Cannot convert a measure to a unit of a different dimension.');
+    });
+
+    it('Throws an error when the given unit key is not of the current dimension', () => {
+      const testMeasure = new Measure(statuteMile, 12);
+      expect(() => testMeasure.convertTo('ampere'))
+        .toThrowError('No unit with the current dimension and the key "ampere" was found.');
     });
   });
 

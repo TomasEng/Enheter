@@ -1,6 +1,7 @@
 import {dimensionsEqual} from './Dimension';
 import {Unit} from './Unit';
 import {findEqualUnit} from './utils/findEqualUnit';
+import {findUnitsByDimension} from './utils/findUnitsByDimension';
 
 export class Measure {
 
@@ -25,7 +26,29 @@ export class Measure {
     return this;
   }
 
-  public convertTo(unit: Unit): Measure {
+  /**
+   * Converts the measure to the given unit.
+   * @param unit A Unit object with the same dimension as the current unit or a key corresponding to a unit of the same dimension as the current unit.
+   * @returns The current measure.
+   * @throws An error if the given unit is not of the same dimension as the current unit.
+   * @throws An error if the given unit is a key and no unit with the current dimension and the given key was found.
+   * @example
+   * const measure = length('metre', 1);
+   * measure.convertTo('foot'); // Unit given as a key
+   * console.log(measure.value, measure.unit.symbol); // Logs "3.280839895013123 ft"
+   * measure.convertTo(lengthUnit('metre').withPrefix('centi')); // Unit given as a Unit object
+   * console.log(measure.value, measure.unit.symbol); // Logs "100 cm"
+   */
+  public convertTo(unit: Unit | string): Measure {
+    if (typeof unit === 'string') {
+      const unitName = unit;
+      unit = findUnitsByDimension(this.unit.dimension)?.[unit];
+      if (!unit) {
+        throw new Error(`No unit with the current dimension and the key "${unitName}" was found.`);
+      }
+    } else if (!dimensionsEqual(this.unit.dimension, unit.dimension)) {
+      throw new Error('Cannot convert a measure to a unit of a different dimension.');
+    }
     this.value = unit.fromBase(this.baseValue());
     this.unit = unit;
     return this;
