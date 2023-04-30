@@ -88,6 +88,9 @@ function App() {
                 Unit
               </TableCell>
               <TableCell>
+                Symbol
+              </TableCell>
+              <TableCell>
                 Value
               </TableCell>
             </TableRow>
@@ -99,6 +102,9 @@ function App() {
                 <TableRow key={unit.key}>
                   <TableCell>
                     {unit.key}
+                  </TableCell>
+                  <TableCell>
+                    {unit.symbol}
                   </TableCell>
                   <TableCell>
                     {convertedValue.value}
@@ -113,4 +119,4 @@ function App() {
   );
 }
 
-export default App;
+  export default App;
