@@ -1,7 +1,7 @@
 {
   "name": "enheter",
   "version": "1.0.10",
-  "description": "",
+  "description": "Calculation library for working with different measuring units.",
   "main": "lib/index.js",
   "scripts": {
     "test": "jest --config jestconfig.json",
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/TomasEng/Enheter.git"
   },
-  "keywords": [],
+  "keywords": ["units", "units of measurement", "enheter", "calculator", "convert", "math", "physics"],
   "author": "Tomas Engebretsen",
   "license": "MIT",
   "bugs": {
