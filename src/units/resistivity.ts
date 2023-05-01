@@ -23,7 +23,7 @@ export const resistivityUnits: UnitList<ResistivityDimension, ResistivityUnit> =
 export const resistivity = (
   unit: ResistivityUnit,
   value: number
-): Measure => new Measure(units[unit], value);
+): Measure<'resistivity'> => new Measure<'resistivity'>(units[unit], value);
 
 /**
  * Gets a given unit of resistivity.

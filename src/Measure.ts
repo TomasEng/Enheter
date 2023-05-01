@@ -3,8 +3,10 @@ import {Unit} from './Unit';
 import {findEqualUnit} from './utils/findEqualUnit';
 import {findUnitsByDimension} from './utils/findUnitsByDimension';
 import {precise} from './utils/numberUtils';
+import {DimensionName} from './types/DimensionName';
+import {UnitName} from './types/UnitName';
 
-export class Measure {
+export class Measure<D extends DimensionName = DimensionName> {
 
   public value: number;
   public unit: Unit;
@@ -40,7 +42,7 @@ export class Measure {
    * measure.convertTo(lengthUnit('metre').withPrefix('centi')); // Unit given as a Unit object
    * console.log(measure.value, measure.unit.symbol); // Logs "100 cm"
    */
-  public convertTo(unit: Unit | string): Measure {
+  public convertTo(unit: Unit | UnitName<D>): Measure<D> {
     if (typeof unit === 'string') {
       const unitName = unit;
       unit = findUnitsByDimension(this.unit.dimension)?.[unit];
@@ -55,14 +57,14 @@ export class Measure {
     return this;
   }
 
-  public add(measure: Measure): Measure {
+  public add(measure: Measure): Measure<D> {
     if (!dimensionsEqual(this.unit.dimension, measure.unit.dimension)) {
       throw new Error('Cannot add measures of different dimensions.');
     }
     return this.setBaseValue(this.baseValue() + measure.baseValue());
   }
 
-  public subtract(measure: Measure): Measure {
+  public subtract(measure: Measure): Measure<D> {
     if (!dimensionsEqual(this.unit.dimension, measure.unit.dimension)) {
       throw new Error('Cannot subtract a measure of a different dimension.');
     }

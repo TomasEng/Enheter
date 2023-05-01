@@ -31,8 +31,8 @@ export const energyUnits: UnitList<EnergyDimension, EnergyUnit> = {
  * @param value The value of the energy measure.
  * @returns The new Measure object.
  */
-export const energy = (unit: EnergyUnit, value: number): Measure =>
-  new Measure(units[unit], value);
+export const energy = (unit: EnergyUnit, value: number): Measure<'energy'> =>
+  new Measure<'energy'>(units[unit], value);
 
 /**
  * Gets a given unit of energy.

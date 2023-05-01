@@ -28,7 +28,7 @@ export const accelerationUnits: UnitList<AccelerationDimension, AccelerationUnit
 export const acceleration = (
   unit: AccelerationUnit,
   value: number
-): Measure => new Measure(units[unit], value);
+): Measure<'acceleration'> => new Measure<'acceleration'>(units[unit], value);
 
 /**
  * Gets a given unit of acceleration.

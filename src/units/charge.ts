@@ -27,7 +27,7 @@ export const chargeUnits: UnitList<ChargeDimension, ChargeUnit> = {
 export const charge = (
   unit: ChargeUnit,
   value: number
-): Measure => new Measure(units[unit], value);
+): Measure<'charge'> => new Measure<'charge'>(units[unit], value);
 
 /**
  * Gets a given unit of charge.

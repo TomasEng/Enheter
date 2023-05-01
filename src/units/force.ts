@@ -28,7 +28,7 @@ export const forceUnits: UnitList<ForceDimension, ForceUnit> = {
  * @param value The value of the force measure.
  * @returns The new Measure object.
  */
-export const force = (unit: ForceUnit, value: number): Measure => new Measure(units[unit], value);
+export const force = (unit: ForceUnit, value: number): Measure<'force'> => new Measure<'force'>(units[unit], value);
 
 /**
  * Gets a given unit of force.

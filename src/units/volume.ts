@@ -30,8 +30,8 @@ export const volumeUnits: UnitList<VolumeDimension, VolumeUnit> = {
  * @param value The value of the measure.
  * @returns The new Measure object.
  */
-export const volume = (unit: VolumeUnit, value: number): Measure =>
-  new Measure(units[unit], value);
+export const volume = (unit: VolumeUnit, value: number): Measure<'volume'> =>
+  new Measure<'volume'>(units[unit], value);
 
 /**
  * Gets a given unit of volume.

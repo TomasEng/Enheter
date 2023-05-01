@@ -27,8 +27,8 @@ export const massUnits: UnitList<MassDimension, MassUnit> = {
  * @param value The value of the measure.
  * @returns The new Measure object.
  */
-export const mass = (unit: MassUnit, value: number): Measure =>
-  new Measure(units[unit], value);
+export const mass = (unit: MassUnit, value: number): Measure<'mass'> =>
+  new Measure<'mass'>(units[unit], value);
 
 /**
  * Gets a given unit of mass.

@@ -20,8 +20,8 @@ export const voltageUnits: UnitList<VoltageDimension, VoltageUnit> = {
  * @param value The value of the measure.
  * @returns The new Measure object.
  */
-export const voltage = (unit: VoltageUnit, value: number): Measure =>
-  new Measure(units[unit], value);
+export const voltage = (unit: VoltageUnit, value: number): Measure<'voltage'> =>
+  new Measure<'voltage'>(units[unit], value);
 
 /**
  * Gets a given unit of voltage.

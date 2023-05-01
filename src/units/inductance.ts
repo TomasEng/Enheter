@@ -23,7 +23,7 @@ export const inductanceUnits: UnitList<InductanceDimension, InductanceUnit> = {
 export const inductance = (
   unit: InductanceUnit,
   value: number
-): Measure => new Measure(units[unit], value);
+): Measure<'inductance'> => new Measure<'inductance'>(units[unit], value);
 
 /**
  * Gets a given unit of inductance.

@@ -23,7 +23,7 @@ export const amountOfSubstanceUnits: UnitList<AmountOfSubstanceDimension, Amount
 export const amountOfSubstance = (
   unit: AmountOfSubstanceUnit,
   value: number
-): Measure => new Measure(units[unit], value);
+): Measure<'amountOfSubstance'> => new Measure<'amountOfSubstance'>(units[unit], value);
 
 /**
  * Gets a given unit of amountOfSubstance.

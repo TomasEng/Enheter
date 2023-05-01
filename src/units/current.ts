@@ -23,7 +23,7 @@ export const currentUnits: UnitList<CurrentDimension, CurrentUnit> = {
 export const current = (
   unit: CurrentUnit,
   value: number
-): Measure => new Measure(units[unit], value);
+): Measure<'current'> => new Measure<'current'>(units[unit], value);
 
 /**
  * Gets a given unit of current.

@@ -26,7 +26,7 @@ export const luminousIntensityUnits: UnitList<LuminousIntensityDimension, Lumino
 export const luminousIntensity = (
   unit: LuminousIntensityUnit,
   value: number
-): Measure => new Measure(units[unit], value);
+): Measure<'luminousIntensity'> => new Measure<'luminousIntensity'>(units[unit], value);
 
 /**
  * Gets a given unit of luminousIntensity.

@@ -32,7 +32,7 @@ export const pressureUnits: UnitList<PressureDimension, PressureUnit> = {
  * @param value The value of the pressure measure.
  * @returns The new Measure object.
  */
-export const pressure = (unit: PressureUnit, value: number): Measure => new Measure(units[unit], value);
+export const pressure = (unit: PressureUnit, value: number): Measure<'pressure'> => new Measure<'pressure'>(units[unit], value);
 
 /**
  * Gets a given unit of pressure.

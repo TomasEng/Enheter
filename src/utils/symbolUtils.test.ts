@@ -12,8 +12,8 @@ import {
   symbolFromSubUnit,
   symbolFromSymbolsAndExponents
 } from './symbolUtils';
-import {areaUnits} from '../units';
 import {SubUnit} from '../types/SubUnit';
+import {squareMetre} from '../units/basicUnits';
 
 describe('symbolUtils', () => {
   describe('splitSymbolIntoParts', () => {
@@ -195,7 +195,7 @@ describe('symbolUtils', () => {
   });
 
   test('symbolFromSubUnit', () => {
-    const unit = areaUnits.units.squareMetre;
+    const unit = squareMetre;
     const exponent = 3;
     const subUnit: SubUnit = {unit, exponent};
     expect(symbolFromSubUnit(subUnit)).toBe('m⁶');

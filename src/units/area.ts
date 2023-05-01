@@ -34,7 +34,7 @@ export const areaUnits: UnitList<AreaDimension, AreaUnit> = {
 export const area = (
   unit: AreaUnit,
   value: number
-): Measure => new Measure(units[unit], value);
+): Measure<'area'> => new Measure<'area'>(units[unit], value);
 
 /**
  * Gets a given unit of area.

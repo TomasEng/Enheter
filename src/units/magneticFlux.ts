@@ -26,7 +26,7 @@ export const magneticFluxUnits: UnitList<MagneticFluxDimension, MagneticFluxUnit
 export const magneticFlux = (
   unit: MagneticFluxUnit,
   value: number
-): Measure => new Measure(units[unit], value);
+): Measure<'magneticFlux'> => new Measure<'magneticFlux'>(units[unit], value);
 
 /**
  * Gets a given unit of magneticFlux.

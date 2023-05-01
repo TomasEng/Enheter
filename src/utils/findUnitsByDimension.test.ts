@@ -1,9 +1,9 @@
 import {findUnitsByDimension} from './findUnitsByDimension';
-import {frequencyUnits, powerUnits} from '../units';
+import {allUnits} from '../units';
 
 describe('findUnitsByDimension', () => {
   it('Finds units with given dimension', () => {
-    expect(findUnitsByDimension({time: -1})).toEqual(frequencyUnits.units);
-    expect(findUnitsByDimension({mass: 1, length: 2, time: -3})).toEqual(powerUnits.units);
+    expect(findUnitsByDimension({time: -1})).toEqual(allUnits.frequency.units);
+    expect(findUnitsByDimension({mass: 1, length: 2, time: -3})).toEqual(allUnits.power.units);
   });
 });

@@ -23,7 +23,7 @@ export const frequencyUnits: UnitList<FrequencyDimension, FrequencyUnit> = {
 export const frequency = (
   unit: FrequencyUnit,
   value: number
-): Measure => new Measure(units[unit], value);
+): Measure<'frequency'> => new Measure<'frequency'>(units[unit], value);
 
 /**
  * Gets a given unit of frequency.

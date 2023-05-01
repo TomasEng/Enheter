@@ -39,7 +39,7 @@ export const lengthUnits: UnitList<LengthDimension, LengthUnit> = {
  * @param value The value of the measure.
  * @returns The new Measure object.
  */
-export const length = (unit: LengthUnit, value: number): Measure => new Measure(units[unit], value);
+export const length = (unit: LengthUnit, value: number): Measure<'length'> => new Measure<'length'>(units[unit], value);
 
 /**
  * Gets a given unit of length.

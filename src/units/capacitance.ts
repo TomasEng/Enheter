@@ -23,7 +23,7 @@ export const capacitanceUnits: UnitList<CapacitanceDimension, CapacitanceUnit> =
 export const capacitance = (
   unit: CapacitanceUnit,
   value: number
-): Measure => new Measure(units[unit], value);
+): Measure<'capacitance'> => new Measure<'capacitance'>(units[unit], value);
 
 /**
  * Gets a given unit of capacitance.

@@ -23,8 +23,8 @@ export const powerUnits: UnitList<PowerDimension, PowerUnit> = {
  * @param value The value of the measure.
  * @returns The new Measure object.
  */
-export const power = (unit: PowerUnit, value: number): Measure =>
-  new Measure(units[unit], value);
+export const power = (unit: PowerUnit, value: number): Measure<'power'> =>
+  new Measure<'power'>(units[unit], value);
 
 /**
  * Gets a given unit of power.

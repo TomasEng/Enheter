@@ -26,8 +26,8 @@ export const timeUnits: UnitList<TimeDimension, TimeUnit> = {
  * @param value The value of the measure.
  * @returns The new Measure object.
  */
-export const time = (unit: TimeUnit, value: number): Measure =>
-  new Measure(units[unit], value);
+export const time = (unit: TimeUnit, value: number): Measure<'time'> =>
+  new Measure<'time'>(units[unit], value);
 
 /**
  * Gets a given unit of time.

@@ -23,8 +23,8 @@ export const densityUnits: UnitList<DensityDimension, DensityUnit> = {
  * @param value The value of the measure.
  * @returns The new Measure object.
  */
-export const density = (unit: DensityUnit, value: number): Measure =>
-  new Measure(units[unit], value);
+export const density = (unit: DensityUnit, value: number): Measure<'density'> =>
+  new Measure<'density'>(units[unit], value);
 
 /**
  * Gets a given unit of density.

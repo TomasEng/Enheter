@@ -35,7 +35,7 @@ export const temperatureUnits: UnitList<TemperatureDimension, TemperatureUnit> =
 export const temperature = (
   unit: TemperatureUnit,
   value: number
-): Measure => new Measure(units[unit], value);
+): Measure<'temperature'> => new Measure<'temperature'>(units[unit], value);
 
 /**
  * Gets a given unit of temperature.
