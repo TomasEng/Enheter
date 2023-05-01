@@ -1,3 +1,5 @@
+import {numbersEqual} from './utils/numberUtils';
+
 interface BijectiveOperation {
   function: (accumulator: number, parameter: number) => number;
   inverseFunction: (accumulator: number, parameter: number) => number;
@@ -22,7 +24,7 @@ export interface BijectiveOperationWithParam {
 export const simplifyOperationChain = (chain: BijectiveOperationWithParam[]): BijectiveOperationWithParam[] => {
   const simplifiedChain: BijectiveOperationWithParam[] = [];
   chain.forEach((operation) => {
-    if ((operation.operation === 'add' && operation.parameter === 0) || (operation.operation === 'multiply' && operation.parameter === 1)) return;
+    if ((operation.operation === 'add' && numbersEqual(operation.parameter, 0)) || (operation.operation === 'multiply' && numbersEqual(operation.parameter, 1))) return;
     const lastOperation = simplifiedChain[simplifiedChain.length - 1];
     if (lastOperation && lastOperation.operation === operation.operation) {
       lastOperation.parameter = operations[operation.operation].function(lastOperation.parameter, operation.parameter);
@@ -112,6 +114,6 @@ export class BijectiveOperationChain {
 
   public equals(other: BijectiveOperationChain): boolean {
     return this.nameChain.length === other.nameChain.length &&
-      this.nameChain.every((o, i) => o.operation === other.nameChain[i].operation && o.parameter === other.nameChain[i].parameter);
+      this.nameChain.every((o, i) => o.operation === other.nameChain[i].operation && numbersEqual(o.parameter, other.nameChain[i].parameter));
   }
 }

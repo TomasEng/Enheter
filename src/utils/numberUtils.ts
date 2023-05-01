@@ -1,0 +1,1 @@
+export const numbersEqual = (a: number, b: number, epsilon = Number.EPSILON): boolean => Math.abs(a - b) < epsilon;
