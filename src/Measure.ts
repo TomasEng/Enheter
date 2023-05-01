@@ -2,6 +2,7 @@ import {dimensionsEqual} from './Dimension';
 import {Unit} from './Unit';
 import {findEqualUnit} from './utils/findEqualUnit';
 import {findUnitsByDimension} from './utils/findUnitsByDimension';
+import {precise} from './utils/numberUtils';
 
 export class Measure {
 
@@ -22,7 +23,7 @@ export class Measure {
   }
 
   public setBaseValue(value: number): Measure {
-    this.value = this.unit.fromBase(value);
+    this.value = precise(this.unit.fromBase(value));
     return this;
   }
 
@@ -49,7 +50,7 @@ export class Measure {
     } else if (!dimensionsEqual(this.unit.dimension, unit.dimension)) {
       throw new Error('Cannot convert a measure to a unit of a different dimension.');
     }
-    this.value = unit.fromBase(this.baseValue());
+    this.value = precise(unit.fromBase(this.baseValue()));
     this.unit = unit;
     return this;
   }
@@ -69,14 +70,14 @@ export class Measure {
   }
 
   public multiplyWith(measure: Measure): Measure {
-    this.value *= measure.value;
+    this.value = precise(this.value * measure.value);
     const newUnit = this.unit.multipliedWith(measure.unit);
     this.unit = findEqualUnit(newUnit) || newUnit;
     return this;
   }
 
   public divideBy(measure: Measure): Measure {
-    this.value /= measure.value;
+    this.value = precise(this.value / measure.value);
     const newUnit = this.unit.dividedBy(measure.unit);
     this.unit = findEqualUnit(newUnit) || newUnit;
     return this;
