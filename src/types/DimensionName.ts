@@ -1,6 +1,5 @@
-import {
+import type {
   AccelerationUnit,
-  allUnits,
   AmountOfSubstanceUnit,
   AreaUnit,
   CapacitanceUnit,
@@ -27,6 +26,7 @@ import {
   VoltageUnit,
   VolumeUnit
 } from '../units';
+import {allUnits} from '../units';
 import {ResistivityUnit} from '../units/resistivity';
 
 export type AllDimensions = {
