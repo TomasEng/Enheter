@@ -1,0 +1,48 @@
+name: Release
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: "The type of release (one of 'patch' or 'minor')"
+        required: true
+        default: patch
+        type: choice
+        options:
+          - patch
+          - minor
+
+jobs:
+  build_release:
+    name: Build & release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.x"
+          registry-url: "https://npm.pkg.github.com"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Prepare release version
+        if: ${{ ! github.event.after }}
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          npm version  ${{ github.event.inputs.release_type }}
+          echo "release_version=`git describe`" >> $GITHUB_ENV
+          git add .
+          git commit -m "Release"
+          git push --follow-tags
+
+      - name: Publish npm package
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
