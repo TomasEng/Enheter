@@ -7,4 +7,5 @@ export type {UnitName} from './types/UnitName';
 export type {Prefix} from './Prefix';
 export {findDimensionName} from './utils/findDimensionName';
 export {findUnitsByDimension} from './utils/findUnitsByDimension';
+export {findUnitName} from './utils/findUnitName';
 export * from './units';
