@@ -1,6 +1,6 @@
 {
   "name": "enheter",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "description": "Calculation library for working with different measuring units.",
   "main": "lib/index.js",
   "scripts": {
