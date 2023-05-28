@@ -24,12 +24,12 @@ jobs:
       - name: Build package
         run: npm run build
 
+      - name: Check for changes in package.json
+        id: check_changes
+        run: echo "::set-output name=changes::$(git diff --name-only $(git rev-parse FETCH_HEAD) $(git rev-parse HEAD) | grep 'package.json' | wc -l)"
+
       - name: Publish package
+        if: steps.check_changes.outputs.changes == '1'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          if [ -n "$(git diff --name-only HEAD^ HEAD | grep 'package.json')" ]; then
-            npm publish
-          else
-            echo "No changes in package.json. Skipping package publication."
-          fi
+        run: npm publish
